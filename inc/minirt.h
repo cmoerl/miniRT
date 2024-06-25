@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/06/21 13:16:13 by csturm           ###   ########.fr       */
+/*   Updated: 2024/06/25 17:04:06 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@
 #include <math.h>
 #include <mlx.h>
 #include "mlx.h"
+
+typedef enum e_object_type
+{
+    SPHERE,
+    PLANE,
+    CYLINDER
+} t_object_type;
 
 typedef struct s_color
 {
@@ -88,7 +95,19 @@ typedef struct s_scene
     t_camera camera;
     int width;
     int height;
+    int objects_count;
 } t_scene;
+
+typedef struct s_object
+{
+    t_object_type type;
+    t_color color;
+    union {
+        t_sphere sphere;
+        t_plane plane;
+        t_cylinder cylinder;
+    };
+} t_object;
 
 t_scene parse_scene(char *filename, t_scene scene);
 void render_scene(t_scene scene);
