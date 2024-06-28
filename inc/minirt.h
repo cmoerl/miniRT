@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/06/25 17:04:06 by csturm           ###   ########.fr       */
+/*   Updated: 2024/06/28 14:50:43 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,19 +85,6 @@ typedef struct s_camera
     float fov;
 } t_camera;
 
-typedef struct s_scene
-{
-    t_sphere *spheres;
-    t_plane *planes;
-    t_cylinder *cylinders;
-    t_amblight amblight;
-    t_light light;
-    t_camera camera;
-    int width;
-    int height;
-    int objects_count;
-} t_scene;
-
 typedef struct s_object
 {
     t_object_type type;
@@ -109,8 +96,25 @@ typedef struct s_object
     };
 } t_object;
 
+typedef struct s_scene
+{
+    t_object *objects;
+    t_amblight amblight;
+    t_light light;
+    t_camera camera;
+    int width;
+    int height;
+    int objects_count;
+} t_scene;
+
 t_scene parse_scene(char *filename, t_scene scene);
 void render_scene(t_scene scene);
 void    error(char *message, t_scene *scene);
+float   intersect_sphere(t_sphere sphere, t_vector ray);
+float   intersect_plane(t_plane plane, t_vector ray);
+float   intersect_cylinder(t_cylinder cylinder, t_vector ray);
+t_color trace_ray(t_scene scene, t_vector ray);
+t_vector    get_ray(t_scene scene, int x, int y);
+float   dot_product(t_vector a, t_vector b);
 
 #endif
