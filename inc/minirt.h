@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/06/28 14:50:43 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/01 11:28:35 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,27 @@
 #include <math.h>
 #include <mlx.h>
 #include "mlx.h"
+
+#define WIDTH 800
+#define HEIGHT 600
+
+typedef struct s_hooks
+{
+    int key_press;
+    int key_release;
+    int mouse_press;
+    int mouse_release;
+    int mouse_move;
+} t_hooks;
+
+typedef struct s_img
+{
+    void *img_ptr;
+    char *pxl;
+    int bits_per_pixel;
+    int line_length;
+    int endian;
+} t_img;
 
 typedef enum e_object_type
 {
@@ -41,6 +62,7 @@ typedef struct s_vector
     float x;
     float y;
     float z;
+    struct s_vector *dir;
 } t_vector;
 
 typedef struct s_sphere
@@ -105,6 +127,10 @@ typedef struct s_scene
     int width;
     int height;
     int objects_count;
+    void *mlx_ptr;
+    void *win_ptr;
+    t_img *img;
+    t_hooks *hooks;
 } t_scene;
 
 t_scene parse_scene(char *filename, t_scene scene);
@@ -116,5 +142,6 @@ float   intersect_cylinder(t_cylinder cylinder, t_vector ray);
 t_color trace_ray(t_scene scene, t_vector ray);
 t_vector    get_ray(t_scene scene, int x, int y);
 float   dot_product(t_vector a, t_vector b);
+void    event_loop(t_scene scene);
 
 #endif

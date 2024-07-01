@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:03:05 by csturm            #+#    #+#             */
-/*   Updated: 2024/06/28 13:26:36 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/01 09:59:16 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 void    put_pixel(int x, int y, t_color color)
 {
     // set the color of the pixel at the given coordinates
+    // use the mlx_pixel_put function
 }
 
 void    render_scene(t_scene scene)
@@ -47,4 +48,5 @@ void    render_scene(t_scene scene)
         }
         y++;
     }
+    mlx_put_image_to_window(scene.mlx_ptr, scene.win_ptr, scene.img->img_ptr, 0, 0);
 }

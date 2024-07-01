@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:25:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/06/28 14:56:41 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/01 11:32:52 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,16 @@ t_color trace_ray(t_scene scene, t_vector ray)
     return (color);
 }
 
+t_vector    rotate_vector(t_vector v, t_vector normal)
+{
+    t_vector rotated;
+
+    rotated.x = v.x * (1 - normal.x * normal.x) + v.y * (-normal.z) + v.z * normal.y;
+    rotated.y = v.x * normal.z + v.y * (1 - normal.y * normal.y) + v.z * (-normal.x);
+    rotated.z = v.x * (-normal.y) + v.y * normal.x + v.z * (1 - normal.z * normal.z);
+    return (rotated);
+}
+
 t_vector    get_ray(t_scene scene, int x, int y)
 {
     t_vector ray;
@@ -155,10 +165,17 @@ t_vector    get_ray(t_scene scene, int x, int y)
     tan_fov = tan(scene.camera.fov / 2.0);
 // normalising the pixel coordinates to the range [0, 1]
 // remapping the pixel coordinates to the range [-1, 1]
-// calculating the ray direction
     ray_dir.x = (2 * (x + 0.5) / (double)scene.width - 1) * aspect_ratio * tan_fov;
     ray_dir.y = (1 - 2 * (y + 0.5) / (double)scene.height) * tan_fov;
     ray_dir.z = -1;
-    ray = normalise_vector(ray_dir);
+    // transform the ray direction based on the camera's orientation
+    ray_dir = rotate_vector(ray_dir, scene.camera.normal);
+    // translate the ray origin based on the camera's position
+    ray.x = scene.camera.center.x;
+    ray.y = scene.camera.center.y;
+    ray.z = scene.camera.center.z;
+    // normalise the ray direction
+    ray_dir = normalise_vector(ray_dir);
+    ray.dir = &ray_dir; // does this work?
     return (ray);
 }
