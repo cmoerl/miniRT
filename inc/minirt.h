@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/01 11:28:35 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/01 12:57:22 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,13 @@ typedef struct s_vector
     float x;
     float y;
     float z;
-    struct s_vector *dir;
 } t_vector;
+
+typedef struct s_ray
+{
+    t_vector origin;
+    t_vector direction;
+} t_ray;
 
 typedef struct s_sphere
 {
@@ -112,9 +117,9 @@ typedef struct s_object
     t_object_type type;
     t_color color;
     union {
-        t_sphere sphere;
-        t_plane plane;
-        t_cylinder cylinder;
+        t_sphere *sphere;
+        t_plane *plane;
+        t_cylinder *cylinder;
     };
 } t_object;
 
