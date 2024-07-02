@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:03:05 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/01 09:59:16 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/02 10:48:03 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void    render_scene(t_scene scene)
 {
     int x;
     int y;
-    t_vector ray;
+    t_ray ray;
     t_color color;
 
     x = 0;
