@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:31:27 by csturm            #+#    #+#             */
-/*   Updated: 2024/06/21 12:55:54 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/02 12:23:51 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@
 
 void    clean_exit(t_scene *scene)
 {
-    free(scene->spheres);
-    free(scene->planes);
-    free(scene->cylinders);
+    // depends on what is initialised using malloc
 }
 
 void    error(char *message, t_scene *scene)
