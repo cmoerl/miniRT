@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/02 11:41:47 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/03 12:30:36 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,5 +157,7 @@ t_vector    rotate_vector(t_vector v, t_vector normal);
 t_vector    normalise_vector(t_vector v);
 t_vector    get_intersection_point(t_ray ray, float t, t_object object);
 t_vector    get_normal(t_vector v, t_object object);
+void    decrease_resolution(t_scene *scene);
+void    increase_resolution(t_scene *scene);
 
 #endif
