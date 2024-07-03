@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:03:05 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/02 12:41:27 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/03 10:36:10 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ void    put_pixel(int x, int y, t_color color, t_scene scene)
 {
     int	position;
 
-    if (scene.img == NULL)
-        error("Image not initialised", &scene);
-    if (x < 0 || y < 0 || x >= scene.width || y >= scene.height)
-        error("Pixel out of bounds", &scene);
+    // should be handled in initialisation:
+    // if (scene.img == NULL)
+    //     error("Image not initialised", &scene);
+    // if (x < 0 || y < 0 || x >= scene.width || y >= scene.height)
+    //     error("Pixel out of bounds", &scene);
 	position = y * scene.img->line_length + x * (scene.img->bits_per_pixel / 8);
 	*(unsigned int *)(scene.img->pxl + position) = (int)(color.r * 255) << 16 | (int)(color.g * 255) << 8 | (int)(color.b * 255);
 }
@@ -43,10 +44,11 @@ void    render_scene(t_scene scene)
 
     x = 0;
     y = 0;
-    if (scene.img == NULL)
-        error("Image not initialised", &scene);
-    if (scene.width <= 0 || scene.height <= 0)
-        error("Invalid resolution", &scene);
+    // should be handled in initialisation:
+    // if (scene.img == NULL)
+    //     error("Image not initialised", &scene);
+    // if (scene.width <= 0 || scene.height <= 0)
+    //     error("Invalid resolution", &scene);
     while (y < scene.height)
     {
         while (x < scene.width)
