@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:25:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/02 11:50:19 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/04 11:03:48 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_color trace_ray(t_scene scene, t_ray ray)
     hit = find_closest_object(scene, ray);
     if (hit.t == INFINITY)
         return (color = (t_color){0, 0, 0});
-    ip = get_intersection_point(ray, hit.t, hit.object);
+    ip = get_intersection_point(ray, hit.t);
     normal = get_normal(ip, hit.object);
     color = calc_shade(scene, ip, normal, hit.object);
     return (color);

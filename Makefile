@@ -6,7 +6,7 @@
 #    By: csturm <csturm@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/21 12:23:07 by csturm            #+#    #+#              #
-#    Updated: 2024/06/21 13:04:01 by csturm           ###   ########.fr        #
+#    Updated: 2024/07/04 10:53:48 by csturm           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,14 @@ SOURCES_PATH := src/
 # Source and Object Files
 
 SOURCE_FILES := main.c \
-				parse.c \
-				render.c
+				render.c \
+				error.c \
+				events.c \
+				graphics.c \
+				intersect.c \
+				ray.c \
+				ray_utils.c \
+				#parse.c \
 
 OBJECTS := $(SOURCE_FILES:%.c=$(OBJECTS_PATH)%.o)
 
