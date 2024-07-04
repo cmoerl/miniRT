@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:30:14 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/02 11:32:31 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/04 12:33:54 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_vector    normalise_vector(t_vector v)
     return (normalised);
 }
 
-t_vector    get_intersection_point(t_ray ray, float t, t_object object)
+t_vector    get_intersection_point(t_ray ray, float t)
 {
     t_vector ip;
 
@@ -43,25 +43,25 @@ t_vector    get_intersection_point(t_ray ray, float t, t_object object)
     return (ip);
 }
 
-t_vector    get_normal(t_vector v, t_object object)
+t_vector    get_normal(t_vector v, t_hit hit)
 {
     t_vector normal;
     
-    if (object.type == SPHERE)
+    if (hit.type == SPHERE)
     {
-        normal.x = v.x - object.sphere->center.x;
-        normal.y = v.y - object.sphere->center.y;
-        normal.z = v.z - object.sphere->center.z;
+        normal.x = v.x - ((t_sphere*)hit.object)->center.x;
+        normal.y = v.y - ((t_sphere*)hit.object)->center.y;
+        normal.z = v.z - ((t_sphere*)hit.object)->center.z;
     }
-    else if (object.type == PLANE)
+    else if (hit.type == PLANE)
     {
-        normal = object.plane->axis;
+        normal = ((t_plane*)hit.object)->axis;
     }
-    else if (object.type == CYLINDER)
+    else if (hit.type == CYLINDER)
     {
-        normal.x = v.x - object.cylinder->center.x;
-        normal.y = v.y - object.cylinder->center.y;
-        normal.z = v.z - object.cylinder->center.z;
+        normal.x = v.x - ((t_cylinder*)hit.object)->center.x;
+        normal.y = v.y - ((t_cylinder*)hit.object)->center.y;
+        normal.z = v.z - ((t_cylinder*)hit.object)->center.z;
     }
     normal = normalise_vector(normal);
     return (normal);

@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/03 12:30:36 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/04 12:24:11 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_sphere
     t_vector center;
     float radius;
     t_color color;
+    struct s_sphere *next;
 } t_sphere;
 
 typedef struct s_plane
@@ -82,6 +83,7 @@ typedef struct s_plane
     t_vector point;
     t_vector axis;
     t_color color;
+    struct s_plane *next;
 } t_plane;
 
 typedef struct s_cylinder
@@ -91,6 +93,7 @@ typedef struct s_cylinder
     float radius;
     float height;
     t_color color;
+    struct s_cylinder *next;
 } t_cylinder;
 
 typedef struct s_amblight
@@ -114,17 +117,15 @@ typedef struct s_camera
 
 typedef struct s_object
 {
-    t_object_type type;
-    union {
-        t_sphere *sphere;
-        t_plane *plane;
-        t_cylinder *cylinder;
-    };
+    t_sphere *spheres;
+    t_plane *planes;
+    t_cylinder *cylinders;
 } t_object;
 
 typedef struct s_hit
 {
-    t_object object;
+    t_object_type type;
+    void *object;
     float t;
 } t_hit;
 
@@ -155,8 +156,8 @@ float   dot_product(t_vector a, t_vector b);
 void    event_loop(t_scene scene);
 t_vector    rotate_vector(t_vector v, t_vector normal);
 t_vector    normalise_vector(t_vector v);
-t_vector    get_intersection_point(t_ray ray, float t, t_object object);
-t_vector    get_normal(t_vector v, t_object object);
+t_vector    get_intersection_point(t_ray ray, float t);
+t_vector    get_normal(t_vector v, t_hit hit);
 void    decrease_resolution(t_scene *scene);
 void    increase_resolution(t_scene *scene);
 
