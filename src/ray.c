@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:25:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/04 11:03:48 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/04 12:37:00 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,46 @@ t_hit   find_closest_object(t_scene scene, t_ray ray)
 {
     t_hit hit;
     float t;
-    int i;
+    t_sphere *sphere;
+    t_plane *plane;
+    t_cylinder *cylinder;
 
-    i = 0;
     hit.t = INFINITY;
-    while (i < scene.objects_count)
+    sphere = scene.objects->spheres;
+    while (sphere != NULL)
     {
-        if (scene.objects[i].type == SPHERE)
-            t = intersect_sphere(scene.objects[i].sphere, ray);
-        else if (scene.objects[i].type == PLANE)
-            t = intersect_plane(scene.objects[i].plane, ray);
-        else if (scene.objects[i].type == CYLINDER)
-            t = intersect_cylinder(scene.objects[i].cylinder, ray);       
+        t = intersect_sphere(sphere, ray);
         if (t > 0 && t < hit.t)
         {
             hit.t = t;
-            hit.object = scene.objects[i];
+            hit.object = sphere;
+            hit.type = SPHERE;
         }
-        i++;
+        sphere = sphere->next;
+    }
+    plane = scene.objects->planes;
+    while (plane != NULL)
+    {
+        t = intersect_plane(plane, ray);
+        if (t > 0 && t < hit.t)
+        {
+            hit.t = t;
+            hit.object = plane;
+            hit.type = PLANE;
+        }
+        plane = plane->next;
+    }
+    cylinder = scene.objects->cylinders;
+    while (cylinder != NULL)
+    {
+        t = intersect_cylinder(cylinder, ray);
+        if (t > 0 && t < hit.t)
+        {
+            hit.t = t;
+            hit.object = cylinder;
+            hit.type = CYLINDER;
+        }
+        cylinder = cylinder->next;
     }
     return (hit);
 }
@@ -42,7 +64,7 @@ t_hit   find_closest_object(t_scene scene, t_ray ray)
 // check if the shadow ray intersects with any object
 // if the shadow ray intersects with an object, the pixel is in shadow
 // if the pixel is not in shadow, calculate the color of the pixel
-t_color calc_shade(t_scene scene, t_vector ip, t_vector normal, t_object object)
+t_color calc_shade(t_scene scene, t_vector ip, t_vector normal)
 {
     t_color color;
     t_color object_color;
@@ -61,12 +83,12 @@ t_color calc_shade(t_scene scene, t_vector ip, t_vector normal, t_object object)
     hit = find_closest_object(scene, shadow_ray);
     if (hit.t < light_distance)
         return (color);
-    if (object.type == SPHERE)
-        object_color = (t_color){object.sphere->color.r, object.sphere->color.g, object.sphere->color.b};
-    else if (object.type == PLANE)
-        object_color = (t_color){object.plane->color.r, object.plane->color.g, object.plane->color.b};
-    else if (object.type == CYLINDER)
-        object_color = (t_color){object.cylinder->color.r, object.cylinder->color.g, object.cylinder->color.b};
+    if (hit.type == SPHERE)
+        object_color = (t_color){((t_sphere*)hit.object)->color.r, ((t_sphere*)hit.object)->color.g, ((t_sphere*)hit.object)->color.b};
+    else if (hit.type == PLANE)
+        object_color = (t_color){((t_plane*)hit.object)->color.r, ((t_plane*)hit.object)->color.g, ((t_plane*)hit.object)->color.b};
+    else if (hit.type == CYLINDER)
+        object_color = (t_color){((t_cylinder*)hit.object)->color.r, ((t_cylinder*)hit.object)->color.g, ((t_cylinder*)hit.object)->color.b};
     color.r += object_color.r * scene.light.intensity * dot_product(normal, light_dir) / (light_distance * light_distance);
     color.g += object_color.g * scene.light.intensity * dot_product(normal, light_dir) / (light_distance * light_distance);
     color.b += object_color.b * scene.light.intensity * dot_product(normal, light_dir) / (light_distance * light_distance);
@@ -91,8 +113,8 @@ t_color trace_ray(t_scene scene, t_ray ray)
     if (hit.t == INFINITY)
         return (color = (t_color){0, 0, 0});
     ip = get_intersection_point(ray, hit.t);
-    normal = get_normal(ip, hit.object);
-    color = calc_shade(scene, ip, normal, hit.object);
+    normal = get_normal(ip, hit);
+    color = calc_shade(scene, ip, normal);
     return (color);
 }
 
