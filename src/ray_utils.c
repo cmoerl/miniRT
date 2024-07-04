@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:30:14 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/04 12:36:40 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/04 12:53:58 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ t_vector    get_intersection_point(t_ray ray, float t)
 t_vector    get_normal(t_vector v, t_hit hit)
 {
     t_vector normal;
-    
+
+    normal = (t_vector){0, 0, 0};    
     if (hit.type == SPHERE)
     {
         normal.x = v.x - ((t_sphere*)hit.object)->center.x;

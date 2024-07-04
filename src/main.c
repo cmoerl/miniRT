@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/04 10:51:30 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/04 12:51:36 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,39 +24,74 @@ void init_img(t_scene *scene)
     scene->img->pxl = mlx_get_data_addr(scene->img->img_ptr, &scene->img->bits_per_pixel, &scene->img->line_length, &scene->img->endian);
 }
 
+t_sphere    *init_sphere(void)
+{
+    t_sphere *sphere;
+
+    sphere = malloc(sizeof(t_sphere));
+    if (!sphere)
+        error("Error: Failed to allocate memory for sphere\n", NULL);
+    sphere->center.x = 0;
+    sphere->center.y = 0;
+    sphere->center.z = 0;
+    sphere->radius = 1;
+    sphere->color.r = 255;
+    sphere->color.g = 0;
+    sphere->color.b = 0;
+    sphere->next = NULL;
+    return (sphere);
+}
+
+t_plane    *init_plane(void)
+{
+    t_plane *plane;
+
+    plane = malloc(sizeof(t_plane));
+    if (!plane)
+        error("Error: Failed to allocate memory for plane\n", NULL);
+    plane->point.x = 0;
+    plane->point.y = 0;
+    plane->point.z = 0;
+    plane->axis.x = 0;
+    plane->axis.y = 1;
+    plane->axis.z = 0;
+    plane->color.r = 0;
+    plane->color.g = 255;
+    plane->color.b = 0;
+    plane->next = NULL;
+    return (plane);
+}
+
+t_cylinder    *init_cylinder(void)
+{
+    t_cylinder *cylinder;
+
+    cylinder = malloc(sizeof(t_cylinder));
+    if (!cylinder)
+        error("Error: Failed to allocate memory for cylinder\n", NULL);
+    cylinder->center.x = 0;
+    cylinder->center.y = 0;
+    cylinder->center.z = 0;
+    cylinder->axis.x = 0;
+    cylinder->axis.y = 1;
+    cylinder->axis.z = 0;
+    cylinder->radius = 1;
+    cylinder->height = 1;
+    cylinder->color.r = 0;
+    cylinder->color.g = 0;
+    cylinder->color.b = 255;
+    cylinder->next = NULL;
+    return (cylinder);
+}
+
 void init_objects(t_scene *scene)
 {
     scene->objects = malloc(sizeof(t_object));
     if (!scene->objects)
         error("Error: Failed to allocate memory for objects\n", scene);
-    scene->objects->type = SPHERE;
-    scene->objects->sphere = malloc(sizeof(t_sphere));
-    if (!scene->objects->sphere)
-        error("Error: Failed to allocate memory for sphere\n", scene);
-    scene->objects->sphere->center.x = 0;
-    scene->objects->sphere->center.y = 0;
-    scene->objects->sphere->center.z = 0;
-    scene->objects->sphere->radius = 1;
-    scene->objects->sphere->color.r = 255;
-    scene->objects->sphere->color.g = 0;
-    scene->objects->sphere->color.b = 0;
-    scene->objects->next = malloc (sizeof(t_object));
-    if (!scene->objects->next)
-        error("Error: Failed to allocate memory for objects\n", scene);
-    scene->objects->next->type = PLANE;
-    scene->objects->next->plane = malloc(sizeof(t_plane));
-    if (!scene->objects->next->plane)
-        error("Error: Failed to allocate memory for plane\n", scene);
-    scene->objects->next->plane->point.x = 0;
-    scene->objects->next->plane->point.y = 0;
-    scene->objects->next->plane->point.z = 0;
-    scene->objects->next->plane->axis.x = 0;
-    scene->objects->next->plane->axis.y = 1;
-    scene->objects->next->plane->axis.z = 0;
-    scene->objects->next->plane->color.r = 0;
-    scene->objects->next->plane->color.g = 255;
-    scene->objects->next->plane->color.b = 0;
-    scene->objects->next->next = 0;
+    scene->objects->spheres = init_sphere();
+    scene->objects->planes = init_plane();
+    scene->objects->cylinders = init_cylinder();
 }
 
 void init_hooks(t_scene *scene)
