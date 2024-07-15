@@ -6,7 +6,7 @@
 #    By: csturm <csturm@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/21 12:23:07 by csturm            #+#    #+#              #
-#    Updated: 2024/07/04 10:53:48 by csturm           ###   ########.fr        #
+#    Updated: 2024/07/15 09:28:02 by csturm           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ NAME := miniRT
 COMPILER := cc
 FLAGS := -Wall -Wextra -Werror -g
 CLEANUP := rm -rf
+MLX_LIBS := -L minilibx-linux -lmlx -lm -lXext -lX11
 
 # Directory Paths
 OBJECTS_PATH := obj/
@@ -42,7 +43,7 @@ all: $(NAME)
 
 # Linking the Program
 $(NAME): $(OBJECTS)
-	@$(COMPILER) $(FLAGS) $(OBJECTS) -o $(NAME)
+	@$(COMPILER) $(FLAGS) $(OBJECTS) $(MLX_LIBS) -o $(NAME)
 	@echo "linking successfull - executable $(NAME) created"
 
 # Compiling Source Files
