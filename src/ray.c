@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:25:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/04 12:37:00 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/15 12:51:22 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,14 +131,14 @@ t_ray    get_ray(t_scene scene, int x, int y)
     float tan_fov;
 
     aspect_ratio = scene.width / (float)scene.height;
-    tan_fov = tan(scene.camera.fov / 2.0);
+    tan_fov = tan((scene.camera.fov * PI / 180) / 2.0);
+    ray_dir = scene.camera.orientation;
     ray_dir.x = (2 * (x + 0.5) / (double)scene.width - 1) * aspect_ratio * tan_fov;
     ray_dir.y = (1 - 2 * (y + 0.5) / (double)scene.height) * tan_fov;
-    ray_dir.z = -1;
-    ray_dir = rotate_vector(ray_dir, scene.camera.orientation);
+    ray_dir = normalise_vector(ray_dir);
     ray.origin.x = scene.camera.center.x;
     ray.origin.y = scene.camera.center.y;
     ray.origin.z = scene.camera.center.z;
-    ray.direction = normalise_vector(ray_dir);
+    ray.direction = ray_dir;
     return (ray);
 }
