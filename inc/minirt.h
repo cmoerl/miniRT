@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/15 12:49:53 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/16 11:05:13 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,6 @@ t_color trace_ray(t_scene scene, t_ray ray);
 t_ray    get_ray(t_scene scene, int x, int y);
 float   dot_product(t_vector a, t_vector b);
 void    event_loop(t_scene scene);
-// t_vector    rotate_vector(t_vector v, t_vector normal, double theta);
 t_vector    normalise_vector(t_vector v);
 t_vector    get_intersection_point(t_ray ray, float t);
 t_vector    get_normal(t_vector v, t_hit hit);

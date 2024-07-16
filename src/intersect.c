@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:23:36 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/15 11:59:04 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/16 11:41:35 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ float   intersect_plane(t_plane *plane, t_ray ray)
 float   intersect_cylinder(t_cylinder *cylinder, t_ray ray)
 {
     t_vector oc;
+    t_vector dot;
     float a;
     float b;
     float c;
@@ -77,9 +78,10 @@ float   intersect_cylinder(t_cylinder *cylinder, t_ray ray)
     float t;
 
     oc = (t_vector){ray.origin.x - cylinder->center.x, ray.origin.y - cylinder->center.y, ray.origin.z - cylinder->center.z};
-    a = dot_product(ray.direction, ray.direction);
-    b = 2 * dot_product(oc, ray.direction);
-    c = oc.x * oc.x + oc.y * oc.y - cylinder->radius * cylinder->radius;
+    dot = (t_vector){dot_product(ray.direction, cylinder->axis), dot_product(oc, cylinder->axis), dot_product(cylinder->axis, cylinder->axis)};
+    a = dot_product(ray.direction, ray.direction) - dot.x * dot.x / dot.z;
+    b = 2 * (dot_product(oc, ray.direction) - dot.x * dot.y / dot.z);
+    c = dot_product(oc, oc) - dot.y * dot.y / dot.z - cylinder->radius * cylinder->radius;
     discriminant = b * b - 4 * a * c;
     if (discriminant < 0)
         return (-1);
