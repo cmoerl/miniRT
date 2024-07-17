@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/16 11:05:13 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/17 11:32:42 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 #include <mlx.h>
 #include "mlx.h"
 
-#define WIDTH 800
-#define HEIGHT 600
+#define WIDTH 1000
+#define HEIGHT 700
 #define PI 3.14159265359
 
 typedef struct s_hooks
@@ -48,7 +48,8 @@ typedef enum e_object_type
 {
     SPHERE,
     PLANE,
-    CYLINDER
+    CYLINDER,
+    NONE
 } t_object_type;
 
 typedef struct s_color

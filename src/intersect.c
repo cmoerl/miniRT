@@ -6,11 +6,12 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:23:36 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/16 11:41:35 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/17 11:50:07 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+#include <math.h>
 
 float   dot_product(t_vector a, t_vector b)
 {
@@ -40,14 +41,14 @@ float   intersect_sphere(t_sphere *sphere, t_ray ray)
     c = dot_product(oc, oc) - sphere->radius * sphere->radius;
     discriminant = b * b - 4 * a * c;
     if (discriminant < 0)
-        return (-1);
+        return (INFINITY);
     t = (-b - sqrt(discriminant)) / (2 * a);
     if (t > 0)
         return (t);
     t = (-b + sqrt(discriminant)) / (2 * a);
     if (t > 0)
         return (t);
-    return (-1);
+    return (INFINITY);
 }
 
 // calculate the denominator of the equation
@@ -60,11 +61,11 @@ float   intersect_plane(t_plane *plane, t_ray ray)
 
     denominator = dot_product(plane->axis, ray.direction);
     if (denominator == 0)
-        return (-1);
+        return (INFINITY);
     t = dot_product((t_vector){plane->point.x - ray.origin.x, plane->point.y - ray.origin.y, plane->point.z - ray.origin.z}, plane->axis) / denominator;
     if (t > 0)
         return (t);
-    return (-1);
+    return (INFINITY);
 }
 
 float   intersect_cylinder(t_cylinder *cylinder, t_ray ray)
@@ -84,12 +85,12 @@ float   intersect_cylinder(t_cylinder *cylinder, t_ray ray)
     c = dot_product(oc, oc) - dot.y * dot.y / dot.z - cylinder->radius * cylinder->radius;
     discriminant = b * b - 4 * a * c;
     if (discriminant < 0)
-        return (-1);
+        return (INFINITY);
     t = (-b - sqrt(discriminant)) / (2 * a);
     if (t > 0)
         return (t);
     t = (-b + sqrt(discriminant)) / (2 * a);
     if (t > 0)
         return (t);
-    return (-1);
+    return (INFINITY);
 }

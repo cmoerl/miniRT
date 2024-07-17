@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:25:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/16 10:58:25 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/17 11:28:49 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_hit   find_closest_object(t_scene scene, t_ray ray)
     t_cylinder *cylinder;
 
     hit.t = INFINITY;
+    hit.object = NULL;
+    hit.type = NONE;
     sphere = scene.objects->spheres;
     while (sphere != NULL)
     {
@@ -64,36 +66,36 @@ t_hit   find_closest_object(t_scene scene, t_ray ray)
 // check if the shadow ray intersects with any object
 // if the shadow ray intersects with an object, the pixel is in shadow
 // if the pixel is not in shadow, calculate the color of the pixel
-t_color calc_shade(t_scene scene, t_vector ip, t_vector normal)
-{
-    t_color color;
-    t_color object_color;
-    t_vector light_dir;
-    t_ray shadow_ray;
-    t_hit hit;
-    float light_distance;
+// t_color calc_shade(t_scene scene, t_vector ip, t_vector normal)
+// {
+//     t_color color;
+//     t_color object_color;
+//     t_vector light_dir;
+//     t_ray shadow_ray;
+//     t_hit hit;
+//     float light_distance;
 
-    color = (t_color){0, 0, 0};
-    light_dir.x = scene.light.position.x - ip.x;
-    light_dir.y = scene.light.position.y - ip.y;
-    light_dir.z = scene.light.position.z - ip.z;
-    light_distance = sqrt(light_dir.x * light_dir.x + light_dir.y * light_dir.y + light_dir.z * light_dir.z);
-    shadow_ray.direction = (t_vector){light_dir.x / light_distance, light_dir.y / light_distance, light_dir.z / light_distance};
-    shadow_ray.origin = ip;
-    hit = find_closest_object(scene, shadow_ray);
-    if (hit.t < light_distance)
-        return (color);
-    if (hit.type == SPHERE)
-        object_color = (t_color){((t_sphere*)hit.object)->color.r, ((t_sphere*)hit.object)->color.g, ((t_sphere*)hit.object)->color.b};
-    else if (hit.type == PLANE)
-        object_color = (t_color){((t_plane*)hit.object)->color.r, ((t_plane*)hit.object)->color.g, ((t_plane*)hit.object)->color.b};
-    else if (hit.type == CYLINDER)
-        object_color = (t_color){((t_cylinder*)hit.object)->color.r, ((t_cylinder*)hit.object)->color.g, ((t_cylinder*)hit.object)->color.b};
-    color.r += object_color.r * scene.light.intensity * dot_product(normal, light_dir) / (light_distance * light_distance);
-    color.g += object_color.g * scene.light.intensity * dot_product(normal, light_dir) / (light_distance * light_distance);
-    color.b += object_color.b * scene.light.intensity * dot_product(normal, light_dir) / (light_distance * light_distance);
-    return (color);
-}
+//     color = (t_color){0, 0, 0};
+//     light_dir.x = scene.light.position.x - ip.x;
+//     light_dir.y = scene.light.position.y - ip.y;
+//     light_dir.z = scene.light.position.z - ip.z;
+//     light_distance = sqrt(light_dir.x * light_dir.x + light_dir.y * light_dir.y + light_dir.z * light_dir.z);
+//     shadow_ray.direction = (t_vector){light_dir.x / light_distance, light_dir.y / light_distance, light_dir.z / light_distance};
+//     shadow_ray.origin = ip;
+//     hit = find_closest_object(scene, shadow_ray);
+//     if (hit.t < light_distance)
+//         return (color);
+//     if (hit.type == SPHERE)
+//         object_color = (t_color){((t_sphere*)hit.object)->color.r, ((t_sphere*)hit.object)->color.g, ((t_sphere*)hit.object)->color.b};
+//     else if (hit.type == PLANE)
+//         object_color = (t_color){((t_plane*)hit.object)->color.r, ((t_plane*)hit.object)->color.g, ((t_plane*)hit.object)->color.b};
+//     else if (hit.type == CYLINDER)
+//         object_color = (t_color){((t_cylinder*)hit.object)->color.r, ((t_cylinder*)hit.object)->color.g, ((t_cylinder*)hit.object)->color.b};
+//     color.r += object_color.r * scene.light.intensity * dot_product(normal, light_dir) / (light_distance * light_distance);
+//     color.g += object_color.g * scene.light.intensity * dot_product(normal, light_dir) / (light_distance * light_distance);
+//     color.b += object_color.b * scene.light.intensity * dot_product(normal, light_dir) / (light_distance * light_distance);
+//     return (color);
+// }
 
 // check if the ray intersects with the object
 // t is the distance from the ray origin to the intersection point
@@ -109,12 +111,19 @@ t_color trace_ray(t_scene scene, t_ray ray)
     t_vector ip;
     t_vector normal;
 
+    color = (t_color){0, 0, 0};
     hit = find_closest_object(scene, ray);
     if (hit.t == INFINITY)
         return (color = (t_color){0, 0, 0});
     ip = get_intersection_point(ray, hit.t);
     normal = get_normal(ip, hit);
-    color = calc_shade(scene, ip, normal);
+    // color = calc_shade(scene, ip, normal);
+    if (hit.type == SPHERE)
+        color = ((t_sphere*)hit.object)->color;
+    else if (hit.type == PLANE)
+        color = ((t_plane*)hit.object)->color;
+    else if (hit.type == CYLINDER)
+        color = ((t_cylinder*)hit.object)->color;
     return (color);
 }
 

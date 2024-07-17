@@ -2,10 +2,10 @@ Open Questions:
 
 what do we need to be able to do with the picture once rendered?
 -> obviously exit
--> resolution should be changeable?
--> what does rotate and translate objects mean??
+-> resolution should be changeable? - only via macro
+-> what does rotate and translate objects mean?? !needs research!
 -> in subject it says: "Your program must be able to resize the object’s unique properties: diameter for a
-sphere and the width and height for a cylinder."
--> do we need to move the camera, and zoom in and out?
+sphere and the width and height for a cylinder." - not meant interactively
+-> do we need to move the camera, and zoom in and out? - no
 
-we are supposed to handle the inside of an object. Does that mean darkness?
+we are supposed to handle the inside of an object. Does that mean darkness? - yes

@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:03:05 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/16 10:04:54 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/17 10:47:10 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void    render_scene(t_scene scene)
 
     x = 0;
     y = 0;
+    ray = (t_ray){(t_vector){0, 0, 0}, (t_vector){0, 0, 0}};
     // should be handled in initialisation:
     // if (scene.img == NULL)
     //     error("Image not initialised", &scene);
@@ -51,6 +52,7 @@ void    render_scene(t_scene scene)
     //     error("Invalid resolution", &scene);
     while (y < scene.height)
     {
+        x = 0;
         while (x < scene.width)
         {
             ray = get_ray(scene, x, y);
