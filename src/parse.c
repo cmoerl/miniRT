@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/17 11:23:33 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/07/17 12:12:17 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,26 @@
 - return a t_scene struct that holds all other structs
 */
 
-void    check_file(char *file)
+
+void check_file(char *file)
 {
-// check if right format and accessible
+    // Check if file is accessible
+    if (!file || access(file, F_OK) == -1)
+    {
+        perror("Error accessing file");
+        exit(EXIT_FAILURE);
+    }
+
+    // Check if file has .rt extension
+    char *extension = strrchr(file, '.');
+    if (!extension || strcmp(extension, ".rt") != 0)
+    {
+        printf("Error: Incorrect file format. Expected .rt\n");
+        exit(EXIT_FAILURE);
+    }
 }
+
+
 
 t_scene init_scene(t_scene scene)
 {
