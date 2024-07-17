@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:28:03 by mafurnic          #+#    #+#             */
-/*   Updated: 2024/07/16 22:08:33 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/07/17 10:09:40 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+char			*get_next_line(int fd);
 t_list			*ft_lstnew(int content);
 int				ft_lstsize(t_list *head);
 void			ft_lstadd_front(t_list **stack, t_list *newnode);

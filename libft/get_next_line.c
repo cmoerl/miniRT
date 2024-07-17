@@ -6,11 +6,11 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 11:41:24 by marianfurni       #+#    #+#             */
-/*   Updated: 2023/10/14 08:23:28 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/07/17 10:10:41 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h" 
 
 static char	*read_line(int fd, char *buf, char *backup)
 {
