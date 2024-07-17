@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/17 10:55:10 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/07/17 11:23:33 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void    check_file(char *file)
 
 t_scene init_scene(t_scene scene)
 {
-    scene.spheres = NULL;
-    scene.planes = NULL;
-    scene.cylinders = NULL;
+    scene.objects->spheres = NULL;
+    scene.objects->planes = NULL;
+    scene.objects->cylinders = NULL;
     return (scene);
 }
 t_scene parse_scene(char *file, t_scene scene)
