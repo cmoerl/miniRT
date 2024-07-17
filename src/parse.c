@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/17 12:12:17 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:52:15 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void check_file(char *file)
     }
 }
 
-
-
 t_scene init_scene(t_scene scene)
 {
     scene.objects->spheres = NULL;
@@ -51,7 +49,7 @@ t_scene init_scene(t_scene scene)
 t_scene parse_scene(char *file, t_scene scene)
 {
     int fd;
-    char *line;
+    char *line = NULL;
 
     scene = init_scene(scene);
     check_file(file);

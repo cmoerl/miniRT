@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/17 12:13:37 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:43:15 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(int argc, char **argv)
 {
-    t_scene scene;
+    // t_scene scene;
 
     if (argc != 2)
     {
