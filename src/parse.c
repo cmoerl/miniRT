@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/16 21:51:20 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/07/17 10:55:10 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_scene parse_scene(char *file, t_scene scene)
     fd = open(file, O_RDONLY);
     if (fd < 0)
         error("Could not open file", &scene);
-    while (get_next_line(fd, &line))
+    while (get_next_line(fd))
     {
         // parse line into structs
         free(line);
