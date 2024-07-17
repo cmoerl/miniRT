@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:03:05 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/17 10:47:10 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/17 12:30:43 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void    put_pixel(int x, int y, t_color color, t_scene scene)
     // if (x < 0 || y < 0 || x >= scene.width || y >= scene.height)
     //     error("Pixel out of bounds", &scene);
 	position = y * scene.img->line_length + x * (scene.img->bits_per_pixel / 8);
-	*(unsigned int *)(scene.img->pxl + position) = (int)(color.r * 255) << 16 | (int)(color.g * 255) << 8 | (int)(color.b * 255);
+	*(unsigned int *)(scene.img->pxl + position) = (int)(color.r) << 16 | (int)(color.g) << 8 | (int)(color.b);
 }
 
 void    render_scene(t_scene scene)
