@@ -6,11 +6,29 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:30:14 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/16 11:04:53 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/18 11:19:05 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+t_vector    rotate_vector(t_vector v, t_vector orientation)
+{
+    t_vector rotated;
+    t_vector axis;
+    float c;
+    float s;
+    float angle;
+
+    axis = cross_product(orientation, (t_vector){0, 0, 1});
+    angle = acos(dot_product(orientation, (t_vector){0, 0, 1}));
+    c = cos(angle);
+    s = sin(angle);
+    rotated.x = (c + (1 - c) * axis.x * axis.x) * v.x + ((1 - c) * axis.x * axis.y - axis.z * s) * v.y + ((1 - c) * axis.x * axis.z + axis.y * s) * v.z;
+    rotated.y = ((1 - c) * axis.x * axis.y + axis.z * s) * v.x + (c + (1 - c) * axis.y * axis.y) * v.y + ((1 - c) * axis.y * axis.z - axis.x * s) * v.z;
+    rotated.z = ((1 - c) * axis.x * axis.z - axis.y * s) * v.x + ((1 - c) * axis.y * axis.z + axis.x * s) * v.y + (c + (1 - c) * axis.z * axis.z) * v.z;
+    return (rotated);
+}
 
 t_vector    normalise_vector(t_vector v)
 {

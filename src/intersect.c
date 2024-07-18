@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:23:36 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/17 11:50:07 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/18 11:17:12 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 float   dot_product(t_vector a, t_vector b)
 {
     return (a.x * b.x + a.y * b.y + a.z * b.z);
+}
+
+t_vector   cross_product(t_vector a, t_vector b)
+{
+    return ((t_vector){a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x});
 }
 
 // oc is the vector from the ray origin to the sphere center
