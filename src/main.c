@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/29 10:44:00 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/29 11:10:02 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,9 @@ void init_amblight(t_scene *scene)
 
 void init_light(t_scene *scene)
 {
-    scene->light.position.x = 10.0;
-    scene->light.position.y = 20.0;
-    scene->light.position.z = 5.0;
+    scene->light.position.x = 1.0;
+    scene->light.position.y = 50.0;
+    scene->light.position.z = 0.0;
     scene->light.intensity = 0.6;
 }
 

@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:25:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/29 11:08:59 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/29 11:50:25 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,9 @@ t_color calc_shade(t_scene scene, t_vector ip, t_vector normal, t_color object_c
     color.r += object_color.r * scene.light.intensity * dot / attenuation;
     color.g += object_color.g * scene.light.intensity * dot / attenuation;
     color.b += object_color.b * scene.light.intensity * dot / attenuation;
+    color.r = fmin(color.r, 255);
+    color.g = fmin(color.g, 255);
+    color.b = fmin(color.b, 255);
     return (color);
 }
 
