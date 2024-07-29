@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:25:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/29 11:50:25 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/29 12:28:31 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ t_color calc_shade(t_scene scene, t_vector ip, t_vector normal, t_color object_c
     if (hit.t < light_distance)
         return (color);
     dot = dot_product(normal, light_dir);
+    printf("dot: %f\n", dot);
     if (dot < 0)
         dot = 0;
     attenuation = 1.0 / (1.0 + 0.1 * light_distance);
