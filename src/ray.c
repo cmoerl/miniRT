@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:25:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/18 12:11:24 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/29 11:08:59 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,27 @@ t_color calc_shade(t_scene scene, t_vector ip, t_vector normal, t_color object_c
     t_ray shadow_ray;
     t_hit hit;
     float light_distance;
+    float dot;
+    float attenuation;
 
     color = (t_color){0, 0, 0};
     light_dir.x = scene.light.position.x - ip.x;
     light_dir.y = scene.light.position.y - ip.y;
     light_dir.z = scene.light.position.z - ip.z;
     light_distance = sqrt(light_dir.x * light_dir.x + light_dir.y * light_dir.y + light_dir.z * light_dir.z);
-    shadow_ray.direction = (t_vector){light_dir.x / light_distance, light_dir.y / light_distance, light_dir.z / light_distance};
+    light_dir = normalise_vector(light_dir);
+    shadow_ray.direction = light_dir;
     shadow_ray.origin = ip;
     hit = find_closest_object(scene, shadow_ray);
     if (hit.t < light_distance)
         return (color);
-    color.r += object_color.r * scene.light.intensity * dot_product(normal, light_dir) / (light_distance * light_distance);
-    color.g += object_color.g * scene.light.intensity * dot_product(normal, light_dir) / (light_distance * light_distance);
-    color.b += object_color.b * scene.light.intensity * dot_product(normal, light_dir) / (light_distance * light_distance);
+    dot = dot_product(normal, light_dir);
+    if (dot < 0)
+        dot = 0;
+    attenuation = 1.0 / (1.0 + 0.1 * light_distance);
+    color.r += object_color.r * scene.light.intensity * dot / attenuation;
+    color.g += object_color.g * scene.light.intensity * dot / attenuation;
+    color.b += object_color.b * scene.light.intensity * dot / attenuation;
     return (color);
 }
 
