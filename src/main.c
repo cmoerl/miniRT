@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/29 13:06:18 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/30 11:13:56 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,18 @@ t_sphere    *init_sphere(void)
 {
     t_sphere *sphere;
 
-    sphere = malloc(sizeof(t_sphere));
-    if (!sphere)
-        error("Error: Failed to allocate memory for sphere\n", NULL);
-    sphere->center.x = 10.0;
-    sphere->center.y = 0.0;
-    sphere->center.z = 0.0;
-    sphere->radius = 3.0;
-    sphere->color.r = 0;
-    sphere->color.g = 255;
-    sphere->color.b = 0;
-    sphere->next = NULL;
+    sphere = NULL;
+    // sphere = malloc(sizeof(t_sphere));
+    // if (!sphere)
+    //     error("Error: Failed to allocate memory for sphere\n", NULL);
+    // sphere->center.x = 10.0;
+    // sphere->center.y = 0.0;
+    // sphere->center.z = 0.0;
+    // sphere->radius = 3.0;
+    // sphere->color.r = 0;
+    // sphere->color.g = 255;
+    // sphere->color.b = 0;
+    // sphere->next = NULL;
     return (sphere);
 }
 
@@ -46,20 +47,19 @@ t_plane    *init_plane(void)
 {
     t_plane *plane;
 
-    plane = NULL;
-    // plane = malloc(sizeof(t_plane));
-    // if (!plane)
-    //     error("Error: Failed to allocate memory for plane\n", NULL);
-    // plane->point.x = 20.0;
-    // plane->point.y = 0.0;
-    // plane->point.z = 0.0;
-    // plane->axis.x = 1.0;
-    // plane->axis.y = 0.0;
-    // plane->axis.z = 0.0;
-    // plane->color.r = 0;
-    // plane->color.g = 0;
-    // plane->color.b = 255;
-    // plane->next = NULL;
+    plane = malloc(sizeof(t_plane));
+    if (!plane)
+        error("Error: Failed to allocate memory for plane\n", NULL);
+    plane->point.x = 20.0;
+    plane->point.y = 0.0;
+    plane->point.z = 0.0;
+    plane->axis.x = 1.0;
+    plane->axis.y = 1.0;
+    plane->axis.z = 1.0;
+    plane->color.r = 0;
+    plane->color.g = 0;
+    plane->color.b = 255;
+    plane->next = NULL;
     return (plane);
 }
 
