@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/30 12:02:33 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/30 12:28:55 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_sphere    *init_sphere(void)
         error("Error: Failed to allocate memory for sphere\n", NULL);
     sphere->center.x = 10.0;
     sphere->center.y = 0.0;
-    sphere->center.z = 0.0;
+    sphere->center.z = -5.0;
     sphere->radius = 3.0;
     sphere->color.r = 0;
     sphere->color.g = 255;
@@ -53,8 +53,8 @@ t_plane    *init_plane(void)
     plane->point.y = 0.0;
     plane->point.z = 0.0;
     plane->axis.x = 1.0;
-    plane->axis.y = 1.0;
-    plane->axis.z = 1.0;
+    plane->axis.y = 0.0;
+    plane->axis.z = 0.0;
     plane->color.r = 0;
     plane->color.g = 0;
     plane->color.b = 255;
@@ -130,7 +130,7 @@ void init_camera(t_scene *scene)
     scene->camera.orientation.x = 1;
     scene->camera.orientation.y = 0;
     scene->camera.orientation.z = 0;
-    scene->camera.fov = 70;
+    scene->camera.fov = 45;
 }
 
 void init_scene(t_scene *scene)
