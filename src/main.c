@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/30 11:13:56 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/30 11:45:16 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,20 @@ t_plane    *init_plane(void)
 {
     t_plane *plane;
 
-    plane = malloc(sizeof(t_plane));
-    if (!plane)
-        error("Error: Failed to allocate memory for plane\n", NULL);
-    plane->point.x = 20.0;
-    plane->point.y = 0.0;
-    plane->point.z = 0.0;
-    plane->axis.x = 1.0;
-    plane->axis.y = 1.0;
-    plane->axis.z = 1.0;
-    plane->color.r = 0;
-    plane->color.g = 0;
-    plane->color.b = 255;
-    plane->next = NULL;
+    plane = NULL;
+    // plane = malloc(sizeof(t_plane));
+    // if (!plane)
+    //     error("Error: Failed to allocate memory for plane\n", NULL);
+    // plane->point.x = 20.0;
+    // plane->point.y = 0.0;
+    // plane->point.z = 0.0;
+    // plane->axis.x = 1.0;
+    // plane->axis.y = 1.0;
+    // plane->axis.z = 1.0;
+    // plane->color.r = 0;
+    // plane->color.g = 0;
+    // plane->color.b = 255;
+    // plane->next = NULL;
     return (plane);
 }
 
@@ -67,22 +68,21 @@ t_cylinder    *init_cylinder(void)
 {
     t_cylinder *cylinder;
 
-    cylinder = NULL;
-    // cylinder = malloc(sizeof(t_cylinder));
-    // if (!cylinder)
-    //     error("Error: Failed to allocate memory for cylinder\n", NULL);
-    // cylinder->center.x = 50.0;
-    // cylinder->center.y = 0.0;
-    // cylinder->center.z = 20.6;
-    // cylinder->axis.x = 0.0;
-    // cylinder->axis.y = 0.0;
-    // cylinder->axis.z = 1.0;
-    // cylinder->radius = 14.2;
-    // cylinder->height = 21.42;
-    // cylinder->color.r = 10;
-    // cylinder->color.g = 0;
-    // cylinder->color.b = 255;
-    // cylinder->next = NULL;
+    cylinder = malloc(sizeof(t_cylinder));
+    if (!cylinder)
+        error("Error: Failed to allocate memory for cylinder\n", NULL);
+    cylinder->center.x = 20.0;
+    cylinder->center.y = 2.0;
+    cylinder->center.z = 0.0;
+    cylinder->axis.x = 0.0;
+    cylinder->axis.y = 1.0;
+    cylinder->axis.z = 0.0;
+    cylinder->radius = 3.0;
+    cylinder->height = 10.0;
+    cylinder->color.r = 10;
+    cylinder->color.g = 0;
+    cylinder->color.b = 255;
+    cylinder->next = NULL;
     return (cylinder);
 }
 

@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:23:36 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/18 11:17:12 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/30 11:44:33 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,11 @@ float   intersect_cylinder(t_cylinder *cylinder, t_ray ray)
     float b;
     float c;
     float discriminant;
-    float t;
+    float t1;
+    float t2;
+    t_vector ip;
+    float m1;
+    float m2;
 
     oc = (t_vector){ray.origin.x - cylinder->center.x, ray.origin.y - cylinder->center.y, ray.origin.z - cylinder->center.z};
     dot = (t_vector){dot_product(ray.direction, cylinder->axis), dot_product(oc, cylinder->axis), dot_product(cylinder->axis, cylinder->axis)};
@@ -91,11 +95,21 @@ float   intersect_cylinder(t_cylinder *cylinder, t_ray ray)
     discriminant = b * b - 4 * a * c;
     if (discriminant < 0)
         return (INFINITY);
-    t = (-b - sqrt(discriminant)) / (2 * a);
-    if (t > 0)
-        return (t);
-    t = (-b + sqrt(discriminant)) / (2 * a);
-    if (t > 0)
-        return (t);
+    t1 = (-b - sqrt(discriminant)) / (2 * a);
+    t2 = (-b + sqrt(discriminant)) / (2 * a);
+    if (t1 > 0)
+    {
+        ip = (t_vector){ray.origin.x + t1 * ray.direction.x, ray.origin.y + t1 * ray.direction.y, ray.origin.z + t1 * ray.direction.z};
+        m1 = dot_product(ray.direction, cylinder->axis) * t1 + dot_product(oc, cylinder->axis);
+        if (m1 >= 0 && m1 < cylinder->height)
+            return (t1);
+    }
+    if (t2 > 0)
+    {
+        ip = (t_vector){ray.origin.x + t2 * ray.direction.x, ray.origin.y + t2 * ray.direction.y, ray.origin.z + t2 * ray.direction.z};
+        m2 = dot_product(ray.direction, cylinder->axis) * t2 + dot_product(oc, cylinder->axis);
+        if (m2 >= 0 && m2 < cylinder->height)
+            return (t2);
+    }
     return (INFINITY);
 }
