@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:25:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/31 10:48:36 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/31 12:31:55 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,12 +153,20 @@ t_ray    get_ray(t_scene scene, int x, int y)
     t_vector ray_dir;
     float aspect_ratio;
     float tan_fov;
+    float r_sqr;
+    // float correction;
+    float fov_factor;
 
     aspect_ratio = scene.width / (float)scene.height;
     tan_fov = tan((scene.camera.fov * PI / 180) / 2.0);
     ray_dir.x = (2 * (x + 0.5) / (double)scene.width - 1) * aspect_ratio * tan_fov;
     ray_dir.y = (1 - 2 * (y + 0.5) / (double)scene.height) * tan_fov;
     ray_dir.z = -1;
+    r_sqr = ray_dir.x * ray_dir.x + ray_dir.y * ray_dir.y;
+    fov_factor = scene.camera.fov / 90;
+    // correction = 1 + fov_factor * (-0.1 * r_sqr + 0.01 * r_sqr * r_sqr + -0.001 * r_sqr * r_sqr * r_sqr);
+    // ray_dir.x = ray_dir.x * correction;
+    // ray_dir.y = ray_dir.y * correction;
     ray_dir = normalise_vector(ray_dir);
     ray_dir = rotate_vector(ray_dir, scene.camera.orientation);
     ray.origin.x = scene.camera.center.x;

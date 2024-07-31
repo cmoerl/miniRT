@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:03:05 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/31 10:21:03 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/31 11:33:01 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void    put_pixel(int x, int y, t_color color, t_scene scene)
 	*(unsigned int *)(scene.img->pxl + position) = (int)(color.r) << 16 | (int)(color.g) << 8 | (int)(color.b);
 }
 
-// inittialising the ray
+// initialising the ray
 // interating over each pixel
 // getting the ray for each pixel
 // tracing the ray
