@@ -6,12 +6,18 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:25:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/30 11:11:13 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/31 10:48:36 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
+// check whether the ray intersects with an object
+// iterating over each object
+// calculating the intersection point
+// if the intersection point is closer than the previous intersection point, update the intersection point
+// return the closest object
+// if no object is hit, return NULL / INFINITY / NONE
 t_hit   find_closest_object(t_scene scene, t_ray ray)
 {
     t_hit hit;
@@ -62,10 +68,16 @@ t_hit   find_closest_object(t_scene scene, t_ray ray)
     return (hit);
 }
 
-// shadow_ray is the vector from the intersection point to the light source
-// check if the shadow ray intersects with any object
-// if the shadow ray intersects with an object, the pixel is in shadow
-// if the pixel is not in shadow, calculate the color of the pixel
+// for each pixel that is part of an object:
+// calculate from which direction the light is coming
+// calculate how far the light is from the object
+// check if an object is blocking the light
+// if an object is blocking the light, the pixel is in shadow
+// if no object is blocking the light, calculate the color of the pixel
+// dot is the angle between the normal and the light direction
+// attenuation is the distance between the light and the object
+// the color of the pixel is the object color multiplied by the light intensity and the dot divided by the attenuation
+// the color of the pixel is capped at 255
 t_color calc_shade(t_scene scene, t_vector ip, t_vector normal, t_color object_color)
 {
     t_color color;
@@ -100,13 +112,11 @@ t_color calc_shade(t_scene scene, t_vector ip, t_vector normal, t_color object_c
     return (color);
 }
 
-// check if the ray intersects with the object
-// t is the distance from the ray origin to the intersection point
-// if t is less than the closest_t, update the closest_t and the closest_object
-// if closest_t is still INFINITY, no object was hit
-// get the intersection point and the normal of the closest object
-// calculate the color of the pixel
-// return the color of the pixel
+// for each ray:
+// check if the ray intersects with any object
+// if the ray intersects with an object, calculate the color of the pixel
+// if the ray does not intersect with any object, the pixel is black
+// check if the pixel is in shadow
 t_color trace_ray(t_scene scene, t_ray ray)
 {
     t_color color;
@@ -132,11 +142,11 @@ t_color trace_ray(t_scene scene, t_ray ray)
     return (color);
 }
 
-// normalising the pixel coordinates to the range [0, 1]
-// remapping the pixel coordinates to the range [-1, 1]
-// transform the ray direction based on the camera's orientation
-// translate the ray origin based on the camera's position
-// normalise the ray direction
+// for each pixel:
+// calculate the aspect ratio
+// calculate the tan of the fov
+// calculate the direction of the ray
+// ray origin is the camera center
 t_ray    get_ray(t_scene scene, int x, int y)
 {
     t_ray ray;

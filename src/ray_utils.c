@@ -6,12 +6,13 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:30:14 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/18 11:19:05 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/31 10:50:30 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
+// changing the direction of a vector
 t_vector    rotate_vector(t_vector v, t_vector orientation)
 {
     t_vector rotated;
@@ -30,6 +31,7 @@ t_vector    rotate_vector(t_vector v, t_vector orientation)
     return (rotated);
 }
 
+// setting the length of a vector to 1
 t_vector    normalise_vector(t_vector v)
 {
     float length;
@@ -42,6 +44,7 @@ t_vector    normalise_vector(t_vector v)
     return (normalised);
 }
 
+// calculating the intersection point of a ray and an object
 t_vector    get_intersection_point(t_ray ray, float t)
 {
     t_vector ip;
@@ -52,6 +55,7 @@ t_vector    get_intersection_point(t_ray ray, float t)
     return (ip);
 }
 
+// calculating the normal of an object at a given point
 t_vector    get_normal(t_vector v, t_hit hit)
 {
     t_vector normal;

@@ -6,31 +6,33 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:23:36 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/30 11:44:33 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/31 11:27:34 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 #include <math.h>
 
+// calculating the dot product of two vectors
 float   dot_product(t_vector a, t_vector b)
 {
     return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
+// calculating the cross product of two vectors
 t_vector   cross_product(t_vector a, t_vector b)
 {
     return ((t_vector){a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x});
 }
 
-// oc is the vector from the ray origin to the sphere center
-// a, b, c are the coefficients of the quadratic equation
-// discriminant is the value under the square root
-// t is the distance from the ray origin to the intersection point
-// if the discriminant is negative, there are no real roots
-// calculate the distance to the intersection point (smaller root, closer to the camera)
-// calculate the distance to the intersection point (larger root, further from the camera)
-// if t is negative, the intersection point is behind the ray origin
+// checking if a ray intersects with a sphere
+// oc is the vector from the center of the sphere to the origin of the ray
+// discriminant measures the intersection of the ray and the sphere
+// if the discriminant is less than 0, the ray does not intersect with the sphere
+// t is the distance to the intersection point
+// if t is greater than 0, the ray intersects with the sphere
+// if t is less than 0, the ray intersects with the sphere behind the origin
+// if t is equal to 0, the ray intersects with the sphere at the origin
 float   intersect_sphere(t_sphere *sphere, t_ray ray)
 {
     t_vector oc;
@@ -56,9 +58,13 @@ float   intersect_sphere(t_sphere *sphere, t_ray ray)
     return (INFINITY);
 }
 
-// calculate the denominator of the equation
+// checking if a ray intersects with a plane
+// denominator measures the angle between the plane and the ray
 // if the denominator is 0, the ray is parallel to the plane
-// calculate the distance to the intersection point
+// t is the distance to the intersection point
+// if t is greater than 0, the ray intersects with the plane
+// if t is less than 0, the ray intersects with the plane behind the origin
+// if t is equal to 0, the ray intersects with the plane at the origin
 float   intersect_plane(t_plane *plane, t_ray ray)
 {
     float t;
@@ -73,6 +79,20 @@ float   intersect_plane(t_plane *plane, t_ray ray)
     return (INFINITY);
 }
 
+// checking if a ray intersects with a cylinder
+// oc is the vector from the center of the cylinder to the origin of the ray
+// discriminant measures the intersection of the ray and the cylinder
+// if the discriminant is less than 0, the ray does not intersect with the cylinder
+// t1 and t2 are the distances to the intersection points
+// if t1 is greater than 0, the ray intersects with the cylinder
+// if t2 is greater than 0, the ray intersects with the cylinder
+// if t1 is less than 0, the ray intersects with the cylinder behind the origin
+// if t2 is less than 0, the ray intersects with the cylinder behind the origin
+// if t1 is equal to 0, the ray intersects with the cylinder at the origin
+// if t2 is equal to 0, the ray intersects with the cylinder at the origin
+// m1 and m2 are the distances to the intersection points along the axis of the cylinder
+// if m1 is greater than 0 and less than the height of the cylinder, the ray intersects with the cylinder
+// if m2 is greater than 0 and less than the height of the cylinder, the ray intersects with the cylinder
 float   intersect_cylinder(t_cylinder *cylinder, t_ray ray)
 {
     t_vector oc;
@@ -96,7 +116,6 @@ float   intersect_cylinder(t_cylinder *cylinder, t_ray ray)
     if (discriminant < 0)
         return (INFINITY);
     t1 = (-b - sqrt(discriminant)) / (2 * a);
-    t2 = (-b + sqrt(discriminant)) / (2 * a);
     if (t1 > 0)
     {
         ip = (t_vector){ray.origin.x + t1 * ray.direction.x, ray.origin.y + t1 * ray.direction.y, ray.origin.z + t1 * ray.direction.z};
@@ -104,6 +123,7 @@ float   intersect_cylinder(t_cylinder *cylinder, t_ray ray)
         if (m1 >= 0 && m1 < cylinder->height)
             return (t1);
     }
+    t2 = (-b + sqrt(discriminant)) / (2 * a);
     if (t2 > 0)
     {
         ip = (t_vector){ray.origin.x + t2 * ray.direction.x, ray.origin.y + t2 * ray.direction.y, ray.origin.z + t2 * ray.direction.z};

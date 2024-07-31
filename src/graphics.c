@@ -6,11 +6,13 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 12:25:37 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/03 12:30:22 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/31 11:28:04 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+// possibly not necessary?
 
 void    decrease_resolution(t_scene *scene)
 {

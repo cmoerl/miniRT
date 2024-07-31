@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/30 12:28:55 by csturm           ###   ########.fr       */
+/*   Updated: 2024/07/31 10:17:59 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void init_camera(t_scene *scene)
     scene->camera.orientation.x = 1;
     scene->camera.orientation.y = 0;
     scene->camera.orientation.z = 0;
-    scene->camera.fov = 45;
+    scene->camera.fov = 65;
 }
 
 void init_scene(t_scene *scene)
