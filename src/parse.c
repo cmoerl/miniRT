@@ -6,11 +6,12 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/01 11:51:03 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/01 12:13:22 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+#include <stdio.h>
 
 /* 
 - check if the file is valid
@@ -31,8 +32,8 @@ void check_file(char *file)
     }
 
     // Check if file has .rt extension
-    char *extension = strrchr(file, '.');
-    if (!extension || strcmp(extension, ".rt") != 0)
+    char *extension = ft_strrchr(file, '.');
+    if (!extension || ft_strcmp(extension, ".rt") != 0)
     {
         printf("Error: Incorrect file format. Expected .rt\n");
         exit(EXIT_FAILURE);
@@ -41,10 +42,13 @@ void check_file(char *file)
 
 t_scene init_scene(t_scene scene)
 {
+    scene.objects = malloc(sizeof(t_object));
+    if (!scene.objects)
+        error("Memory allocation failed", &scene);
     scene.objects->spheres = NULL;
     scene.objects->planes = NULL;
     scene.objects->cylinders = NULL;
-    return (scene);
+    return scene;
 }
 
 t_scene parse_scene(char *file, t_scene scene)
@@ -57,10 +61,12 @@ t_scene parse_scene(char *file, t_scene scene)
     fd = open(file, O_RDONLY);
     if (fd < 0)
         error("Could not open file", &scene);
-    while (get_next_line(fd))
+    while ((line = get_next_line(fd)) != NULL)
     {
-        // parse line into structs
+        // Print each line for testing
+        printf("Read line: %s\n", line);
         free(line);
     }
-    return (scene);
+    close(fd);
+    return scene;
 }
