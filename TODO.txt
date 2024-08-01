@@ -9,3 +9,11 @@ sphere and the width and height for a cylinder." - not meant interactively
 -> do we need to move the camera, and zoom in and out? - no
 
 we are supposed to handle the inside of an object. Does that mean darkness? - yes
+
+TODO:
+
+- implement phong for shading
+- get rid of distortions
+    - Anti-Aliasing Techniques?
+    - lens distortion correction (LDC) mechanism
+    - tangential distortin vs radial distortion

@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:25:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/31 12:31:55 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/01 12:54:41 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,40 @@ t_color trace_ray(t_scene scene, t_ray ray)
     return (color);
 }
 
+// void    build_cam_matrix(float matrix[3][3], t_vector orientation)
+// {
+//     t_vector forward;
+//     t_vector right;
+//     t_vector up;
+//     t_vector world_up;
+
+//     forward = normalise_vector(orientation);
+//     world_up = (t_vector){0, 1, 0};
+//     if (fabs(dot_product(forward, world_up)) > 0.999f)
+//         world_up = (t_vector){1, 0, 0};
+//     right = normalise_vector(cross_product(world_up, forward));
+//     up = cross_product(forward, right);
+//     matrix[0][0] = right.x;
+//     matrix[0][1] = right.y;
+//     matrix[0][2] = right.z;
+//     matrix[1][0] = up.x;
+//     matrix[1][1] = up.y;
+//     matrix[1][2] = up.z;
+//     matrix[2][0] = forward.x;
+//     matrix[2][1] = forward.y;
+//     matrix[2][2] = forward.z;
+// }
+
+// t_vector    transform_vector(t_vector vector, float matrix[3][3])
+// {
+//     t_vector new_vector;
+
+//     new_vector.x = vector.x * matrix[0][0] + vector.y * matrix[1][0] + vector.z * matrix[2][0];
+//     new_vector.y = vector.x * matrix[0][1] + vector.y * matrix[1][1] + vector.z * matrix[2][1];
+//     new_vector.z = vector.x * matrix[0][2] + vector.y * matrix[1][2] + vector.z * matrix[2][2];
+//     return (new_vector);
+// }
+
 // for each pixel:
 // calculate the aspect ratio
 // calculate the tan of the fov
@@ -153,25 +187,23 @@ t_ray    get_ray(t_scene scene, int x, int y)
     t_vector ray_dir;
     float aspect_ratio;
     float tan_fov;
-    float r_sqr;
-    // float correction;
-    float fov_factor;
+    t_vector orientation;
+    // float cam_matrix[3][3];
 
     aspect_ratio = scene.width / (float)scene.height;
     tan_fov = tan((scene.camera.fov * PI / 180) / 2.0);
     ray_dir.x = (2 * (x + 0.5) / (double)scene.width - 1) * aspect_ratio * tan_fov;
     ray_dir.y = (1 - 2 * (y + 0.5) / (double)scene.height) * tan_fov;
     ray_dir.z = -1;
-    r_sqr = ray_dir.x * ray_dir.x + ray_dir.y * ray_dir.y;
-    fov_factor = scene.camera.fov / 90;
-    // correction = 1 + fov_factor * (-0.1 * r_sqr + 0.01 * r_sqr * r_sqr + -0.001 * r_sqr * r_sqr * r_sqr);
-    // ray_dir.x = ray_dir.x * correction;
-    // ray_dir.y = ray_dir.y * correction;
     ray_dir = normalise_vector(ray_dir);
-    ray_dir = rotate_vector(ray_dir, scene.camera.orientation);
+    // build_cam_matrix(cam_matrix, scene.camera.orientation);
+    // ray_dir = transform_vector(ray_dir, cam_matrix);
+    orientation = normalise_vector(scene.camera.orientation);
+    ray_dir = rotate_vector(ray_dir, orientation);
     ray.origin.x = scene.camera.center.x;
     ray.origin.y = scene.camera.center.y;
     ray.origin.z = scene.camera.center.z;
+    ray.origin = scene.camera.center;
     ray.direction = ray_dir;
     return (ray);
 }
