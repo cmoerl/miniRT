@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: csturm <csturm@student.42.fr>              +#+  +:+       +#+         #
+#    By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/21 12:23:07 by csturm            #+#    #+#              #
-#    Updated: 2024/07/15 10:38:38 by csturm           ###   ########.fr        #
+#    Updated: 2024/08/01 11:44:30 by marianfurni      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME := miniRT
 COMPILER := cc
 FLAGS := -Wall -Wextra -Werror -g
 CLEANUP := rm -rf
-MLX_LIBS := -L minilibx-linux -lmlx -lm -lXext -lX11
+# MLX_LIBS := -L minilibx-linux -lmlx -lm -lXext -lX11
 
 # Directory Paths
 OBJECTS_PATH := obj/
@@ -25,14 +25,14 @@ LIBFT_PATH := libft/
 # Source and Object Files
 
 SOURCE_FILES := main.c \
-				render.c \
+ 				parse.c \
 				error.c \
-				events.c \
-				graphics.c \
-				intersect.c \
-				ray.c \
-				ray_utils.c \
-				#parse.c \
+# 				render.c \
+# 				events.c \
+# 				graphics.c \
+# 				intersect.c \
+# 				ray.c \
+# 				ray_utils.c \
 
 OBJECTS := $(SOURCE_FILES:%.c=$(OBJECTS_PATH)%.o)
 LIBFT := $(LIBFT_PATH)libft.a
