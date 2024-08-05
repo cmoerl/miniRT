@@ -6,11 +6,12 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/04 21:20:11 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/04 23:09:40 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minirt.h"
+#include "../../inc/minirt.h"
+
 /* 
 - parse the file into structs defined in minirt.h
 - return a t_scene struct that holds all other structs
@@ -62,6 +63,134 @@ float ft_atof(const char *str)
         }
     }
     return result * sign;
+}
+
+void parse_light(char *line, t_light *light)
+{
+    int i = 1; // Start after 'L'
+    int r, g, b;
+
+    // Skip whitespace
+    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+        i++;
+
+    // Parse position
+    light->position.x = ft_atof(&line[i]);
+    while (line[i] && (line[i] != ' ' && line[i] != '\t' && line[i] != ','))
+        i++;
+    if (line[i] == ',') i++;
+
+    light->position.y = ft_atof(&line[i]);
+    while (line[i] && (line[i] != ' ' && line[i] != '\t' && line[i] != ','))
+        i++;
+    if (line[i] == ',') i++;
+
+    light->position.z = ft_atof(&line[i]);
+    while (line[i] && (line[i] != ' ' && line[i] != '\t'))
+        i++;
+
+    // Skip whitespace
+    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+        i++;
+
+    // Parse intensity
+    light->intensity = ft_atof(&line[i]);
+    if (light->intensity < 0.0 || light->intensity > 1.0)
+    {
+        error("Light intensity out of range [0.0, 1.0]", NULL);
+    }
+
+    // Skip to RGB values if present
+    while (line[i] && (line[i] != ' ' && line[i] != '\t'))
+        i++;
+    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+        i++;
+
+    // Parse RGB values (if present)
+    if (line[i])
+    {
+        r = ft_atoi(&line[i]);
+        while (line[i] && line[i] != ',')
+            i++;
+        if (line[i] == ',') i++;
+
+        g = ft_atoi(&line[i]);
+        while (line[i] && line[i] != ',')
+            i++;
+        if (line[i] == ',') i++;
+
+        b = ft_atoi(&line[i]);
+
+        // Validate RGB values
+        if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+        {
+            error("Light color values out of range [0, 255]", NULL);
+        }
+    }
+    else
+    {
+        r = 255;
+        g = 255;
+        b = 255;
+    }
+
+    printf("Parsed light position: %f, %f, %f\n", light->position.x, light->position.y, light->position.z);
+    printf("Parsed light intensity: %f\n", light->intensity);
+    printf("Parsed light color: %d, %d, %d\n", r, g, b);
+}
+
+void parse_camera(char *line, t_camera *camera)
+{
+    int i = 1; // Start after 'C'
+
+    // Skip whitespace
+    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+        i++;
+
+    // Parse position (center)
+    camera->center.x = ft_atof(&line[i]);
+    while (line[i] && (line[i] != ' ' && line[i] != '\t' && line[i] != ','))
+        i++;
+    if (line[i] == ',') i++;
+
+    camera->center.y = ft_atof(&line[i]);
+    while (line[i] && (line[i] != ' ' && line[i] != '\t' && line[i] != ','))
+        i++;
+    if (line[i] == ',') i++;
+
+    camera->center.z = ft_atof(&line[i]);
+    while (line[i] && (line[i] != ' ' && line[i] != '\t'))
+        i++;
+
+    // Skip whitespace
+    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+        i++;
+
+    // Parse orientation
+    camera->orientation.x = ft_atof(&line[i]);
+    while (line[i] && (line[i] != ' ' && line[i] != '\t' && line[i] != ','))
+        i++;
+    if (line[i] == ',') i++;
+
+    camera->orientation.y = ft_atof(&line[i]);
+    while (line[i] && (line[i] != ' ' && line[i] != '\t' && line[i] != ','))
+        i++;
+    if (line[i] == ',') i++;
+
+    camera->orientation.z = ft_atof(&line[i]);
+    while (line[i] && (line[i] != ' ' && line[i] != '\t'))
+        i++;
+
+    // Skip whitespace
+    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+        i++;
+
+    // Parse FOV
+    camera->fov = ft_atof(&line[i]);
+    if (camera->fov < 0 || camera->fov > 180)
+    {
+        error("Camera FOV out of range [0, 180]", NULL);
+    }
 }
 
 void parse_ambient(char *line, t_amblight *ambient)
@@ -182,12 +311,13 @@ t_scene init_scene(t_scene scene)
     scene.objects->cylinders = NULL;
     return scene;
 }
-
 t_scene parse_scene(char *file, t_scene scene)
 {
     int fd;
     char *line = NULL;
     int ambient_found = 0;
+    int camera_found = 0;
+    int light_found = 0;
 
     scene = init_scene(scene);
     check_file(file);
@@ -202,6 +332,16 @@ t_scene parse_scene(char *file, t_scene scene)
             parse_ambient(line, &scene.amblight);
             ambient_found = 1;
         }
+        else if (line[0] == 'C')
+        {
+            parse_camera(line, &scene.camera);
+            camera_found = 1;
+        }
+        else if (line[0] == 'L')
+        {
+            parse_light(line, &scene.light);
+            light_found = 1;
+        }
         free(line);
     }
 
@@ -211,6 +351,14 @@ t_scene parse_scene(char *file, t_scene scene)
     if (!ambient_found)
     {
         error("Missing ambient lighting definition", &scene);
+    }
+    if (!camera_found)
+    {
+        error("Missing camera definition", &scene);
+    }
+    if (!light_found)
+    {
+        error("Missing light definition", &scene);
     }
 
     return scene;

@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/01 11:26:02 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/04 23:05:30 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,20 +147,6 @@ typedef struct s_scene
 
 void		check_file(char *file);
 t_scene		parse_scene(char *filename, t_scene scene);
-void		render_scene(t_scene scene);
 void		error(char *message, t_scene *scene);
-float		intersect_sphere(t_sphere *sphere, t_ray ray);
-float		intersect_plane(t_plane *plane, t_ray ray);
-float		intersect_cylinder(t_cylinder *cylinder, t_ray ray);
-t_color		trace_ray(t_scene scene, t_ray ray);
-t_ray		get_ray(t_scene scene, int x, int y);
-float		dot_product(t_vector a, t_vector b);
-void		event_loop(t_scene scene);
-t_vector	rotate_vector(t_vector v, t_vector normal);
-t_vector	normalise_vector(t_vector v);
-t_vector	get_intersection_point(t_ray ray, float t);
-t_vector	get_normal(t_vector v, t_hit hit);
-void		decrease_resolution(t_scene *scene);
-void		increase_resolution(t_scene *scene);
-
+ 
 #endif

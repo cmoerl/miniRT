@@ -6,7 +6,7 @@
 #    By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/21 12:23:07 by csturm            #+#    #+#              #
-#    Updated: 2024/08/01 11:44:30 by marianfurni      ###   ########.fr        #
+#    Updated: 2024/08/04 23:17:17 by marianfurni      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,18 +21,12 @@ CLEANUP := rm -rf
 OBJECTS_PATH := obj/
 SOURCES_PATH := src/
 LIBFT_PATH := libft/
+INCLUDES := -I inc -I $(LIBFT_PATH)
 
 # Source and Object Files
-
 SOURCE_FILES := main.c \
- 				parse.c \
-				error.c \
-# 				render.c \
-# 				events.c \
-# 				graphics.c \
-# 				intersect.c \
-# 				ray.c \
-# 				ray_utils.c \
+                parser/parse.c \
+
 
 OBJECTS := $(SOURCE_FILES:%.c=$(OBJECTS_PATH)%.o)
 LIBFT := $(LIBFT_PATH)libft.a
@@ -42,13 +36,13 @@ all: $(NAME)
 
 # Linking the Program
 $(NAME): $(LIBFT) $(OBJECTS)
-	@$(COMPILER) $(FLAGS) $(OBJECTS) -L$(LIBFT_PATH) $(MLX_LIBS) -o $(NAME)
-	@echo "linking successfull - executable $(NAME) created"
+	@$(COMPILER) $(FLAGS) $(OBJECTS) -L$(LIBFT_PATH) -lft $(MLX_LIBS) -o $(NAME)
+	@echo "linking successful - executable $(NAME) created"
 
 # Compiling Source Files
 $(OBJECTS_PATH)%.o: $(SOURCES_PATH)%.c
 	@mkdir -p $(@D)
-	@$(COMPILER) $(FLAGS) -c $< -o $@
+	@$(COMPILER) $(FLAGS) $(INCLUDES) -c $< -o $@
 	@echo "$< compiled successfully"
 
 # Compiling libft
