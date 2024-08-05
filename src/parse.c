@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/04 15:18:35 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/04 20:30:31 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 - return a t_scene struct that holds all other structs
 */
 
-void    error(char *message, t_scene *scene)
+void error(char *message, t_scene *scene)
 {
     if (message != NULL)
     {
@@ -30,7 +30,6 @@ void    error(char *message, t_scene *scene)
     }
     if (scene == NULL)
         exit(1);
-    // clean_exit(scene);
     if (message != NULL)
         exit(1);
     exit(0);
@@ -83,6 +82,12 @@ void parse_ambient(char *line, t_amblight *ambient)
     while (line[i] && (line[i] == ' ' || line[i] == '\t'))
         i++;
 
+    // Check for invalid characters in intensity
+    if (!ft_isdigit(line[i]) && line[i] != '-' && line[i] != '+')
+    {
+        error("Invalid character in ambient lighting intensity", NULL);
+    }
+
     // Parse intensity
     intensity = ft_atof(&line[i]);
     if (intensity < 0.0 || intensity > 1.0)
@@ -99,6 +104,12 @@ void parse_ambient(char *line, t_amblight *ambient)
     while (line[i] && (line[i] == ' ' || line[i] == '\t'))
         i++;
 
+    // Check for invalid characters in red value
+    if (!ft_isdigit(line[i]) && line[i] != '-' && line[i] != '+')
+    {
+        error("Invalid character in ambient lighting red value", NULL);
+    }
+
     // Parse RGB values
     r = ft_atoi(&line[i]);
     if (r < 0 || r > 255)
@@ -111,6 +122,12 @@ void parse_ambient(char *line, t_amblight *ambient)
     if (line[i] == ',')
         i++;
 
+    // Check for invalid characters in green value
+    if (!ft_isdigit(line[i]) && line[i] != '-' && line[i] != '+')
+    {
+        error("Invalid character in ambient lighting green value", NULL);
+    }
+
     g = ft_atoi(&line[i]);
     if (g < 0 || g > 255)
     {
@@ -122,6 +139,12 @@ void parse_ambient(char *line, t_amblight *ambient)
     if (line[i] == ',')
         i++;
 
+    // Check for invalid characters in blue value
+    if (!ft_isdigit(line[i]) && line[i] != '-' && line[i] != '+')
+    {
+        error("Invalid character in ambient lighting blue value", NULL);
+    }
+
     b = ft_atoi(&line[i]);
     if (b < 0 || b > 255)
     {
@@ -129,14 +152,20 @@ void parse_ambient(char *line, t_amblight *ambient)
     }
     printf("Parsed blue: %d\n", b);
 
+    // Check for unexpected characters after parsing
+    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+        i++;
+    if (line[i] && !ft_isdigit(line[i]) && line[i] != '\0')
+    {
+        error("Unexpected character in ambient lighting definition", NULL);
+    }
+
     // Set the values in the ambient struct
     ambient->intensity = intensity;
     ambient->color.r = r / 255.0;
     ambient->color.g = g / 255.0;
     ambient->color.b = b / 255.0;
 }
-
-
 
 void check_file(char *file)
 {
@@ -188,7 +217,9 @@ t_scene parse_scene(char *file, t_scene scene)
         }
         free(line);
     }
+
     close(fd);
+
     // Check for essential components
     if (!ambient_found)
     {
