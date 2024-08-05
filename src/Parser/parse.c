@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/05 08:45:49 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/05 08:57:30 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,18 @@ t_scene parse_scene(char *file, t_scene scene)
         {
             parse_light(line, &scene.light);
             light_found = 1;
+        }
+        else if (line[0] == 'p' && line[1] == 'l')
+        {
+            parse_plane(line, &scene.objects->planes);
+        }
+        else if (line[0] == 'c' && line[1] == 'y')
+        {
+            parse_cylinder(line, &scene.objects->cylinders);
+        }
+        else if (line[0] == 's' && line[1] == 'p')
+        {
+            parse_sphere(line, &scene.objects->spheres);
         }
         free(line);
     }

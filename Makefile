@@ -6,7 +6,7 @@
 #    By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/21 12:23:07 by csturm            #+#    #+#              #
-#    Updated: 2024/08/05 08:45:08 by marianfurni      ###   ########.fr        #
+#    Updated: 2024/08/05 09:05:57 by marianfurni      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,8 @@ INCLUDES := -I inc -I $(LIBFT_PATH)
 
 # Source and Object Files
 SOURCE_FILES := main.c \
-                parser/parse.c parser/parse_camera.c \
-				parser/parse_light.c error.c parser/parse_ambient.c\
+                parser/parse.c parser/parse_camera.c parser/parse_spheres.c parser/parse_planes.c\
+				parser/parse_light.c error.c parser/parse_ambient.c parser/parse_cylinders.c\
 
 
 OBJECTS := $(SOURCE_FILES:%.c=$(OBJECTS_PATH)%.o)
