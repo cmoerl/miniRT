@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/04 23:02:28 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/04 23:21:47 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,6 @@ int main(int argc, char **argv)
     printf("Camera position: %f, %f, %f\n", scene.camera.center.x, scene.camera.center.y, scene.camera.center.z);
     printf("Camera orientation: %f, %f, %f\n", scene.camera.orientation.x, scene.camera.orientation.y, scene.camera.orientation.z);
     printf("Camera FOV: %f\n", scene.camera.fov);
-
-    // Print parsed light for testing
-    printf("Light position: %f, %f, %f\n", scene.light.position.x, scene.light.position.y, scene.light.position.z);
-    printf("Light intensity: %f\n", scene.light.intensity);
 
     return 0;
 }
