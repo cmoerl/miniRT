@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/18 11:17:47 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/05 11:13:20 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #define WIDTH 1000
 #define HEIGHT 700
 #define PI 3.14159265359
+#define DIFFUSE 0.8
 
 typedef struct s_hooks
 {

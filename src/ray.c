@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:25:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/01 12:54:41 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/05 11:13:25 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,9 @@ t_color calc_shade(t_scene scene, t_vector ip, t_vector normal, t_color object_c
     float dot;
     float attenuation;
 
-    color = (t_color){0, 0, 0};
+    color.r = scene.amblight.intensity * scene.amblight.color.r * object_color.r;
+    color.g = scene.amblight.intensity * scene.amblight.color.g * object_color.g;
+    color.b = scene.amblight.intensity * scene.amblight.color.b * object_color.b;
     light_dir.x = scene.light.position.x - ip.x;
     light_dir.y = scene.light.position.y - ip.y;
     light_dir.z = scene.light.position.z - ip.z;
@@ -101,11 +103,12 @@ t_color calc_shade(t_scene scene, t_vector ip, t_vector normal, t_color object_c
         return (color);
     dot = dot_product(normal, light_dir);
     if (dot < 0)
-        dot = dot * -1;
+        // dot = dot * -1;
+        dot = 0;
     attenuation = 1.0 / (1.0 + 0.1 * light_distance);
-    color.r += object_color.r * scene.light.intensity * dot / attenuation;
-    color.g += object_color.g * scene.light.intensity * dot / attenuation;
-    color.b += object_color.b * scene.light.intensity * dot / attenuation;
+    color.r += DIFFUSE * object_color.r * scene.light.intensity * dot / attenuation;
+    color.g += DIFFUSE * object_color.g * scene.light.intensity * dot / attenuation;
+    color.b += DIFFUSE * object_color.b * scene.light.intensity * dot / attenuation;
     color.r = fmin(color.r, 255);
     color.g = fmin(color.g, 255);
     color.b = fmin(color.b, 255);

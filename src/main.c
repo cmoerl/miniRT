@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/01 11:31:43 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/05 11:00:25 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ void init_hooks(t_scene *scene)
 void init_amblight(t_scene *scene)
 {
     scene->amblight.intensity = 0.2;
-    scene->amblight.color.r = 255;
-    scene->amblight.color.g = 255;
+    scene->amblight.color.r = 0;
+    scene->amblight.color.g = 0;
     scene->amblight.color.b = 255;
 }
 
