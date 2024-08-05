@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_cyllinders.c                                 :+:      :+:    :+:   */
+/*   parse_cylinders.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:53:37 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/05 09:04:04 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/05 11:32:29 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void parse_cylinder(char *line, t_cylinder **cylinders)
     t_cylinder *cylinder = malloc(sizeof(t_cylinder));
     if (!cylinder)
         error("Memory allocation failed", NULL);
+
+
 
     // Skip whitespace
     while (line[i] && (line[i] == ' ' || line[i] == '\t'))

@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:38:31 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/04 23:39:51 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/05 11:32:37 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void parse_camera(char *line, t_camera *camera)
 {
     int i = 1; // Start after 'C'
+
+    
 
     // Skip whitespace
     while (line[i] && (line[i] == ' ' || line[i] == '\t'))
