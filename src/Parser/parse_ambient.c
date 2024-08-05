@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pare_ambient.c                                     :+:      :+:    :+:   */
+/*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/05 08:41:54 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/05 11:11:45 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,31 @@
 
 void parse_ambient(char *line, t_amblight *ambient)
 {
-    int i = 1; // Start after 'A'
+    int i = 0; // Start at the beginning of the line
     float intensity;
     int r, g, b;
+
+    // Skip leading whitespace
+    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+        i++;
+    
+    // Check for 'A' identifier
+    if (line[i] != 'A')
+    {
+        error("Missing 'A' identifier for ambient lighting", NULL);
+    }
+    i++; // Move past 'A'
 
     // Skip whitespace
     while (line[i] && (line[i] == ' ' || line[i] == '\t'))
         i++;
+    
     // Check for invalid characters in intensity
     if (!ft_isdigit(line[i]) && line[i] != '-' && line[i] != '+')
     {
         error("Invalid character in ambient lighting intensity", NULL);
     }
+    
     // Parse intensity
     intensity = ft_atof(&line[i]);
     if (intensity < 0.0 || intensity > 1.0)
@@ -47,6 +60,7 @@ void parse_ambient(char *line, t_amblight *ambient)
     {
         error("Invalid character in ambient lighting red value", NULL);
     }
+    
     // Parse RGB values
     r = ft_atoi(&line[i]);
     if (r < 0 || r > 255)
@@ -58,6 +72,7 @@ void parse_ambient(char *line, t_amblight *ambient)
         i++;
     if (line[i] == ',')
         i++;
+    
     // Check for invalid characters in green value
     if (!ft_isdigit(line[i]) && line[i] != '-' && line[i] != '+')
     {

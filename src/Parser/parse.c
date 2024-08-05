@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/05 08:57:30 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/05 11:20:03 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,32 +61,38 @@ t_scene parse_scene(char *file, t_scene scene)
 
     while ((line = get_next_line(fd)) != NULL)
     {
-        if (line[0] == 'A')
+        // Skip leading whitespace
+        int i = 0;
+        while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+            i++;
+
+        // Check the first character after skipping spaces
+        if (line[i] == 'A')
         {
-            parse_ambient(line, &scene.amblight);
+            parse_ambient(&line[i], &scene.amblight);
             ambient_found = 1;
         }
-        else if (line[0] == 'C')
+        else if (line[i] == 'C')
         {
-            parse_camera(line, &scene.camera);
+            parse_camera(&line[i], &scene.camera);
             camera_found = 1;
         }
-        else if (line[0] == 'L')
+        else if (line[i] == 'L')
         {
-            parse_light(line, &scene.light);
+            parse_light(&line[i], &scene.light);
             light_found = 1;
         }
-        else if (line[0] == 'p' && line[1] == 'l')
+        else if (line[i] == 'p' && line[i+1] == 'l')
         {
-            parse_plane(line, &scene.objects->planes);
+            parse_plane(&line[i], &scene.objects->planes);
         }
-        else if (line[0] == 'c' && line[1] == 'y')
+        else if (line[i] == 'c' && line[i+1] == 'y')
         {
-            parse_cylinder(line, &scene.objects->cylinders);
+            parse_cylinder(&line[i], &scene.objects->cylinders);
         }
-        else if (line[0] == 's' && line[1] == 'p')
+        else if (line[i] == 's' && line[i+1] == 'p')
         {
-            parse_sphere(line, &scene.objects->spheres);
+            parse_sphere(&line[i], &scene.objects->spheres);
         }
         free(line);
     }
