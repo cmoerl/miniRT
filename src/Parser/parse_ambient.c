@@ -6,12 +6,11 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/05 11:35:43 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/05 15:27:50 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
-
 
 void parse_ambient(char *line, t_amblight *ambient)
 {
