@@ -6,18 +6,30 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/05 11:35:43 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/05 12:34:40 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-
 void parse_ambient(char *line, t_amblight *ambient)
 {
-    int i = 0; // Start at the beginning of the line
+    int i = 0;
     float intensity;
     int r, g, b;
+
+    // Scan the line for invalid characters
+    while (line[i])
+    {
+        if (!(ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+' ||
+              line[i] == ',' || line[i] == 'A' || line[i] == ' ' || line[i] == '\t'))
+        {
+            error("Invalid character in ambient lighting definition", NULL);
+        }
+        i++;
+    }
+
+    i = 0; // Reset index to start parsing
 
     // Skip leading whitespace
     while (line[i] && (line[i] == ' ' || line[i] == '\t'))
@@ -38,7 +50,7 @@ void parse_ambient(char *line, t_amblight *ambient)
     int start = i;
     while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
         i++;
-    if (start == i || (line[i] && line[i] != ' ' && line[i] != '\t'))
+    if (start == i)
     {
         error("Invalid character in ambient lighting intensity", NULL);
     }
@@ -57,7 +69,7 @@ void parse_ambient(char *line, t_amblight *ambient)
     start = i;
     while (line[i] && ft_isdigit(line[i]))
         i++;
-    if (start == i || (line[i] && line[i] != ',' && line[i] != ' ' && line[i] != '\t'))
+    if (start == i)
     {
         error("Invalid character in ambient lighting red value", NULL);
     }
@@ -76,7 +88,7 @@ void parse_ambient(char *line, t_amblight *ambient)
     start = i;
     while (line[i] && ft_isdigit(line[i]))
         i++;
-    if (start == i || (line[i] && line[i] != ',' && line[i] != ' ' && line[i] != '\t'))
+    if (start == i)
     {
         error("Invalid character in ambient lighting green value", NULL);
     }
@@ -95,7 +107,7 @@ void parse_ambient(char *line, t_amblight *ambient)
     start = i;
     while (line[i] && ft_isdigit(line[i]))
         i++;
-    if (start == i || (line[i] && line[i] != ' ' && line[i] != '\t'))
+    if (start == i)
     {
         error("Invalid character in ambient lighting blue value", NULL);
     }
@@ -109,12 +121,6 @@ void parse_ambient(char *line, t_amblight *ambient)
     // Skip any trailing whitespace
     while (line[i] && (line[i] == ' ' || line[i] == '\t'))
         i++;
-
-    // Check for unexpected characters after parsing
-    if (line[i])
-    {
-        error("Invalid character in ambient lighting definition", NULL);
-    }
 
     // Set the values in the ambient struct
     ambient->intensity = intensity;
