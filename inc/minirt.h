@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/04 23:05:30 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/04 23:40:03 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,8 @@ typedef struct s_scene
 }	t_scene;
 
 void		check_file(char *file);
+void		parse_camera(char *line, t_camera *camera);
+void		parse_light(char *line, t_light *light);
 t_scene		parse_scene(char *filename, t_scene scene);
 void		error(char *message, t_scene *scene);
  
