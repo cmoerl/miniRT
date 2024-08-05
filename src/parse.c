@@ -6,16 +6,12 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/04 20:30:31 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/04 21:20:11 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-#include <stdio.h>
-
 /* 
-
-- read the file (get_next_line)
 - parse the file into structs defined in minirt.h
 - return a t_scene struct that holds all other structs
 */
@@ -41,7 +37,6 @@ float ft_atof(const char *str)
     float sign = 1.0;
     float factor = 0.1;
     int i = 0;
-
     // Handle sign
     if (str[i] == '-' || str[i] == '+')
     {
@@ -49,14 +44,12 @@ float ft_atof(const char *str)
             sign = -1.0;
         i++;
     }
-
     // Parse integer part
     while (ft_isdigit(str[i]))
     {
         result = result * 10.0 + (str[i] - '0');
         i++;
     }
-
     // Parse fractional part
     if (str[i] == '.')
     {
@@ -68,7 +61,6 @@ float ft_atof(const char *str)
             i++;
         }
     }
-
     return result * sign;
 }
 
@@ -81,13 +73,11 @@ void parse_ambient(char *line, t_amblight *ambient)
     // Skip whitespace
     while (line[i] && (line[i] == ' ' || line[i] == '\t'))
         i++;
-
     // Check for invalid characters in intensity
     if (!ft_isdigit(line[i]) && line[i] != '-' && line[i] != '+')
     {
         error("Invalid character in ambient lighting intensity", NULL);
     }
-
     // Parse intensity
     intensity = ft_atof(&line[i]);
     if (intensity < 0.0 || intensity > 1.0)
@@ -109,7 +99,6 @@ void parse_ambient(char *line, t_amblight *ambient)
     {
         error("Invalid character in ambient lighting red value", NULL);
     }
-
     // Parse RGB values
     r = ft_atoi(&line[i]);
     if (r < 0 || r > 255)
@@ -121,13 +110,11 @@ void parse_ambient(char *line, t_amblight *ambient)
         i++;
     if (line[i] == ',')
         i++;
-
     // Check for invalid characters in green value
     if (!ft_isdigit(line[i]) && line[i] != '-' && line[i] != '+')
     {
         error("Invalid character in ambient lighting green value", NULL);
     }
-
     g = ft_atoi(&line[i]);
     if (g < 0 || g > 255)
     {
