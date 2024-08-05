@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pare_spheres.c                                     :+:      :+:    :+:   */
+/*   parse_spheres.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:50:01 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/05 08:50:16 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/05 09:22:16 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void parse_sphere(char *line, t_sphere **spheres)
 {
-    int i = 1; // Start after 'sp'
+    int i = 2; // Start after 'sp'
     t_sphere *sphere = malloc(sizeof(t_sphere));
     if (!sphere)
         error("Memory allocation failed", NULL);
@@ -43,7 +43,7 @@ void parse_sphere(char *line, t_sphere **spheres)
         i++;
 
     // Parse radius
-    sphere->radius = ft_atof(&line[i]) / 2.0; // Diameter to radius
+    sphere->radius = ft_atof(&line[i]) / 2;
     while (line[i] && (line[i] != ' ' && line[i] != '\t'))
         i++;
 

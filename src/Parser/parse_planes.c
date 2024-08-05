@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:47:53 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/05 08:48:05 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/05 09:22:36 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void parse_plane(char *line, t_plane **planes)
 {
-    int i = 1; // Start after 'pl'
+    int i = 2; // Start after 'pl'
     t_plane *plane = malloc(sizeof(t_plane));
     if (!plane)
         error("Memory allocation failed", NULL);
