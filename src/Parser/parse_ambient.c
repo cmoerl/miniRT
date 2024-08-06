@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/05 15:46:20 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/06 08:00:32 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void parse_ambient(char *line, t_amblight *ambient)
     int start = i;
     while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
         i++;
-    if (start == i || (line[i] && line[i] != ' ' && line[i] != '\t'))
+    if (start == i)
     {
         error("Invalid character in ambient lighting intensity", NULL);
     }
@@ -56,7 +56,7 @@ void parse_ambient(char *line, t_amblight *ambient)
     start = i;
     while (line[i] && ft_isdigit(line[i]))
         i++;
-    if (start == i || (line[i] && line[i] != ',' && line[i] != ' ' && line[i] != '\t'))
+    if (start == i)
     {
         error("Invalid character in ambient lighting red value", NULL);
     }
@@ -75,7 +75,7 @@ void parse_ambient(char *line, t_amblight *ambient)
     start = i;
     while (line[i] && ft_isdigit(line[i]))
         i++;
-    if (start == i || (line[i] && line[i] != ',' && line[i] != ' ' && line[i] != '\t'))
+    if (start == i)
     {
         error("Invalid character in ambient lighting green value", NULL);
     }
@@ -94,7 +94,7 @@ void parse_ambient(char *line, t_amblight *ambient)
     start = i;
     while (line[i] && ft_isdigit(line[i]))
         i++;
-    if (start == i || (line[i] && line[i] != ' ' && line[i] != '\t'))
+    if (start == i)
     {
         error("Invalid character in ambient lighting blue value", NULL);
     }
@@ -105,12 +105,12 @@ void parse_ambient(char *line, t_amblight *ambient)
     }
     printf("Parsed blue: %d\n", b);
 
-    // Skip any trailing whitespace
-    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+    // Skip any trailing whitespace or newline characters
+    while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
         i++;
 
-    // Check for unexpected characters after parsing
-    if (line[i])
+    // Check if there are any unexpected characters after the expected values
+    if (line[i] != '\0')
     {
         error("Invalid character in ambient lighting definition", NULL);
     }

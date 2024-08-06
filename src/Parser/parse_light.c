@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:32:14 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/04 23:35:26 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/06 08:13:16 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,48 @@ void parse_light(char *line, t_light *light)
         i++;
 
     // Parse position
-    light->position.x = ft_atof(&line[i]);
-    while (line[i] && (line[i] != ' ' && line[i] != '\t' && line[i] != ','))
+    int start = i;
+    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
         i++;
-    if (line[i] == ',') i++;
+    if (start == i)
+    {
+        error("Invalid character in light position x value", NULL);
+    }
+    light->position.x = ft_atof(&line[start]);
 
-    light->position.y = ft_atof(&line[i]);
-    while (line[i] && (line[i] != ' ' && line[i] != '\t' && line[i] != ','))
-        i++;
     if (line[i] == ',') i++;
-
-    light->position.z = ft_atof(&line[i]);
-    while (line[i] && (line[i] != ' ' && line[i] != '\t'))
+    start = i;
+    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
         i++;
+    if (start == i)
+    {
+        error("Invalid character in light position y value", NULL);
+    }
+    light->position.y = ft_atof(&line[start]);
+
+    if (line[i] == ',') i++;
+    start = i;
+    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
+        i++;
+    if (start == i)
+    {
+        error("Invalid character in light position z value", NULL);
+    }
+    light->position.z = ft_atof(&line[start]);
 
     // Skip whitespace
     while (line[i] && (line[i] == ' ' || line[i] == '\t'))
         i++;
 
     // Parse intensity
-    light->intensity = ft_atof(&line[i]);
+    start = i;
+    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
+        i++;
+    if (start == i)
+    {
+        error("Invalid character in light intensity value", NULL);
+    }
+    light->intensity = ft_atof(&line[start]);
     if (light->intensity < 0.0 || light->intensity > 1.0)
     {
         error("Light intensity out of range [0.0, 1.0]", NULL);
@@ -56,17 +78,34 @@ void parse_light(char *line, t_light *light)
     // Parse RGB values (if present)
     if (line[i])
     {
-        r = ft_atoi(&line[i]);
-        while (line[i] && line[i] != ',')
+        start = i;
+        while (line[i] && ft_isdigit(line[i]))
             i++;
-        if (line[i] == ',') i++;
+        if (start == i)
+        {
+            error("Invalid character in light color red value", NULL);
+        }
+        r = ft_atoi(&line[start]);
 
-        g = ft_atoi(&line[i]);
-        while (line[i] && line[i] != ',')
+        if (line[i] == ',') i++;
+        start = i;
+        while (line[i] && ft_isdigit(line[i]))
             i++;
-        if (line[i] == ',') i++;
+        if (start == i)
+        {
+            error("Invalid character in light color green value", NULL);
+        }
+        g = ft_atoi(&line[start]);
 
-        b = ft_atoi(&line[i]);
+        if (line[i] == ',') i++;
+        start = i;
+        while (line[i] && ft_isdigit(line[i]))
+            i++;
+        if (start == i)
+        {
+            error("Invalid character in light color blue value", NULL);
+        }
+        b = ft_atoi(&line[start]);
 
         // Validate RGB values
         if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)

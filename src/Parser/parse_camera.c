@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:38:31 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/05 11:32:37 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/06 08:08:00 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,56 +14,112 @@
 
 void parse_camera(char *line, t_camera *camera)
 {
-    int i = 1; // Start after 'C'
+    int i = 0; // Start at the beginning of the line
 
-    
+    // Skip leading whitespace
+    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+        i++;
+
+    // Check for 'C' identifier
+    if (line[i] != 'C')
+    {
+        error("Missing 'C' identifier for camera", NULL);
+    }
+    i++; // Move past 'C'
 
     // Skip whitespace
     while (line[i] && (line[i] == ' ' || line[i] == '\t'))
         i++;
 
     // Parse position
-    camera->center.x = ft_atof(&line[i]);
-    while (line[i] && (line[i] != ' ' && line[i] != '\t' && line[i] != ','))
+    int start = i;
+    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
         i++;
-    if (line[i] == ',') i++;
+    if (start == i)
+    {
+        error("Invalid character in camera position x value", NULL);
+    }
+    camera->center.x = ft_atof(&line[start]);
 
-    camera->center.y = ft_atof(&line[i]);
-    while (line[i] && (line[i] != ' ' && line[i] != '\t' && line[i] != ','))
-        i++;
     if (line[i] == ',') i++;
-
-    camera->center.z = ft_atof(&line[i]);
-    while (line[i] && (line[i] != ' ' && line[i] != '\t'))
+    start = i;
+    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
         i++;
+    if (start == i)
+    {
+        error("Invalid character in camera position y value", NULL);
+    }
+    camera->center.y = ft_atof(&line[start]);
+
+    if (line[i] == ',') i++;
+    start = i;
+    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
+        i++;
+    if (start == i)
+    {
+        error("Invalid character in camera position z value", NULL);
+    }
+    camera->center.z = ft_atof(&line[start]);
 
     // Skip whitespace
     while (line[i] && (line[i] == ' ' || line[i] == '\t'))
         i++;
 
     // Parse orientation
-    camera->orientation.x = ft_atof(&line[i]);
-    while (line[i] && (line[i] != ' ' && line[i] != '\t' && line[i] != ','))
+    start = i;
+    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
         i++;
-    if (line[i] == ',') i++;
+    if (start == i)
+    {
+        error("Invalid character in camera orientation x value", NULL);
+    }
+    camera->orientation.x = ft_atof(&line[start]);
 
-    camera->orientation.y = ft_atof(&line[i]);
-    while (line[i] && (line[i] != ' ' && line[i] != '\t' && line[i] != ','))
-        i++;
     if (line[i] == ',') i++;
-
-    camera->orientation.z = ft_atof(&line[i]);
-    while (line[i] && (line[i] != ' ' && line[i] != '\t'))
+    start = i;
+    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
         i++;
+    if (start == i)
+    {
+        error("Invalid character in camera orientation y value", NULL);
+    }
+    camera->orientation.y = ft_atof(&line[start]);
+
+    if (line[i] == ',') i++;
+    start = i;
+    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
+        i++;
+    if (start == i)
+    {
+        error("Invalid character in camera orientation z value", NULL);
+    }
+    camera->orientation.z = ft_atof(&line[start]);
 
     // Skip whitespace
     while (line[i] && (line[i] == ' ' || line[i] == '\t'))
         i++;
 
     // Parse field of view
-    camera->fov = ft_atof(&line[i]);
+    start = i;
+    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
+        i++;
+    if (start == i)
+    {
+        error("Invalid character in camera field of view", NULL);
+    }
+    camera->fov = ft_atof(&line[start]);
     if (camera->fov < 0.0 || camera->fov > 180.0)
     {
         error("Camera FOV out of range [0.0, 180.0]", NULL);
+    }
+
+    // Skip any trailing whitespace or newline characters
+    while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
+        i++;
+
+    // Check if there are any unexpected characters after the expected values
+    if (line[i] != '\0')
+    {
+        error("Invalid character in camera definition", NULL);
     }
 }
