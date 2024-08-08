@@ -6,11 +6,9 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:38:31 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/08 16:17:00 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/08 16:48:23 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../../inc/minirt.h"
 
 #include "../../inc/minirt.h"
 
@@ -39,7 +37,7 @@ void parse_camera(char *line, t_camera *camera)
         i++;
     if (start == i)
     {
-        error("Invalid character in camera position x value", NULL);
+        error("Invalid character in camera", NULL);
     }
     camera->center.x = ft_atof(&line[start]);
 
@@ -49,7 +47,7 @@ void parse_camera(char *line, t_camera *camera)
         i++;
     if (start == i)
     {
-        error("Invalid character in camera position y value", NULL);
+        error("Invalid character in camera", NULL);
     }
     camera->center.y = ft_atof(&line[start]);
 
@@ -59,7 +57,7 @@ void parse_camera(char *line, t_camera *camera)
         i++;
     if (start == i)
     {
-        error("Invalid character in camera position z value", NULL);
+        error("Invalid character in camera", NULL);
     }
     camera->center.z = ft_atof(&line[start]);
 
@@ -73,7 +71,7 @@ void parse_camera(char *line, t_camera *camera)
         i++;
     if (start == i)
     {
-        error("Invalid character in camera orientation x value", NULL);
+        error("Invalid character in camera", NULL);
     }
     camera->orientation.x = ft_atof(&line[start]);
 
@@ -83,7 +81,7 @@ void parse_camera(char *line, t_camera *camera)
         i++;
     if (start == i)
     {
-        error("Invalid character in camera orientation y value", NULL);
+        error("Invalid character in camera", NULL);
     }
     camera->orientation.y = ft_atof(&line[start]);
 
@@ -93,7 +91,7 @@ void parse_camera(char *line, t_camera *camera)
         i++;
     if (start == i)
     {
-        error("Invalid character in camera orientation z value", NULL);
+        error("Invalid character in camera", NULL);
     }
     camera->orientation.z = ft_atof(&line[start]);
 
@@ -107,7 +105,7 @@ void parse_camera(char *line, t_camera *camera)
         i++;
     if (start == i)
     {
-        error("Invalid character in camera field of view", NULL);
+        error("Invalid character in camera", NULL);
     }
     camera->fov = ft_atof(&line[start]);
     if (camera->fov < 0.0 || camera->fov > 180.0)
@@ -122,7 +120,7 @@ void parse_camera(char *line, t_camera *camera)
     // Check if there are any unexpected characters after the expected values
     if (line[i] != '\0')
     {
-        error("Invalid character in camera definition", NULL);
+        error("Invalid character in camera", NULL);
     }
 
     // Print parsed values in a clear format

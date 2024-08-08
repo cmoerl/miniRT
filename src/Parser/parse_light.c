@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:32:14 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/08 16:15:13 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/08 16:44:36 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void parse_light(char *line, t_light *light)
         i++;
     if (start == i)
     {
-        error("Invalid character in light position x value", NULL);
+        error("Invalid character in light", NULL);
     }
     light->position.x = ft_atof(&line[start]);
 
@@ -37,7 +37,7 @@ void parse_light(char *line, t_light *light)
         i++;
     if (start == i)
     {
-        error("Invalid character in light position y value", NULL);
+        error("Invalid character in light", NULL);
     }
     light->position.y = ft_atof(&line[start]);
 
@@ -47,7 +47,7 @@ void parse_light(char *line, t_light *light)
         i++;
     if (start == i)
     {
-        error("Invalid character in light position z value", NULL);
+        error("Invalid character in light", NULL);
     }
     light->position.z = ft_atof(&line[start]);
 
@@ -61,7 +61,7 @@ void parse_light(char *line, t_light *light)
         i++;
     if (start == i)
     {
-        error("Invalid character in light intensity value", NULL);
+        error("Invalid character in light", NULL);
     }
     light->intensity = ft_atof(&line[start]);
     if (light->intensity < 0.0 || light->intensity > 1.0)
@@ -83,7 +83,7 @@ void parse_light(char *line, t_light *light)
             i++;
         if (start == i)
         {
-            error("Invalid character in light color red value", NULL);
+            error("Invalid character in light", NULL);
         }
         r = ft_atoi(&line[start]);
 
@@ -93,7 +93,7 @@ void parse_light(char *line, t_light *light)
             i++;
         if (start == i)
         {
-            error("Invalid character in light color green value", NULL);
+            error("Invalid character in light", NULL);
         }
         g = ft_atoi(&line[start]);
 
@@ -103,7 +103,7 @@ void parse_light(char *line, t_light *light)
             i++;
         if (start == i)
         {
-            error("Invalid character in light color blue value", NULL);
+            error("Invalid character in light", NULL);
         }
         b = ft_atoi(&line[start]);
 

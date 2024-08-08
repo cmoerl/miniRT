@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/08 16:24:22 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/08 16:41:08 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void parse_ambient(char *line, t_amblight *ambient)
         i++;
     if (start == i)
     {
-        error("Invalid character in ambient lighting intensity", NULL);
+        error("Invalid character in ambient lighting", NULL);
     }
     intensity = ft_atof(&line[start]);
     if (intensity < 0.0 || intensity > 1.0)
@@ -57,7 +57,7 @@ void parse_ambient(char *line, t_amblight *ambient)
         i++;
     if (start == i)
     {
-        error("Invalid character in ambient lighting red value", NULL);
+        error("Invalid character in ambient lighting", NULL);
     }
     r = ft_atoi(&line[start]);
     if (r < 0 || r > 255)
@@ -75,7 +75,7 @@ void parse_ambient(char *line, t_amblight *ambient)
         i++;
     if (start == i)
     {
-        error("Invalid character in ambient lighting green value", NULL);
+        error("Invalid character in ambient lighting", NULL);
     }
     g = ft_atoi(&line[start]);
     if (g < 0 || g > 255)
@@ -93,7 +93,7 @@ void parse_ambient(char *line, t_amblight *ambient)
         i++;
     if (start == i)
     {
-        error("Invalid character in ambient lighting blue value", NULL);
+        error("Invalid character in ambient lighting", NULL);
     }
     b = ft_atoi(&line[start]);
     if (b < 0 || b > 255)
@@ -108,7 +108,7 @@ void parse_ambient(char *line, t_amblight *ambient)
     // Check if there are any unexpected characters after the expected values
     if (line[i] != '\0')
     {
-        error("Invalid character in ambient lighting definition", NULL);
+        error("Invalid character in ambient lighting", NULL);
     }
 
     // Set the values in the ambient struct
