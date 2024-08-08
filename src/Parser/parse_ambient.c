@@ -6,12 +6,9 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/08 15:57:49 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/08 16:24:22 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../../inc/minirt.h"
-
 
 #include "../../inc/minirt.h"
 
