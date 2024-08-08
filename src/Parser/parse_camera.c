@@ -6,9 +6,11 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:38:31 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/06 08:08:00 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/08 16:17:00 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../inc/minirt.h"
 
 #include "../../inc/minirt.h"
 
@@ -122,4 +124,10 @@ void parse_camera(char *line, t_camera *camera)
     {
         error("Invalid character in camera definition", NULL);
     }
+
+    // Print parsed values in a clear format
+    printf("Parsed Camera:\n");
+    printf("  Position: x=%f, y=%f, z=%f\n", camera->center.x, camera->center.y, camera->center.z);
+    printf("  Orientation: x=%f, y=%f, z=%f\n", camera->orientation.x, camera->orientation.y, camera->orientation.z);
+    printf("  FOV: %f\n", camera->fov);
 }

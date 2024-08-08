@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:32:14 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/06 08:13:16 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/08 16:15:13 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,9 @@ void parse_light(char *line, t_light *light)
         b = 255;
     }
 
-    printf("Parsed light position: %f, %f, %f\n", light->position.x, light->position.y, light->position.z);
-    printf("Parsed light intensity: %f\n", light->intensity);
-    printf("Parsed light color: %d, %d, %d\n", r, g, b);
+    // Print parsed values in a clear format
+    printf("Parsed Light:\n");
+    printf("  Position: x=%f, y=%f, z=%f\n", light->position.x, light->position.y, light->position.z);
+    printf("  Intensity: %f\n", light->intensity);
+    printf("  Color: R=%d, G=%d, B=%d\n", r, g, b);
 }

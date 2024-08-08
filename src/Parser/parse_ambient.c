@@ -6,9 +6,12 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/06 08:00:32 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/08 15:57:49 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../inc/minirt.h"
+
 
 #include "../../inc/minirt.h"
 
@@ -46,7 +49,6 @@ void parse_ambient(char *line, t_amblight *ambient)
     {
         error("Ambient lighting intensity out of range [0.0, 1.0]", NULL);
     }
-    printf("Parsed intensity: %f\n", intensity);
 
     // Skip whitespace
     while (line[i] && (line[i] == ' ' || line[i] == '\t'))
@@ -65,7 +67,6 @@ void parse_ambient(char *line, t_amblight *ambient)
     {
         error("Ambient lighting red value out of range [0, 255]", NULL);
     }
-    printf("Parsed red: %d\n", r);
 
     // Skip whitespace and comma
     while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == ','))
@@ -84,7 +85,6 @@ void parse_ambient(char *line, t_amblight *ambient)
     {
         error("Ambient lighting green value out of range [0, 255]", NULL);
     }
-    printf("Parsed green: %d\n", g);
 
     // Skip whitespace and comma
     while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == ','))
@@ -103,7 +103,6 @@ void parse_ambient(char *line, t_amblight *ambient)
     {
         error("Ambient lighting blue value out of range [0, 255]", NULL);
     }
-    printf("Parsed blue: %d\n", b);
 
     // Skip any trailing whitespace or newline characters
     while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
@@ -120,4 +119,10 @@ void parse_ambient(char *line, t_amblight *ambient)
     ambient->color.r = r / 255.0;
     ambient->color.g = g / 255.0;
     ambient->color.b = b / 255.0;
+
+    // Print parsed values in a clear format
+    printf("Parsed Ambient Lighting:\n");
+    printf("  Intensity: %f\n", intensity);
+    printf("  Color: R=%d, G=%d, B=%d\n", r, g, b);
+    printf("  Normalized Color: R=%f, G=%f, B=%f\n", ambient->color.r, ambient->color.g, ambient->color.b);
 }
