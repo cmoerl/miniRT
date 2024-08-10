@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/05 11:20:03 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/10 18:11:51 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,13 @@ t_scene parse_scene(char *file, t_scene scene)
         while (line[i] && (line[i] == ' ' || line[i] == '\t'))
             i++;
 
+        // Skip empty lines
+        if (line[i] == '\0' || line[i] == '\n')
+        {
+            free(line);
+            continue;
+        }
+
         // Check the first character after skipping spaces
         if (line[i] == 'A')
         {
@@ -82,17 +89,21 @@ t_scene parse_scene(char *file, t_scene scene)
             parse_light(&line[i], &scene.light);
             light_found = 1;
         }
-        else if (line[i] == 'p' && line[i+1] == 'l')
+        else if (line[i] == 'p' && line[i+1] == 'l' && (line[i+2] == ' ' || line[i+2] == '\t'))
         {
             parse_plane(&line[i], &scene.objects->planes);
         }
-        else if (line[i] == 'c' && line[i+1] == 'y')
+        else if (line[i] == 'c' && line[i+1] == 'y' && (line[i+2] == ' ' || line[i+2] == '\t'))
         {
             parse_cylinder(&line[i], &scene.objects->cylinders);
         }
-        else if (line[i] == 's' && line[i+1] == 'p')
+        else if (line[i] == 's' && line[i+1] == 'p' && (line[i+2] == ' ' || line[i+2] == '\t'))
         {
             parse_sphere(&line[i], &scene.objects->spheres);
+        }
+        else
+        {
+            error("Invalid scene description", &scene);
         }
         free(line);
     }

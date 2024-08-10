@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:32:14 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/08 16:44:36 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/10 18:20:40 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,19 @@
 
 void parse_light(char *line, t_light *light)
 {
-    int i = 1; // Start after 'L'
+    int i = 0; // Start at the beginning of the line
     int r, g, b;
+
+    // Skip leading whitespace
+    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+        i++;
+
+    // Check for 'L' identifier
+    if (line[i] != 'L')
+    {
+        error("Missing 'L' identifier for light", NULL);
+    }
+    i++; // Move past 'L'
 
     // Skip whitespace
     while (line[i] && (line[i] == ' ' || line[i] == '\t'))
@@ -118,6 +129,16 @@ void parse_light(char *line, t_light *light)
         r = 255;
         g = 255;
         b = 255;
+    }
+
+    // Skip any trailing whitespace or newline characters
+    while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
+        i++;
+
+    // Check if there are any unexpected characters after the expected values
+    if (line[i] != '\0')
+    {
+        error("Invalid character in light", NULL);
     }
 
     // Print parsed values in a clear format
