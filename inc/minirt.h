@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/05 11:13:20 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/14 11:44:14 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,8 +160,6 @@ void    event_loop(t_scene scene);
 t_vector    normalise_vector(t_vector v);
 t_vector    get_intersection_point(t_ray ray, float t);
 t_vector    get_normal(t_vector v, t_hit hit);
-void    decrease_resolution(t_scene *scene);
-void    increase_resolution(t_scene *scene);
 t_vector   cross_product(t_vector a, t_vector b);
 t_vector    rotate_vector(t_vector v, t_vector orientation);
 
