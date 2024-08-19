@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/10 17:23:48 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/19 13:16:32 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,6 @@ typedef struct s_scene
 }	t_scene;
 
 void		parse_sphere(char *line, t_sphere **spheres);
-int			parse_color_component(char *line, int *i);
 void		parse_plane(char *line, t_plane **planes);
 void		skip_whitespace(char *line, int *i);
 float		parse_float(char *line, int *i);

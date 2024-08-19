@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 17:19:53 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/10 17:20:32 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/19 13:16:35 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,4 @@ float parse_float(char *line, int *i) {
         error("Invalid character in input", NULL);
     }
     return ft_atof(&line[start]);
-}
-
-int parse_color_component(char *line, int *i) {
-    int start = *i;
-    while (line[*i] && ft_isdigit(line[*i])) {
-        (*i)++;
-    }
-    if (start == *i) {
-        error("Invalid character in input", NULL);
-    }
-    return ft_atoi(&line[start]);
 }
