@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_planes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:47:53 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/10 17:25:55 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/19 11:20:41 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void parse_plane(char *line, t_plane **planes) {
     int i = 0; // Start at the beginning of the line
 
     // Skip leading whitespace
-    skip_whitespace(line, &i);
+    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+        i++;
 
     // Check for 'pl' identifier
     if (line[i] != 'p' || line[i + 1] != 'l') {
@@ -25,50 +26,106 @@ void parse_plane(char *line, t_plane **planes) {
     i += 2; // Move past 'pl'
 
     // Skip whitespace
-    skip_whitespace(line, &i);
+    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+        i++;
 
     // Parse point
     t_plane *plane = malloc(sizeof(t_plane));
     if (!plane)
         error("Memory allocation failed", NULL);
 
-    plane->point.x = parse_float(line, &i);
-    skip_whitespace(line, &i);
+    // Parse X coordinate of the point
+    int start = i;
+    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
+        i++;
+    if (start == i) {
+        error("Invalid character in plane", NULL);
+    }
+    plane->point.x = ft_atof(&line[start]);
+
     if (line[i] == ',') i++;
-    skip_whitespace(line, &i);
-    plane->point.y = parse_float(line, &i);
-    skip_whitespace(line, &i);
+    // Parse Y coordinate of the point
+    start = i;
+    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
+        i++;
+    if (start == i) {
+        error("Invalid character in plane", NULL);
+    }
+    plane->point.y = ft_atof(&line[start]);
+
     if (line[i] == ',') i++;
-    skip_whitespace(line, &i);
-    plane->point.z = parse_float(line, &i);
+    // Parse Z coordinate of the point
+    start = i;
+    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
+        i++;
+    if (start == i) {
+        error("Invalid character in plane", NULL);
+    }
+    plane->point.z = ft_atof(&line[start]);
 
     // Skip whitespace
-    skip_whitespace(line, &i);
+    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+        i++;
 
-    // Parse axis
-    plane->axis.x = parse_float(line, &i);
-    skip_whitespace(line, &i);
+    // Parse X axis
+    start = i;
+    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
+        i++;
+    if (start == i) {
+        error("Invalid character in plane", NULL);
+    }
+    plane->axis.x = ft_atof(&line[start]);
+
     if (line[i] == ',') i++;
-    skip_whitespace(line, &i);
-    plane->axis.y = parse_float(line, &i);
-    skip_whitespace(line, &i);
+    // Parse Y axis
+    start = i;
+    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
+        i++;
+    if (start == i) {
+        error("Invalid character in plane", NULL);
+    }
+    plane->axis.y = ft_atof(&line[start]);
+
     if (line[i] == ',') i++;
-    skip_whitespace(line, &i);
-    plane->axis.z = parse_float(line, &i);
+    // Parse Z axis
+    start = i;
+    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
+        i++;
+    if (start == i) {
+        error("Invalid character in plane", NULL);
+    }
+    plane->axis.z = ft_atof(&line[start]);
 
     // Skip whitespace
-    skip_whitespace(line, &i);
+    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+        i++;
 
     // Parse RGB values
-    int r = parse_color_component(line, &i);
-    skip_whitespace(line, &i);
+    start = i;
+    while (line[i] && ft_isdigit(line[i]))
+        i++;
+    if (start == i) {
+        error("Invalid character in plane", NULL);
+    }
+    int r = ft_atoi(&line[start]);
+
     if (line[i] == ',') i++;
-    skip_whitespace(line, &i);
-    int g = parse_color_component(line, &i);
-    skip_whitespace(line, &i);
+    start = i;
+    while (line[i] && ft_isdigit(line[i]))
+        i++;
+    if (start == i) {
+        error("Invalid character in plane", NULL);
+    }
+    int g = ft_atoi(&line[start]);
+
     if (line[i] == ',') i++;
-    skip_whitespace(line, &i);
-    int b = parse_color_component(line, &i);
+    start = i;
+    while (line[i] && ft_isdigit(line[i]))
+        i++;
+    if (start == i) {
+        error("Invalid character in plane", NULL);
+    }
+    int b = ft_atoi(&line[start]);
 
     // Validate RGB values
     if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) {
@@ -79,8 +136,17 @@ void parse_plane(char *line, t_plane **planes) {
     plane->color.g = g / 255.0;
     plane->color.b = b / 255.0;
 
+    // Skip any trailing whitespace or newline characters
+    while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
+        i++;
+
+    // Check if there are any unexpected characters after the expected values
+    if (line[i] != '\0') {
+        free(plane);
+        error("Invalid character in plane definition", NULL);
+    }
+
     // Add plane to the linked list of planes
     plane->next = *planes;
     *planes = plane;
 }
- 
