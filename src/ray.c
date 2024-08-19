@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:25:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/14 11:41:50 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/19 11:01:03 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_hit   find_closest_object(t_scene scene, t_ray ray)
 
 // for each pixel that is part of an object:
 // calculate from which direction the light is coming
-// calculate how far the light is from the object
+// calculate how far the light is from the object by casting multiple shadow rays
 // check if an object is blocking the light
 // if an object is blocking the light, the pixel is in shadow
 // if no object is blocking the light, calculate the color of the pixel
@@ -87,20 +87,28 @@ t_color calc_shade(t_scene scene, t_vector ip, t_vector normal, t_color object_c
     float light_distance;
     float dot;
     float attenuation;
+    int i;
+    float shadow_fact;
 
     color.r = scene.amblight.intensity * scene.amblight.color.r * object_color.r;
     color.g = scene.amblight.intensity * scene.amblight.color.g * object_color.g;
     color.b = scene.amblight.intensity * scene.amblight.color.b * object_color.b;
-    light_dir.x = scene.light.position.x - ip.x;
-    light_dir.y = scene.light.position.y - ip.y;
-    light_dir.z = scene.light.position.z - ip.z;
-    light_distance = sqrt(light_dir.x * light_dir.x + light_dir.y * light_dir.y + light_dir.z * light_dir.z);
-    light_dir = normalise_vector(light_dir);
-    shadow_ray.direction = light_dir;
-    shadow_ray.origin = ip;
-    hit = find_closest_object(scene, shadow_ray);
-    if (hit.t < light_distance)
-        return (color);
+    i = 0;
+    shadow_fact = 0.0;
+    while (i < 16)
+    {
+        light_dir.x = scene.light.position.x - ip.x;
+        light_dir.y = scene.light.position.y - ip.y;
+        light_dir.z = scene.light.position.z - ip.z;
+        light_distance = sqrt(light_dir.x * light_dir.x + light_dir.y * light_dir.y + light_dir.z * light_dir.z);
+        light_dir = normalise_vector(light_dir);
+        shadow_ray.direction = light_dir;
+        shadow_ray.origin = ip;
+        hit = find_closest_object(scene, shadow_ray);
+        if (hit.t >= light_distance)
+            shadow_fact += 1.0 / 16.0;
+        i++;
+    }
     dot = dot_product(normal, light_dir);
     if (dot < 0)
         dot = 0;

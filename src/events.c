@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:44:34 by csturm            #+#    #+#             */
-/*   Updated: 2024/07/03 12:48:28 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/19 10:37:44 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int    key_press(int keycode, t_scene *scene)
 {
     if (keycode == 53) // ESC
         close_window(scene);
-    if (keycode == 61) // +
-        increase_resolution(scene);
-    if (keycode == 45) // -
-        decrease_resolution(scene);
+    // if (keycode == 61) // +
+    //     increase_resolution(scene);
+    // if (keycode == 45) // -
+    //     decrease_resolution(scene);
     return (0);
 }
 
