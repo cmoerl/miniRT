@@ -3,121 +3,78 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/19 11:32:00 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/19 13:58:03 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-void parse_ambient(char *line, t_amblight *ambient)
+void	parse_intensity(char *line, int *i, float *intensity)
 {
-    int i = 0; // Start at the beginning of the line
+	int	start;
+
+	start = *i;
+	while (line[*i] && (ft_isdigit(line[*i])
+			|| line[*i] == '.' || line[*i] == '-' || line[*i] == '+'))
+		(*i)++;
+	if (start == *i)
+		error("Invalid character in ambient lighting definition", NULL);
+	*intensity = ft_atof(&line[start]);
+	if (*intensity < 0.0 || *intensity > 1.0)
+		error("Ambient lighting intensity out of range [0.0, 1.0]", NULL);
+}
+
+void	parse_color_value(char *line, int *i,
+			int *color_value, const char *color_name)
+{
+	int	start;
+
+	start = *i;
+	while (line[*i] && ft_isdigit(line[*i]))
+		(*i)++;
+	if (start == *i)
+		error("Invalid character in ambient lighting definition", NULL);
+	*color_value = ft_atoi(&line[start]);
+	if (*color_value < 0 || *color_value > 255)
+	{
+		printf("Error: Ambient lighting %s value out of range [0, 255]\n",
+			color_name);
+		error(NULL, NULL);
+	}
+}
+
+void	parse_ambient(char *line, t_amblight *ambient)
+{
+    int i;
     float intensity;
     int r, g, b;
 
-    // Skip leading whitespace
-    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
-        i++;
-    
-    // Check for 'A' identifier
+    i = 0;
+    skip_whitespace(line, &i);
     if (line[i] != 'A')
-    {
         error("Missing 'A' identifier for ambient lighting", NULL);
-    }
-    i++; // Move past 'A'
-
-    // Skip whitespace
-    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
-        i++;
-    
-    // Parse intensity
-    int start = i;
-    while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
-        i++;
-    if (start == i)
-    {
-        error("Invalid character in ambient lighting definition", NULL);
-    }
-    intensity = ft_atof(&line[start]);
-    if (intensity < 0.0 || intensity > 1.0)
-    {
-        error("Ambient lighting intensity out of range [0.0, 1.0]", NULL);
-    }
-
-    // Skip whitespace
-    while (line[i] && (line[i] == ' ' || line[i] == '\t'))
-        i++;
-
-    // Parse red value
-    start = i;
-    while (line[i] && ft_isdigit(line[i]))
-        i++;
-    if (start == i)
-    {
-        error("Invalid character in ambient lighting definition", NULL);
-    }
-    r = ft_atoi(&line[start]);
-    if (r < 0 || r > 255)
-    {
-        error("Ambient lighting red value out of range [0, 255]", NULL);
-    }
-
-    // Skip whitespace and comma
+    i++;
+    skip_whitespace(line, &i);
+    parse_intensity(line, &i, &intensity);
+    skip_whitespace(line, &i);
+    parse_color_value(line, &i, &r, "red");
     while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == ','))
         i++;
-
-    // Parse green value
-    start = i;
-    while (line[i] && ft_isdigit(line[i]))
-        i++;
-    if (start == i)
-    {
-        error("Invalid character in ambient lighting definition", NULL);
-    }
-    g = ft_atoi(&line[start]);
-    if (g < 0 || g > 255)
-    {
-        error("Ambient lighting green value out of range [0, 255]", NULL);
-    }
-
-    // Skip whitespace and comma
+    parse_color_value(line, &i, &g, "green");
     while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == ','))
         i++;
-
-    // Parse blue value
-    start = i;
-    while (line[i] && ft_isdigit(line[i]))
-        i++;
-    if (start == i)
-    {
-        error("Invalid character in ambient lighting definition", NULL);
-    }
-    b = ft_atoi(&line[start]);
-    if (b < 0 || b > 255)
-    {
-        error("Ambient lighting blue value out of range [0, 255]", NULL);
-    }
-
-    // Skip any trailing whitespace or newline characters
+    parse_color_value(line, &i, &b, "blue");
     while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
         i++;
-
-    // Check if there are any unexpected characters after the expected values
     if (line[i] != '\0')
-    {
         error("Invalid character in ambient lighting definition", NULL);
-    }
-
-    // Set the values in the ambient struct
     ambient->intensity = intensity;
     ambient->color.r = r / 255.0;
     ambient->color.g = g / 255.0;
     ambient->color.b = b / 255.0;
-
-    // Print parsed values in a clear format
     printf("Parsed Ambient Lighting:\n");
     printf("  Intensity: %f\n", intensity);
     printf("  Color: R=%d, G=%d, B=%d\n", r, g, b);
