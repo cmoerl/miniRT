@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:47:53 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/19 11:20:41 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:34:35 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void parse_plane(char *line, t_plane **planes) {
     while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
         i++;
     if (start == i) {
-        error("Invalid character in plane", NULL);
+        error("Invalid character in plane definition", NULL);
     }
     plane->point.x = ft_atof(&line[start]);
 
@@ -49,7 +49,7 @@ void parse_plane(char *line, t_plane **planes) {
     while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
         i++;
     if (start == i) {
-        error("Invalid character in plane", NULL);
+        error("Invalid character in plane definition", NULL);
     }
     plane->point.y = ft_atof(&line[start]);
 
@@ -59,7 +59,7 @@ void parse_plane(char *line, t_plane **planes) {
     while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
         i++;
     if (start == i) {
-        error("Invalid character in plane", NULL);
+        error("Invalid character in plane definition", NULL);
     }
     plane->point.z = ft_atof(&line[start]);
 
@@ -72,7 +72,7 @@ void parse_plane(char *line, t_plane **planes) {
     while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
         i++;
     if (start == i) {
-        error("Invalid character in plane", NULL);
+        error("Invalid character in plane definition", NULL);
     }
     plane->axis.x = ft_atof(&line[start]);
 
@@ -82,7 +82,7 @@ void parse_plane(char *line, t_plane **planes) {
     while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
         i++;
     if (start == i) {
-        error("Invalid character in plane", NULL);
+        error("Invalid character in plane definition", NULL);
     }
     plane->axis.y = ft_atof(&line[start]);
 
@@ -92,7 +92,7 @@ void parse_plane(char *line, t_plane **planes) {
     while (line[i] && (ft_isdigit(line[i]) || line[i] == '.' || line[i] == '-' || line[i] == '+'))
         i++;
     if (start == i) {
-        error("Invalid character in plane", NULL);
+        error("Invalid character in plane definition", NULL);
     }
     plane->axis.z = ft_atof(&line[start]);
 
@@ -105,7 +105,7 @@ void parse_plane(char *line, t_plane **planes) {
     while (line[i] && ft_isdigit(line[i]))
         i++;
     if (start == i) {
-        error("Invalid character in plane", NULL);
+        error("Invalid character in plane definition", NULL);
     }
     int r = ft_atoi(&line[start]);
 
@@ -114,7 +114,7 @@ void parse_plane(char *line, t_plane **planes) {
     while (line[i] && ft_isdigit(line[i]))
         i++;
     if (start == i) {
-        error("Invalid character in plane", NULL);
+        error("Invalid character in plane definition", NULL);
     }
     int g = ft_atoi(&line[start]);
 
@@ -123,7 +123,7 @@ void parse_plane(char *line, t_plane **planes) {
     while (line[i] && ft_isdigit(line[i]))
         i++;
     if (start == i) {
-        error("Invalid character in plane", NULL);
+        error("Invalid character in plane definition", NULL);
     }
     int b = ft_atoi(&line[start]);
 

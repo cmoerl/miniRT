@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/08 16:41:08 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/19 11:32:00 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void parse_ambient(char *line, t_amblight *ambient)
         i++;
     if (start == i)
     {
-        error("Invalid character in ambient lighting", NULL);
+        error("Invalid character in ambient lighting definition", NULL);
     }
     intensity = ft_atof(&line[start]);
     if (intensity < 0.0 || intensity > 1.0)
@@ -57,7 +57,7 @@ void parse_ambient(char *line, t_amblight *ambient)
         i++;
     if (start == i)
     {
-        error("Invalid character in ambient lighting", NULL);
+        error("Invalid character in ambient lighting definition", NULL);
     }
     r = ft_atoi(&line[start]);
     if (r < 0 || r > 255)
@@ -75,7 +75,7 @@ void parse_ambient(char *line, t_amblight *ambient)
         i++;
     if (start == i)
     {
-        error("Invalid character in ambient lighting", NULL);
+        error("Invalid character in ambient lighting definition", NULL);
     }
     g = ft_atoi(&line[start]);
     if (g < 0 || g > 255)
@@ -93,7 +93,7 @@ void parse_ambient(char *line, t_amblight *ambient)
         i++;
     if (start == i)
     {
-        error("Invalid character in ambient lighting", NULL);
+        error("Invalid character in ambient lighting definition", NULL);
     }
     b = ft_atoi(&line[start]);
     if (b < 0 || b > 255)
@@ -108,7 +108,7 @@ void parse_ambient(char *line, t_amblight *ambient)
     // Check if there are any unexpected characters after the expected values
     if (line[i] != '\0')
     {
-        error("Invalid character in ambient lighting", NULL);
+        error("Invalid character in ambient lighting definition", NULL);
     }
 
     // Set the values in the ambient struct

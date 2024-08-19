@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:32:14 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/10 18:20:40 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/19 11:33:40 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void parse_light(char *line, t_light *light)
         i++;
     if (start == i)
     {
-        error("Invalid character in light", NULL);
+        error("Invalid character in light definition", NULL);
     }
     light->position.x = ft_atof(&line[start]);
 
@@ -48,7 +48,7 @@ void parse_light(char *line, t_light *light)
         i++;
     if (start == i)
     {
-        error("Invalid character in light", NULL);
+        error("Invalid character in light definition", NULL);
     }
     light->position.y = ft_atof(&line[start]);
 
@@ -58,7 +58,7 @@ void parse_light(char *line, t_light *light)
         i++;
     if (start == i)
     {
-        error("Invalid character in light", NULL);
+        error("Invalid character in light definition", NULL);
     }
     light->position.z = ft_atof(&line[start]);
 
@@ -72,7 +72,7 @@ void parse_light(char *line, t_light *light)
         i++;
     if (start == i)
     {
-        error("Invalid character in light", NULL);
+        error("Invalid character in light definition", NULL);
     }
     light->intensity = ft_atof(&line[start]);
     if (light->intensity < 0.0 || light->intensity > 1.0)
@@ -94,7 +94,7 @@ void parse_light(char *line, t_light *light)
             i++;
         if (start == i)
         {
-            error("Invalid character in light", NULL);
+            error("Invalid character in light definition", NULL);
         }
         r = ft_atoi(&line[start]);
 
@@ -104,7 +104,7 @@ void parse_light(char *line, t_light *light)
             i++;
         if (start == i)
         {
-            error("Invalid character in light", NULL);
+            error("Invalid character in light definition", NULL);
         }
         g = ft_atoi(&line[start]);
 
@@ -114,7 +114,7 @@ void parse_light(char *line, t_light *light)
             i++;
         if (start == i)
         {
-            error("Invalid character in light", NULL);
+            error("Invalid character in light definition", NULL);
         }
         b = ft_atoi(&line[start]);
 
@@ -138,7 +138,7 @@ void parse_light(char *line, t_light *light)
     // Check if there are any unexpected characters after the expected values
     if (line[i] != '\0')
     {
-        error("Invalid character in light", NULL);
+        error("Invalid character in light definition", NULL);
     }
 
     // Print parsed values in a clear format
