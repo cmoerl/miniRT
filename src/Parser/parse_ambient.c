@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/19 14:02:38 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/19 14:17:08 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,40 +46,43 @@ void	parse_color_value(char *line, int *i,
 	}
 }
 
-void	parse_ambient_values(char *line, int *i, float *intensity, int *r, int *g, int *b)
+void	parse_ambient_values(char *line, int *i, t_ambient_values *values)
 {
-    skip_whitespace(line, i);
-    parse_intensity(line, i, intensity);
-    skip_whitespace(line, i);
-    parse_color_value(line, i, r, "red");
-    while (line[*i] && (line[*i] == ' ' || line[*i] == '\t' || line[*i] == ','))
-        (*i)++;
-    parse_color_value(line, i, g, "green");
-    while (line[*i] && (line[*i] == ' ' || line[*i] == '\t' || line[*i] == ','))
-        (*i)++;
-    parse_color_value(line, i, b, "blue");
-    while (line[*i] && (line[*i] == ' ' || line[*i] == '\t' || line[*i] == '\n'))
-        (*i)++;
+	skip_whitespace(line, i);
+	parse_intensity(line, i, &values->intensity);
+	skip_whitespace(line, i);
+	parse_color_value(line, i, &values->r, "red");
+	while (line[*i] && (line[*i] == ' ' || line[*i] == '\t' || line[*i] == ','))
+		(*i)++;
+	parse_color_value(line, i, &values->g, "green");
+	while (line[*i] && (line[*i] == ' ' || line[*i] == '\t' || line[*i] == ','))
+		(*i)++;
+	parse_color_value(line, i, &values->b, "blue");
+	while (line[*i] && (line[*i] == ' '
+			|| line[*i] == '\t' || line[*i] == '\n'))
+		(*i)++;
 }
 
 void	parse_ambient(char *line, t_amblight *ambient)
 {
-    int		i;
-    int		r;
-    int		g;
-    int		b;
-    float	intensity;
+	int					i;
+	t_ambient_values	values;
 
-    i = 0;
-    skip_whitespace(line, &i);
-    if (line[i] != 'A')
-        error("Missing 'A' identifier for ambient lighting", NULL);
-    i++;
-    parse_ambient_values(line, &i, &intensity, &r, &g, &b);
-    if (line[i] != '\0')
-        error("Invalid character in ambient lighting definition", NULL);
-    ambient->intensity = intensity;
-    ambient->color.r = r / 255.0;
-    ambient->color.g = g / 255.0;
-    ambient->color.b = b / 255.0;
+	i = 0;
+	skip_whitespace(line, &i);
+	if (line[i] != 'A')
+		error("Missing 'A' identifier for ambient lighting", NULL);
+	i++;
+	parse_ambient_values(line, &i, &values);
+	if (line[i] != '\0')
+		error("Invalid character in ambient lighting definition", NULL);
+	ambient->intensity = values.intensity;
+	ambient->color.r = values.r / 255.0;
+	ambient->color.g = values.g / 255.0;
+	ambient->color.b = values.b / 255.0;
+
+	printf("Ambient lighting intensity: %f\n", ambient->intensity);
+	printf("Ambient lighting color: %f, %f, %f\n",
+		ambient->color.r, ambient->color.g, ambient->color.b);
 }
+

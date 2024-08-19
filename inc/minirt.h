@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/19 13:53:11 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/19 14:13:35 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ typedef enum e_object_type
 	PLANE,
 	CYLINDER
 }	t_object_type;
+
+typedef struct s_ambient_values
+{
+	float	intensity;
+	int		r;
+	int		g;
+	int		b;
+}	t_ambient_values;
 
 typedef struct s_color
 {
