@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/10 18:11:51 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/19 11:43:16 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,22 @@ t_scene parse_scene(char *file, t_scene scene)
         // Check the first character after skipping spaces
         if (line[i] == 'A')
         {
+            if (ambient_found)
+                error("Multiple ambient lighting definitions found", &scene);
             parse_ambient(&line[i], &scene.amblight);
             ambient_found = 1;
         }
         else if (line[i] == 'C')
         {
+            if (camera_found)
+                error("Multiple camera definitions found", &scene);
             parse_camera(&line[i], &scene.camera);
             camera_found = 1;
         }
         else if (line[i] == 'L')
         {
+            if (light_found)
+                error("Multiple light definitions found", &scene);
             parse_light(&line[i], &scene.light);
             light_found = 1;
         }
