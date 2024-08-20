@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/14 11:44:14 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/20 10:53:42 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct s_hit
     t_object_type type;
     void *object;
     float t;
+    int index;
 } t_hit;
 
 typedef struct s_scene
