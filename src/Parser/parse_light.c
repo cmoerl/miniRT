@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:32:14 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/20 13:25:11 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/20 13:26:12 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,7 @@ void	parse_light(char *line, t_light *light)
 	light->intensity = parse_intensity_light(line, &i);
 	skip_whitespace(line, &i);
 	if (line[i])
-	{
-		 parse_rgb(line, &i, &rgb);
-	}
+		parse_rgb(line, &i, &rgb);
 	else
 	{
 		r = 255;
@@ -82,9 +80,4 @@ void	parse_light(char *line, t_light *light)
 		b = 255;
 	}
 	validate_end_of_line_light(line, i);
-	printf("Parsed Light:\n");
-	printf("  Position: x=%f, y=%f, z=%f\n",
-		light->position.x, light->position.y, light->position.z);
-	printf("  Intensity: %f\n", light->intensity);
-	printf("  Color: R=%d, G=%d, B=%d\n", r, g, b);
 }
