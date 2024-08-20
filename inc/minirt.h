@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/20 11:43:22 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/20 12:41:31 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,9 @@ typedef struct s_scene
 
 
 void		skip_whitespace(char *line, int *i);
+void		print_camera(t_camera *camera);
+float		parse_float_with_check(char **line, int *i);
+void		skip_whitespacess(char **line, int *i);
 void		parse_sphere(char *line, t_sphere **spheres);
 void		parse_plane(char *line, t_plane **planes);
 void		parse_cylinder(char *line, t_cylinder **cylinders);
