@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/20 11:38:10 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:48:12 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,14 @@ void	parse_ambient(char *line, t_amblight *ambient)
 	if (line[i] != '\0')
 		error("Invalid character in ambient lighting definition", NULL);
 	ambient->intensity = intensity;
+
+	int	r, g, b;
+	// Print parsed ambient lighting details
+    r = (int)(ambient->color.r * 255);
+    g = (int)(ambient->color.g * 255);
+    b = (int)(ambient->color.b * 255);
+    printf("Parsed Ambient Lighting:\n");
+    printf("  Intensity: %f\n", intensity);
+    printf("  Color: R=%d, G=%d, B=%d\n", r, g, b);
+    printf("  Normalized Color: R=%f, G=%f, B=%f\n", ambient->color.r, ambient->color.g, ambient->color.b);
 }

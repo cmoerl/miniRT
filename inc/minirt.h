@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/19 13:53:11 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/20 11:43:22 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ typedef struct s_scene
 	t_hooks		*hooks;
 }	t_scene;
 
+
 void		skip_whitespace(char *line, int *i);
 void		parse_sphere(char *line, t_sphere **spheres);
 void		parse_plane(char *line, t_plane **planes);
@@ -158,5 +159,5 @@ void		parse_camera(char *line, t_camera *camera);
 void		parse_light(char *line, t_light *light);
 void		error(char *message, t_scene *scene);
 t_scene		parse_scene(char *filename, t_scene scene);
- 
+
 #endif
