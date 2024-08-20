@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/20 10:53:42 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/20 12:18:53 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,5 +163,7 @@ t_vector    get_intersection_point(t_ray ray, float t);
 t_vector    get_normal(t_vector v, t_hit hit);
 t_vector   cross_product(t_vector a, t_vector b);
 t_vector    rotate_vector(t_vector v, t_vector orientation);
+t_hit   find_closest_object(t_scene scene, t_ray ray);
+t_color calc_shade(t_scene scene, t_vector ip, t_vector normal, t_color object_color, t_hit object_hit);
 
 #endif
