@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/20 12:41:31 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/20 13:23:11 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,13 @@ typedef struct s_hit
 	float			t;
 }	t_hit;
 
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb;
+
 typedef struct s_scene
 {
 	t_object	*objects;
@@ -145,7 +152,9 @@ typedef struct s_scene
 	t_hooks		*hooks;
 }	t_scene;
 
-
+t_vector	parse_vector_light(char *line, int *i);
+float		parse_float(char *line, int *i);
+void		validate_identifier_light(char actual, char expected);
 void		skip_whitespace(char *line, int *i);
 void		print_camera(t_camera *camera);
 float		parse_float_with_check(char **line, int *i);
