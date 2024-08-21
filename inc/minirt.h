@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/21 18:54:13 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/21 19:08:12 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,10 @@ typedef struct s_rgb
 }	t_rgb;
 
 
+void	parse_light_line(char *line, t_scene *scene, int *light_found);
+t_scene	init_and_check_file(char *file, t_scene scene);
+void	check_essential_components(int ambient_found,
+			int camera_found, int light_found, t_scene *scene);
 void		parse_object_line(char *line, t_scene *scene);
 void		parse_camera_line(char *line, t_scene *scene, int *camera_found);
 void		parse_ambient_line(char *line, t_scene *scene, int *ambient_found);

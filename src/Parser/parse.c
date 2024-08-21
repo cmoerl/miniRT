@@ -6,19 +6,12 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/21 19:01:50 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/21 19:07:36 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-void	parse_light_line(char *line, t_scene *scene, int *light_found)
-{
-	if (*light_found)
-		error("Multiple light definitions found", scene);
-	parse_light(line, &scene->light);
-	*light_found = 1;
-}
 
 void	parse_scene_line(char *line, t_scene *scene,
 		int *ambient_found, int *camera_found, int *light_found)
@@ -47,23 +40,6 @@ void	parse_scene_line(char *line, t_scene *scene,
 	}
 }
 
-void	check_essential_components(int ambient_found,
-			int camera_found, int light_found, t_scene *scene)
-{
-	if (!ambient_found)
-		error("Missing ambient lighting definition", scene);
-	if (!camera_found)
-		error("Missing camera definition", scene);
-	if (!light_found)
-		error("Missing light definition", scene);
-}
-
-t_scene	init_and_check_file(char *file, t_scene scene)
-{
-	scene = init_scene(scene);
-	check_file(file);
-	return (scene);
-}
 
 void	read_and_parse_lines(int fd, t_scene *scene, int *ambient_found,
 		int *camera_found, int *light_found)
