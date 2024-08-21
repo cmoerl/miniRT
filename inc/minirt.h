@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/21 19:10:19 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/21 19:36:11 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@
 # include <stdlib.h>
 # include <string.h>
 # include <math.h>
+# include "../libft/libft.h"
 // # include <mlx.h>
 // # include "mlx.h"
-# include "..//libft/libft.h"
-
 # define WIDTH 800
 # define HEIGHT 600
 
