@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/21 13:53:18 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:46:26 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,9 @@ typedef struct s_rgb
 }	t_rgb;
 
 
+void		parse_plane_coordinates(char *line, int *i, t_plane *plane);
+float		parse_coordinate(char *line, int *i, char *error_message);
+void		validate_plane_identifier(char *line, int *i);
 void		parse_single_position(char *line, int *i,
 				float *position_component);
 void		parse_position(char *line, int *i, t_light *light);

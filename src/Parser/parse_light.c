@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:32:14 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/21 13:53:21 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:40:35 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	parse_single_color_component(char *line, int *i, int *color_component)
 {
 	int	start;
 
+	skip_whitespace(line, i);
 	start = *i;
 	while (line[*i] && ft_isdigit(line[*i]))
 		(*i)++;

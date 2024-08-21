@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 13:11:08 by mafurnic          #+#    #+#             */
-/*   Updated: 2024/08/21 13:57:10 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:55:26 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ void	parse_single_position(char *line, int *i, float *position_component)
 {
 	int	start;
 
+	skip_whitespace(line, i);
 	start = *i;
 	while (line[*i] && (ft_isdigit(line[*i])
-			|| line[*i] == '.' || line[*i] == '-' || line[*i] == '+'))
+			|| line[*i] == '.' || line[*i] == '-' || line[*i] == '+' ))
 		(*i)++;
 	if (start == *i)
 		error("Invalid character in light definition", NULL);
@@ -38,6 +39,7 @@ void	parse_intensity_light(char *line, int *i, t_light *light)
 {
 	int	start;
 
+	skip_whitespace(line, i);
 	start = *i;
 	while (line[*i] && (ft_isdigit(line[*i])
 			|| line[*i] == '.' || line[*i] == '-' || line[*i] == '+'))
@@ -48,4 +50,3 @@ void	parse_intensity_light(char *line, int *i, t_light *light)
 	if (light->intensity < 0.0 || light->intensity > 1.0)
 		error("Light intensity out of range [0.0, 1.0]", NULL);
 }
-
