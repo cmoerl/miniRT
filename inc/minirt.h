@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/21 16:46:26 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/21 17:48:41 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,11 @@ typedef struct s_rgb
 }	t_rgb;
 
 
+void		parse_axis(char *line, int *i, t_cylinder *cylinder);
+void		validate_cylinder_identifier(char *line, int *i);
+float		parse_float(char *line, int *i, char *error_message);
+void		parse_center(char *line, int *i, t_cylinder *cylinder);
+int			parse_color_component(char *line, int *i, char *error_message);
 void		parse_plane_coordinates(char *line, int *i, t_plane *plane);
 float		parse_coordinate(char *line, int *i, char *error_message);
 void		validate_plane_identifier(char *line, int *i);
