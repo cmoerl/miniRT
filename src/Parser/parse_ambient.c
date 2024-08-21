@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/20 11:48:12 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/21 19:33:30 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,22 @@ void	parse_color_values(char *line, int *i, t_color *color)
 	color->b = b / 255.0;
 }
 
+void	print_ambient_details(t_amblight *ambient, float intensity)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = (int)(ambient->color.r * 255);
+	g = (int)(ambient->color.g * 255);
+	b = (int)(ambient->color.b * 255);
+	printf("Parsed Ambient Lighting:\n");
+	printf("  Intensity: %f\n", intensity);
+	printf("  Color: R=%d, G=%d, B=%d\n", r, g, b);
+	printf("  Normalized Color: R=%f, G=%f, B=%f\n", ambient->color.r,
+		ambient->color.g, ambient->color.b);
+}
+
 void	parse_ambient(char *line, t_amblight *ambient)
 {
 	int		i;
@@ -84,14 +100,5 @@ void	parse_ambient(char *line, t_amblight *ambient)
 	if (line[i] != '\0')
 		error("Invalid character in ambient lighting definition", NULL);
 	ambient->intensity = intensity;
-
-	int	r, g, b;
-	// Print parsed ambient lighting details
-    r = (int)(ambient->color.r * 255);
-    g = (int)(ambient->color.g * 255);
-    b = (int)(ambient->color.b * 255);
-    printf("Parsed Ambient Lighting:\n");
-    printf("  Intensity: %f\n", intensity);
-    printf("  Color: R=%d, G=%d, B=%d\n", r, g, b);
-    printf("  Normalized Color: R=%f, G=%f, B=%f\n", ambient->color.r, ambient->color.g, ambient->color.b);
+	print_ambient_details(ambient, intensity);
 }

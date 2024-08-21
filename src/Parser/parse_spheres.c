@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:50:01 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/21 18:13:40 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/21 19:19:21 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	parse_radius_sphere(char *line, int *i, t_sphere *sphere)
 		error("Sphere radius must be positive", NULL);
 }
 
-
 void	parse_sphere_properties(char *line, int *i, t_sphere *sphere)
 {
 	skip_whitespace(line, i);
@@ -72,7 +71,7 @@ void	parse_sphere(char *line, t_sphere **spheres)
 		error("Memory allocation failed", NULL);
 	parse_sphere_properties(line, &i, sphere);
 	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
-        i++;
+		i++;
 	if (line[i] != '\0')
 	{
 		free(sphere);

@@ -6,15 +6,13 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/21 19:07:36 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/21 19:17:59 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-
-void	parse_scene_line(char *line, t_scene *scene,
-		int *ambient_found, int *camera_found, int *light_found)
+void	parse_scene_line(char *line, t_scene *scene, t_flags *flags)
 {
 	int	i;
 
@@ -24,15 +22,15 @@ void	parse_scene_line(char *line, t_scene *scene,
 		return ;
 	if (line[i] == 'A')
 	{
-		parse_ambient_line(&line[i], scene, ambient_found);
+		parse_ambient_line(&line[i], scene, &flags->ambient_found);
 	}
 	else if (line[i] == 'C')
 	{
-		parse_camera_line(&line[i], scene, camera_found);
+		parse_camera_line(&line[i], scene, &flags->camera_found);
 	}
 	else if (line[i] == 'L')
 	{
-		parse_light_line(&line[i], scene, light_found);
+		parse_light_line(&line[i], scene, &flags->light_found);
 	}
 	else
 	{
@@ -40,16 +38,14 @@ void	parse_scene_line(char *line, t_scene *scene,
 	}
 }
 
-
-void	read_and_parse_lines(int fd, t_scene *scene, int *ambient_found,
-		int *camera_found, int *light_found)
+void	read_and_parse_lines(int fd, t_scene *scene, t_flags *flags)
 {
 	char	*line;
 
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		parse_scene_line(line, scene, ambient_found, camera_found, light_found);
+		parse_scene_line(line, scene, flags);
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -57,22 +53,17 @@ void	read_and_parse_lines(int fd, t_scene *scene, int *ambient_found,
 
 t_scene	parse_scene(char *file, t_scene scene)
 {
-	int	fd;
-	int	ambient_found;
-	int	camera_found;
-	int	light_found;
+	int		fd;
+	t_flags	flags;
 
-	ambient_found = 0;
-	camera_found = 0;
-	light_found = 0;
+	flags = (t_flags){0, 0, 0};
 	scene = init_and_check_file(file, scene);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		error("Could not open file", &scene);
-	read_and_parse_lines(fd, &scene, &ambient_found,
-		&camera_found, &light_found);
+	read_and_parse_lines(fd, &scene, &flags);
 	close(fd);
-	check_essential_components(ambient_found, camera_found,
-		light_found, &scene);
+	check_essential_components(flags.ambient_found,
+		flags.camera_found, flags.light_found, &scene);
 	return (scene);
 }
