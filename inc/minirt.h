@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/21 13:44:18 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/21 13:53:18 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,12 +147,16 @@ typedef struct s_scene
 
 typedef struct s_rgb
 {
-    int r;
-    int g;
-    int b;
-} t_rgb;
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb;
 
 
+void		parse_single_position(char *line, int *i,
+				float *position_component);
+void		parse_position(char *line, int *i, t_light *light);
+void		parse_intensity_light(char *line, int *i, t_light *light);
 void		skip_whitespace(char *line, int *i);
 void		print_camera(t_camera *camera);
 float		parse_float_with_check(char **line, int *i);
