@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:42:55 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/21 18:44:41 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/21 18:54:44 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,6 @@ void	parse_camera_line(char *line, t_scene *scene, int *camera_found)
 		error("Multiple camera definitions found", scene);
 	parse_camera(line, &scene->camera);
 	*camera_found = 1;
-}
-
-void	parse_light_line(char *line, t_scene *scene, int *light_found)
-{
-	if (*light_found)
-		error("Multiple light definitions found", scene);
-	parse_light(line, &scene->light);
-	*light_found = 1;
 }
 
 void	parse_object_line(char *line, t_scene *scene)
