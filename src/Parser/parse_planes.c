@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:47:53 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/21 17:10:21 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/21 18:15:13 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	parse_plane_color(char *line, int *i, t_plane *plane)
 	plane->color.b = b / 255.0;
 }
 
-void parse_plane(char *line, t_plane **planes)
+void	parse_plane(char *line, t_plane **planes)
 {
 	int		i;
 	t_plane	*plane;
