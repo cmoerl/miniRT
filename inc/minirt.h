@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/20 12:41:31 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/21 13:44:18 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,13 @@ typedef struct s_scene
 	t_img		*img;
 	t_hooks		*hooks;
 }	t_scene;
+
+typedef struct s_rgb
+{
+    int r;
+    int g;
+    int b;
+} t_rgb;
 
 
 void		skip_whitespace(char *line, int *i);
