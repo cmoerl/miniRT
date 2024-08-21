@@ -6,83 +6,71 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:32:14 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/20 13:27:07 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/21 13:53:21 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-// Helper function to parse intensity
-float	parse_intensity_light(char *line, int *i)
+void	parse_single_color_component(char *line, int *i, int *color_component)
 {
-	float	intensity;
+	int	start;
 
-	intensity = parse_float(line, i);
-	if (intensity < 0.0 || intensity > 1.0)
-		error("Light intensity out of range [0.0, 1.0]", NULL);
-	return (intensity);
+	start = *i;
+	while (line[*i] && ft_isdigit(line[*i]))
+		(*i)++;
+	if (start == *i)
+		error("Invalid character in light definition", NULL);
+	*color_component = ft_atoi(&line[start]);
+	if (line[*i] == ',')
+		(*i)++;
 }
 
-// Helper function to parse RGB values
-void	parse_rgb(char *line, int *i, t_rgb *rgb)
+void	parse_rgb(char *line, int *i, t_rgb *color)
 {
-	rgb->r = ft_atoi(&line[*i]);
-	while (line[*i] && ft_isdigit(line[*i]))
-		(*i)++;
-	if (line[*i] == ',')
-		(*i)++;
-	rgb->g = ft_atoi(&line[*i]);
-	while (line[*i] && ft_isdigit(line[*i]))
-		(*i)++;
-	if (line[*i] == ',')
-		(*i)++;
-	rgb->b = ft_atoi(&line[*i]);
-	while (line[*i] && ft_isdigit(line[*i]))
-		(*i)++;
-	if (rgb->r < 0 || rgb->r > 255 || rgb->g < 0
-		|| rgb->g > 255 || rgb->b < 0 || rgb->b > 255)
+	parse_single_color_component(line, i, &color->r);
+	parse_single_color_component(line, i, &color->g);
+	parse_single_color_component(line, i, &color->b);
+	if (color->r < 0 || color->r > 255
+		|| color->g < 0 || color->g > 255 || color->b < 0 || color->b > 255)
 		error("Light color values out of range [0, 255]", NULL);
 }
 
-// Helper function to validate the end of line
-void	validate_end_of_line_light(char *line, int i)
+void	parse_light_properties(char *line, int *i, t_light *light, t_rgb *color)
 {
+	skip_whitespace(line, i);
+	parse_position(line, i, light);
+	skip_whitespace(line, i);
+	parse_intensity_light(line, i, light);
+	skip_whitespace(line, i);
+	if (line[*i])
+		parse_rgb(line, i, color);
+	else
+	{
+		color->r = 255;
+		color->g = 255;
+		color->b = 255;
+	}
+}
+
+void	parse_light(char *line, t_light *light)
+{
+	int		i;
+	t_rgb	color;
+
+	i = 0;
+	skip_whitespace(line, &i);
+	if (line[i] != 'L')
+		error("Missing 'L' identifier for light", NULL);
+	i++;
+	parse_light_properties(line, &i, light, &color);
 	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
 		i++;
 	if (line[i] != '\0')
 		error("Invalid character in light definition", NULL);
-}
-
-// Function to parse the light
-void	parse_light(char *line, t_light *light)
-{
-	int		i;
-	int		r;
-	int		g;
-	int		b;
-	t_rgb	rgb;
-
-	i = 0;
-	skip_whitespace(line, &i);
-	validate_identifier_light(line[i], 'L');
-	i++;
-	skip_whitespace(line, &i);
-	light->position = parse_vector_light(line, &i);
-	skip_whitespace(line, &i);
-	light->intensity = parse_intensity_light(line, &i);
-	skip_whitespace(line, &i);
-	if (line[i])
-		 parse_rgb(line, &i, &rgb);
-	else
-	{
-		r = 255;
-		g = 255;
-		b = 255;
-	}
-	validate_end_of_line_light(line, i);
 	printf("Parsed Light:\n");
 	printf("  Position: x=%f, y=%f, z=%f\n",
 		light->position.x, light->position.y, light->position.z);
 	printf("  Intensity: %f\n", light->intensity);
-	printf("  Color: R=%d, G=%d, B=%d\n", r, g, b);
+	printf("  Color: r=%d, g=%d, b=%d\n", color.r, color.g, color.b);
 }

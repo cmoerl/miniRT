@@ -5,22 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/20 13:16:33 by mafurnic          #+#    #+#             */
-/*   Updated: 2024/08/20 13:18:01 by mafurnic         ###   ########.fr       */
+/*   Created: 2024/08/21 13:11:08 by mafurnic          #+#    #+#             */
+/*   Updated: 2024/08/21 13:57:10 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-// Helper function to validate identifier
-void	validate_identifier_light(char actual, char expected)
-{
-	if (actual != expected)
-		error("Invalid identifier", NULL);
-}
-
-// Helper function to parse a float value
-float	parse_float(char *line, int *i)
+void	parse_single_position(char *line, int *i, float *position_component)
 {
 	int	start;
 
@@ -30,20 +22,30 @@ float	parse_float(char *line, int *i)
 		(*i)++;
 	if (start == *i)
 		error("Invalid character in light definition", NULL);
-	return (ft_atof(&line[start]));
+	*position_component = ft_atof(&line[start]);
+	if (line[*i] == ',')
+		(*i)++;
 }
 
-// Helper function to parse a vector
-t_vector	parse_vector_light(char *line, int *i)
+void	parse_position(char *line, int *i, t_light *light)
 {
-	t_vector	vec;
-
-	vec.x = parse_float(line, i);
-	if (line[*i] == ',')
-		(*i)++;
-	vec.y = parse_float(line, i);
-	if (line[*i] == ',')
-		(*i)++;
-	vec.z = parse_float(line, i);
-	return (vec);
+	parse_single_position(line, i, &light->position.x);
+	parse_single_position(line, i, &light->position.y);
+	parse_single_position(line, i, &light->position.z);
 }
+
+void	parse_intensity_light(char *line, int *i, t_light *light)
+{
+	int	start;
+
+	start = *i;
+	while (line[*i] && (ft_isdigit(line[*i])
+			|| line[*i] == '.' || line[*i] == '-' || line[*i] == '+'))
+		(*i)++;
+	if (start == *i)
+		error("Invalid character in light definition", NULL);
+	light->intensity = ft_atof(&line[start]);
+	if (light->intensity < 0.0 || light->intensity > 1.0)
+		error("Light intensity out of range [0.0, 1.0]", NULL);
+}
+
