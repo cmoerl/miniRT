@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:18:29 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/21 12:44:16 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/22 12:16:30 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ t_color	calc_ambient(t_scene scene, t_color object_color)
 	t_color	color;
 
 	color.r = scene.amblight.intensity
-		* scene.amblight.color.r * object_color.r;
+		* (scene.amblight.color.r / 255.0) * object_color.r;
 	color.g = scene.amblight.intensity
-		* scene.amblight.color.g * object_color.g;
+		* (scene.amblight.color.g / 255.0) * object_color.g;
 	color.b = scene.amblight.intensity
-		* scene.amblight.color.b * object_color.b;
+		* (scene.amblight.color.b / 255.0) * object_color.b;
 	return (color);
 }
 
