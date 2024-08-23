@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/23 11:30:39 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/23 13:47:18 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <string.h>
 # include <math.h>
 # include "../libft/libft.h"
-// # include <mlx.h>
-// # include "mlx.h"
+# include <mlx.h>
+# include "mlx.h"
 # define WIDTH 800
 # define HEIGHT 600
 

@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:36:52 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/23 11:30:21 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/23 13:36:51 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ void	error(char *message, t_scene *scene)
 	{
 		free_scene(scene);
 	}
+	free_get_next_line_backup();
 	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/23 11:24:58 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/23 13:50:34 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int main(int argc, char **argv)
 
     // If the file is valid, proceed with parsing
     scene = parse_scene(argv[1], scene);
+    if(scene.objects == NULL)
+    {
+        error("No objects found in scene", &scene);
+        return 1;
+    }
 
     // // Print parsed ambient lighting for testing
     // printf("Ambient lighting intensity: %f\n", scene.amblight.intensity);
