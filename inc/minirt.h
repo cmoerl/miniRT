@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/21 13:02:05 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/23 14:04:17 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <math.h>
+# include "../libft/libft.h"
 # include <mlx.h>
 # include "mlx.h"
 
@@ -211,5 +212,65 @@ void		render_scene(t_scene scene);
 
 // shade.c
 t_color		calc_shade(t_scene scene, t_shade shade, t_hit object_hit);
+
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb;
+
+typedef struct s_flags
+{
+	int	ambient_found;
+	int	camera_found;
+	int	light_found;
+}	t_flags;
+
+void		free_spheres(t_sphere *spheres);
+void		free_planes(t_plane *planes);
+void		free_cylinders(t_cylinder *cylinders);
+void		free_scene(t_scene *scene);
+void		parse_light_line(char *line, t_scene *scene, int *light_found);
+t_scene		init_and_check_file(char *file, t_scene scene);
+void		check_essential_components(int ambient_found,
+				int camera_found, int light_found, t_scene *scene);
+void		parse_object_line(char *line, t_scene *scene);
+void		parse_camera_line(char *line, t_scene *scene, int *camera_found);
+void		parse_ambient_line(char *line, t_scene *scene, int *ambient_found);
+t_scene		parse_scene(char *file, t_scene scene);
+void		check_essential_components(int ambient_found,
+				int camera_found, int light_found, t_scene *scene);
+t_scene		init_scene(t_scene scene);
+void		check_file(char *file);
+void		parse_color_sphere(char *line, int *i, t_sphere *sphere);
+void		parse_axis(char *line, int *i, t_cylinder *cylinder);
+void		validate_cylinder_identifier(char *line, int *i);
+float		parse_float(char *line, int *i, char *error_message);
+void		parse_center(char *line, int *i, t_cylinder *cylinder);
+int			parse_color_component(char *line, int *i, char *error_message);
+void		parse_plane_coordinates(char *line, int *i, t_plane *plane);
+float		parse_coordinate(char *line, int *i, char *error_message);
+void		validate_plane_identifier(char *line, int *i);
+void		parse_single_position(char *line, int *i,
+				float *position_component);
+void		parse_position(char *line, int *i, t_light *light);
+void		parse_intensity_light(char *line, int *i, t_light *light);
+void		skip_whitespace(char *line, int *i);
+void		print_camera(t_camera *camera);
+float		parse_float_with_check(char **line, int *i);
+void		skip_whitespacess(char **line, int *i);
+void		parse_sphere(char *line, t_sphere **spheres);
+void		parse_plane(char *line, t_plane **planes);
+void		parse_cylinder(char *line, t_cylinder **cylinders);
+void		parse_sphere(char *line, t_sphere **spheres);
+void		parse_plane(char *line, t_plane **planes);
+void		parse_ambient(char *line, t_amblight *ambient);
+void		error(char *message, t_scene *scene);
+void		check_file(char *file);
+void		parse_camera(char *line, t_camera *camera);
+void		parse_light(char *line, t_light *light);
+void		error(char *message, t_scene *scene);
+t_scene		parse_scene(char *filename, t_scene scene);
 
 #endif

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   shade.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:18:29 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/23 13:47:58 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/23 14:00:24 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-#include <math.h>
 
 // calculate the ambient light
 t_color	calc_ambient(t_scene scene, t_color object_color)

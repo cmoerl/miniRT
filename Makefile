@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: csturm <csturm@student.42.fr>              +#+  +:+       +#+         #
+#    By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/21 12:23:07 by csturm            #+#    #+#              #
-#    Updated: 2024/08/23 13:03:53 by csturm           ###   ########.fr        #
+#    Updated: 2024/08/23 14:06:29 by mafurnic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,9 @@ MLX_LIBS := -L minilibx-linux -lmlx -lm -lXext -lX11
 OBJECTS_PATH := obj/
 SOURCES_PATH := src/
 LIBFT_PATH := libft/
+INCLUDES := -I inc -I $(LIBFT_PATH)
 
 # Source and Object Files
-
 SOURCE_FILES := main.c \
 				render.c \
 				error.c \
@@ -34,7 +34,8 @@ SOURCE_FILES := main.c \
 				ray_utils2.c \
 				find_object.c \
 				shade.c \
-				parse.c \
+                Parser/parse.c Parser/parse_camera.c Parser/parse_spheres.c Parser/parse_planes.c Parser/light_utils.c Parser/cylinder_utils.c Parser/parser_utils.c Parser/free.c\
+				Parser/parse_light.c Parser/parse_ambient.c Parser/parse_cylinders.c Parser/utils.c Parser/plane_utils.c Parser/sphere_utils.c Parser/parse_utils2.c\
 
 OBJECTS := $(SOURCE_FILES:%.c=$(OBJECTS_PATH)%.o)
 LIBFT := $(LIBFT_PATH)libft.a
@@ -44,13 +45,13 @@ all: $(NAME)
 
 # Linking the Program
 $(NAME): $(LIBFT) $(OBJECTS)
-	@$(COMPILER) $(FLAGS) $(OBJECTS) -L$(LIBFT_PATH) $(MLX_LIBS) -o $(NAME)
-	@echo "linking successfull - executable $(NAME) created"
+	@$(COMPILER) $(FLAGS) $(OBJECTS) -L$(LIBFT_PATH) -lft $(MLX_LIBS) -o $(NAME)
+	@echo "linking successful - executable $(NAME) created"
 
 # Compiling Source Files
 $(OBJECTS_PATH)%.o: $(SOURCES_PATH)%.c
 	@mkdir -p $(@D)
-	@$(COMPILER) $(FLAGS) -c $< -o $@
+	@$(COMPILER) $(FLAGS) $(INCLUDES) -c $< -o $@
 	@echo "$< compiled successfully"
 
 # Compiling libft

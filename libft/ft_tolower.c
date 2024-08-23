@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:31:58 by mafurnic          #+#    #+#             */
-/*   Updated: 2023/09/15 13:21:23 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/07/17 10:10:24 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*#include <ctype.h>
 #include <stdio.h>*/
+#include "libft.h" 
 
 int	ft_tolower(int c)
 {
