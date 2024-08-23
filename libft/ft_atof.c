@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:33:12 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/21 19:27:10 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/23 11:29:08 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ float	ft_atof(const char *str)
 	{
 		if (str[i] == '-')
 			sign = -1.0;
-			i++;
+		i++;
 	}
 	result = parse_integer_part(str, &i);
 	if (str[i] == '.')

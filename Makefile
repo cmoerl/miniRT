@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+         #
+#    By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/21 12:23:07 by csturm            #+#    #+#              #
-#    Updated: 2024/08/21 19:08:53 by marianfurni      ###   ########.fr        #
+#    Updated: 2024/08/23 11:25:24 by mafurnic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ INCLUDES := -I inc -I $(LIBFT_PATH)
 
 # Source and Object Files
 SOURCE_FILES := main.c \
-                Parser/parse.c Parser/parse_camera.c Parser/parse_spheres.c Parser/parse_planes.c Parser/light_utils.c Parser/cylinder_utils.c Parser/parser_utils.c\
+                Parser/parse.c Parser/parse_camera.c Parser/parse_spheres.c Parser/parse_planes.c Parser/light_utils.c Parser/cylinder_utils.c Parser/parser_utils.c Parser/free.c\
 				Parser/parse_light.c error.c Parser/parse_ambient.c Parser/parse_cylinders.c Parser/utils.c Parser/plane_utils.c Parser/sphere_utils.c Parser/parse_utils2.c\
 
 OBJECTS := $(SOURCE_FILES:%.c=$(OBJECTS_PATH)%.o)

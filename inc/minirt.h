@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/22 09:31:59 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/23 11:30:39 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,10 @@ typedef struct s_flags
 	int	light_found;
 }	t_flags;
 
+void		free_spheres(t_sphere *spheres);
+void		free_planes(t_plane *planes);
+void		free_cylinders(t_cylinder *cylinders);
+void		free_scene(t_scene *scene);
 void		parse_light_line(char *line, t_scene *scene, int *light_found);
 t_scene		init_and_check_file(char *file, t_scene scene);
 void		check_essential_components(int ambient_found,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/08 16:21:02 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/23 11:24:58 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ int main(int argc, char **argv)
         printf("Sphere color: %f, %f, %f\n", sphere->color.r, sphere->color.g, sphere->color.b);
         sphere = sphere->next;
     }
+
+       // Free the allocated scene memory before exiting
+    free_scene(&scene);
 
     return 0;
 }
