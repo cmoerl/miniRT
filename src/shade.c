@@ -6,11 +6,12 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:18:29 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/22 12:16:30 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/23 12:55:07 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+#include <math.h>
 
 // calculate the ambient light
 t_color	calc_ambient(t_scene scene, t_color object_color)
@@ -30,14 +31,10 @@ t_color	calc_ambient(t_scene scene, t_color object_color)
 t_vector	calc_light_dir(t_scene scene, t_vector ip)
 {
 	t_vector	light_dir;
-	t_vector	jitter;
 
-	jitter.x = ((float)rand() / (float)RAND_MAX - 0.5) * 0.1;
-	jitter.y = ((float)rand() / (float)RAND_MAX - 0.5) * 0.1;
-	jitter.z = ((float)rand() / (float)RAND_MAX - 0.5) * 0.1;
-	light_dir.x = scene.light.position.x - (ip.x + jitter.x);
-	light_dir.y = scene.light.position.y - (ip.y + jitter.y);
-	light_dir.z = scene.light.position.z - (ip.z + jitter.z);
+	light_dir.x = scene.light.position.x - (ip.x);
+	light_dir.y = scene.light.position.y - (ip.y);
+	light_dir.z = scene.light.position.z - (ip.z);
 	return (light_dir);
 }
 
@@ -45,15 +42,31 @@ t_vector	calc_light_dir(t_scene scene, t_vector ip)
 // if an object is blocking the light, the pixel is in shadow
 int	in_shadow(t_scene scene, t_vector ip, t_light_ray light, t_hit object_hit)
 {
-	t_ray	shadow_ray;
-	t_hit	hit;
+	t_vector	jitter;
+	t_ray		shadow_ray;
+	t_hit		hit;
+	float 		jitter_scale;
+	int			i;
+	int			shadow_count;
 
-	shadow_ray.origin = ip;
-	shadow_ray.direction = light.direction;
-	hit = find_closest_object(scene, shadow_ray);
-	if (hit.t < light.distance
-		&& (hit.type != object_hit.type || hit.index != object_hit.index))
-		return (1);
+	jitter_scale = 0.01;
+	shadow_count = 0;
+	i = 0;
+	while (i < 16)
+	{
+		jitter.x = ((float)rand() / (float)RAND_MAX - 0.5) * jitter_scale;
+		jitter.y = ((float)rand() / (float)RAND_MAX - 0.5) * jitter_scale;
+		jitter.z = ((float)rand() / (float)RAND_MAX - 0.5) * jitter_scale;
+		shadow_ray.origin.x = ip.x + jitter.x;
+		shadow_ray.origin.y = ip.y + jitter.y;
+		shadow_ray.origin.z = ip.z + jitter.z;
+		shadow_ray.direction = light.direction;
+		hit = find_closest_object(scene, shadow_ray);
+		if (hit.t < light.distance
+			&& (hit.type != object_hit.type || hit.index != object_hit.index))
+			return (1);
+		i++;
+	}
 	return (0);
 }
 
