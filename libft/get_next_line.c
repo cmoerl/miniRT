@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 11:41:24 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/07/17 10:10:41 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/23 12:29:11 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,16 @@ static char	*extract_line(char *content)
 	size_t	count;
 	char	*backup;
 
+	if (!content || *content == '\0')
+		return (NULL);
 	count = 0;
 	while (content[count] != '\n' && content[count] != '\0')
 		count++;
-	if (content[count] == '\0' || content[1] == '\0')
-		return (0);
-	backup = ft_substr(content, count + 1, ft_strlen(content) - count);
+	if (content[count] == '\0')
+		return (NULL);
+	backup = ft_substr(content, count + 1, ft_strlen(content) - count - 1);
+	if (!backup)
+		return (NULL);
 	if (*backup == '\0')
 	{
 		free(backup);
