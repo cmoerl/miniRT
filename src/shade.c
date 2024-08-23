@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:18:29 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/23 12:55:07 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/23 13:47:58 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,10 @@ int	in_shadow(t_scene scene, t_vector ip, t_light_ray light, t_hit object_hit)
 	t_vector	jitter;
 	t_ray		shadow_ray;
 	t_hit		hit;
-	float 		jitter_scale;
+	float		jitter_scale;
 	int			i;
-	int			shadow_count;
 
 	jitter_scale = 0.01;
-	shadow_count = 0;
 	i = 0;
 	while (i < 16)
 	{

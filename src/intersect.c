@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:23:36 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/23 13:19:54 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/23 13:46:13 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,12 @@ void	calc_coefficients(t_ray ray, t_cylinder *cylinder,
 {
 	t_vector	dot;
 
-    oc->x = ray.origin.x - (cylinder->center.x - cylinder->axis.x * cylinder->height / 2);
-    oc->y = ray.origin.y - (cylinder->center.y - cylinder->axis.y * cylinder->height / 2);
-    oc->z = ray.origin.z - (cylinder->center.z - cylinder->axis.z * cylinder->height / 2);
+	oc->x = ray.origin.x - (cylinder->center.x
+			- cylinder->axis.x * cylinder->height / 2);
+	oc->y = ray.origin.y - (cylinder->center.y
+			- cylinder->axis.y * cylinder->height / 2);
+	oc->z = ray.origin.z - (cylinder->center.z
+			- cylinder->axis.z * cylinder->height / 2);
 	dot.x = dot_product(ray.direction, cylinder->axis);
 	dot.y = dot_product(*oc, cylinder->axis);
 	dot.z = dot_product(cylinder->axis, cylinder->axis);
@@ -124,7 +127,6 @@ float	intersect_cylinder(t_cylinder *cylinder, t_ray ray)
 	float			discriminant;
 	float			t1;
 	float			t2;
-	float			t;
 
 	calc_coefficients(ray, cylinder, &oc, &coeff);
 	discriminant = coeff.b * coeff.b - 4 * coeff.a * coeff.c;
@@ -135,12 +137,10 @@ float	intersect_cylinder(t_cylinder *cylinder, t_ray ray)
 	t1 = check_intersection(t1, ray, cylinder, oc);
 	t2 = check_intersection(t2, ray, cylinder, oc);
 	if (t1 != INFINITY && t2 != INFINITY)
-		t = fmin(t1, t2);
+		return (fmin(t1, t2));
 	else if (t1 != INFINITY)
-		t = t1;
+		return (t1);
 	else if (t2 != INFINITY)
-		t = t2;
-	else
-		t = INFINITY;
-	return (t);
+		return (t2);
+	return (INFINITY);
 }
