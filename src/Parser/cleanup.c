@@ -6,55 +6,56 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 20:10:29 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/22 20:18:36 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/25 09:22:44 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-void free_planes(t_plane *plane)
+void	free_planes(t_plane *plane)
 {
-    t_plane *tmp;
+	t_plane	*tmp;
 
-    while (plane)
-    {
-        tmp = plane;
-        plane = plane->next;
-        free(tmp);
-    }
+	while (plane)
+	{
+		tmp = plane;
+		plane = plane->next;
+		free(tmp);
+	}
 }
 
-void free_spheres(t_sphere *sphere)
+void	free_spheres(t_sphere *sphere)
 {
-    t_sphere *tmp;
+	t_sphere	*tmp;
 
-    while (sphere)
-    {
-        tmp = sphere;
-        sphere = sphere->next;
-        free(tmp);
-    }
+	while (sphere)
+	{
+		tmp = sphere;
+		sphere = sphere->next;
+		free(tmp);
+	}
 }
 
-void free_cylinders(t_cylinder *cylinder)
+void	free_cylinders(t_cylinder *cylinder)
 {
-    t_cylinder *tmp;
+	t_cylinder	*tmp;
 
-    while (cylinder)
-    {
-        tmp = cylinder;
-        cylinder = cylinder->next;
-        free(tmp);
-    }
+	while (cylinder)
+	{
+		tmp = cylinder;
+		cylinder = cylinder->next;
+		free(tmp);
+	}
 }
 
-void free_scene(t_scene *scene)
+void	free_scene(t_scene *scene)
 {
-    if (scene->objects)
-    {
-        free_planes(scene->objects->planes);
-        free_spheres(scene->objects->spheres);
-        free_cylinders(scene->objects->cylinders);
-        free(scene->objects);
-    }
+	if (scene->objects)
+	{
+		free_planes(scene->objects->planes);
+		free_spheres(scene->objects->spheres);
+		free_cylinders(scene->objects->cylinders);
+		free(scene->objects);
+	}
 }
+
