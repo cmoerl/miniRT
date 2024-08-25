@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 20:10:29 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/25 09:22:44 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/25 12:43:41 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,3 @@ void	free_scene(t_scene *scene)
 		free(scene->objects);
 	}
 }
-
