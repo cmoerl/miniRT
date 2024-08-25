@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:03:05 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/23 14:36:35 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/25 09:20:04 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,19 @@ void	put_pixel(int x, int y, t_color color, t_scene scene)
 void	print_input(t_scene scene)
 {
 	printf("Ambient light: %f\n", scene.amblight.intensity);
-	printf("Camera position: %f, %f, %f\n", scene.camera.center.x, scene.camera.center.y, scene.camera.center.z);
-	printf("Camera orientation: %f, %f, %f\n", scene.camera.orientation.x, scene.camera.orientation.y, scene.camera.orientation.z);
+	printf("Camera position: %f, %f, %f\n", scene.camera.center.x,
+		scene.camera.center.y, scene.camera.center.z);
+	printf("Camera orientation: %f, %f, %f\n", scene.camera.orientation.x,
+		scene.camera.orientation.y, scene.camera.orientation.z);
 	printf("Camera FOV: %f\n", scene.camera.fov);
-	printf("Light position: %f, %f, %f\n", scene.light.position.x, scene.light.position.y, scene.light.position.z);
+	printf("Light position: %f, %f, %f\n", scene.light.position.x,
+		scene.light.position.y, scene.light.position.z);
 	printf("Light intensity: %f\n", scene.light.intensity);
-	printf("Sphere position: %f, %f, %f\n", scene.objects->spheres->center.x, scene.objects->spheres->center.y, scene.objects->spheres->center.z);
+	printf("Sphere position: %f, %f, %f\n", scene.objects->spheres->center.x,
+		scene.objects->spheres->center.y, scene.objects->spheres->center.z);
 	printf("Sphere radius: %f\n", scene.objects->spheres->radius);
-	printf("Sphere color: %f, %f, %f\n", scene.objects->spheres->color.r, scene.objects->spheres->color.g, scene.objects->spheres->color.b);
+	printf("Sphere color: %f, %f, %f\n", scene.objects->spheres->color.r,
+		scene.objects->spheres->color.g, scene.objects->spheres->color.b);
 }
 
 // initialising the ray
