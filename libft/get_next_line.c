@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 11:41:24 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/23 13:39:28 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/26 10:37:59 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ static char	*read_line(int fd, char *buf, char *backup)
 	{
 		read_line = read(fd, buf, BUFFER_SIZE);
 		if (read_line == -1)
-			return (0);
+		{
+			free(backup);
+			return (NULL);
+		}
 		else if (read_line == 0)
 			break ;
 		buf[read_line] = '\0';

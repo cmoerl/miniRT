@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:42:55 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/21 18:54:44 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/26 10:26:36 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	parse_ambient_line(char *line, t_scene *scene, int *ambient_found)
 {
 	if (*ambient_found)
 		error("Multiple ambient lighting definitions found", scene);
-	parse_ambient(line, &scene->amblight);
+	parse_ambient(line, &scene->amblight, scene);
 	*ambient_found = 1;
 }
 
@@ -52,7 +52,7 @@ void	parse_camera_line(char *line, t_scene *scene, int *camera_found)
 {
 	if (*camera_found)
 		error("Multiple camera definitions found", scene);
-	parse_camera(line, &scene->camera);
+	parse_camera(line, &scene->camera, scene);
 	*camera_found = 1;
 }
 
@@ -60,17 +60,17 @@ void	parse_object_line(char *line, t_scene *scene)
 {
 	if (line[0] == 'p' && line[1] == 'l' && (line[2] == ' ' || line[2] == '\t'))
 	{
-		parse_plane(line, &scene->objects->planes);
+		parse_plane(line, &scene->objects->planes, scene);
 	}
 	else if (line[0] == 'c' && line[1] == 'y'
 		&& (line[2] == ' ' || line[2] == '\t'))
 	{
-		parse_cylinder(line, &scene->objects->cylinders);
+		parse_cylinder(line, &scene->objects->cylinders, scene);
 	}
 	else if (line[0] == 's' && line[1] == 'p'
 		&& (line[2] == ' ' || line[2] == '\t'))
 	{
-		parse_sphere(line, &scene->objects->spheres);
+		parse_sphere(line, &scene->objects->spheres, scene);
 	}
 	else
 	{

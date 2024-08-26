@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:51:44 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/21 19:18:58 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/26 10:33:45 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	skip_whitespacess(char **line, int *i)
 }
 
 // Helper function to parse a float with validation
-float	parse_float_with_check(char **line, int *i)
+float	parse_float_with_check(char **line, int *i,t_scene *scene)
+
 {
 	int		start;
 	float	value;
@@ -36,7 +37,7 @@ float	parse_float_with_check(char **line, int *i)
 		|| (*line)[*i] == '.' || (*line)[*i] == '-' || (*line)[*i] == '+'))
 		(*i)++;
 	if (start == *i)
-		error("Error: Invalid character in camera definition", NULL);
+		error("Invalid character in camera definition", scene);
 	value = ft_atof(&(*line)[start]);
 	if ((*line)[*i] == ',')
 		(*i)++;
