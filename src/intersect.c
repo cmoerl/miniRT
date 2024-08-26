@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:23:36 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/23 13:46:13 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/26 10:59:56 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,47 @@ float	check_intersection(float t, t_ray ray,
 	return (INFINITY);
 }
 
+t_vector	vector_subtract(t_vector a, t_vector b)
+{
+	return ((t_vector){a.x - b.x, a.y - b.y, a.z - b.z});
+}
+t_vector	vector_add(t_vector a, t_vector b)
+{
+	return ((t_vector){a.x + b.x, a.y + b.y, a.z + b.z});
+}
+
+t_vector	vector_scale(t_vector a, float b)
+{
+	return ((t_vector){a.x * b, a.y * b, a.z * b});
+}
+
+t_vector	ray_at(t_ray ray, float t)
+{
+	return (vector_add(ray.origin, vector_scale(ray.direction, t)));
+}
+
+float	vector_length(t_vector a)
+{
+	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
+}
+
+float	intersect_top_bottom(t_vector point, t_vector normal, t_ray ray)
+{
+	t_vector	p0l0;
+	float		t;
+	float		denominator;
+
+	denominator = dot_product(normal, ray.direction);
+	if (fabs(denominator) > 1e-6)
+	{
+		p0l0 = vector_subtract(point, ray.origin);
+		t = dot_product(p0l0, normal) / denominator;
+		if (t > 0)
+			return (t);
+	}
+	return (INFINITY);
+}
+
 // checking if a ray intersects with a cylinder
 // oc is the vector from the center of the cylinder to the origin of the ray
 // discriminant measures the intersection of the ray and the cylinder
@@ -124,23 +165,50 @@ float	intersect_cylinder(t_cylinder *cylinder, t_ray ray)
 {
 	t_coefficients	coeff;
 	t_vector		oc;
+	t_vector		top_center;
+	t_vector		bottom_center;
+	t_vector		p;
 	float			discriminant;
 	float			t1;
 	float			t2;
+	float			t;
+	float			t_top;
+	float			t_bottom;
 
+	t = INFINITY;
 	calc_coefficients(ray, cylinder, &oc, &coeff);
 	discriminant = coeff.b * coeff.b - 4 * coeff.a * coeff.c;
-	if (discriminant < 0)
-		return (INFINITY);
-	t1 = (-coeff.b - sqrt(discriminant)) / (2 * coeff.a);
-	t2 = (-coeff.b + sqrt(discriminant)) / (2 * coeff.a);
-	t1 = check_intersection(t1, ray, cylinder, oc);
-	t2 = check_intersection(t2, ray, cylinder, oc);
-	if (t1 != INFINITY && t2 != INFINITY)
-		return (fmin(t1, t2));
-	else if (t1 != INFINITY)
-		return (t1);
-	else if (t2 != INFINITY)
-		return (t2);
-	return (INFINITY);
+	if (discriminant >= 0)
+	{
+		t1 = (-coeff.b - sqrt(discriminant)) / (2 * coeff.a);
+		t2 = (-coeff.b + sqrt(discriminant)) / (2 * coeff.a);
+		t1 = check_intersection(t1, ray, cylinder, oc);
+		t2 = check_intersection(t2, ray, cylinder, oc);
+		if (t1 != INFINITY && t2 != INFINITY)
+			t = fmin(t1, t2);
+		else if (t1 != INFINITY)
+			t = t1;
+		else if (t2 != INFINITY)
+			t = t2;
+	}
+	cylinder->axis = normalise_vector(cylinder->axis);
+	bottom_center = vector_add(cylinder->center,
+			vector_scale(cylinder->axis, -cylinder->height / 2));
+	t_bottom = intersect_top_bottom(bottom_center, cylinder->axis, ray);
+	if (t_bottom != INFINITY)
+	{
+		p = ray_at(ray, t_bottom);
+		if (vector_length(vector_subtract(p, bottom_center)) <= cylinder->radius)
+			t = fmin(t_bottom, t);
+	}
+	top_center = vector_add(cylinder->center,
+			vector_scale(cylinder->axis, cylinder->height / 2));
+	t_top = intersect_top_bottom(top_center, cylinder->axis, ray);
+	if (t_top != INFINITY)
+	{
+		p = ray_at(ray, t_top);
+		if (vector_length(vector_subtract(p, top_center)) <= cylinder->radius)
+			t = fmin(t_top, t);
+	}
+	return (t);
 }
