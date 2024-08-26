@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+         #
+#    By: csturm <csturm@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/21 12:23:07 by csturm            #+#    #+#              #
-#    Updated: 2024/08/23 14:06:29 by mafurnic         ###   ########.fr        #
+#    Updated: 2024/08/26 11:31:35 by csturm           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,11 @@ SOURCE_FILES := main.c \
 				error.c \
 				events.c \
 				intersect.c \
+				intersect_utils.c \
 				ray.c \
 				ray_utils.c \
-				ray_utils2.c \
+				short_utils.c \
+				short_utils2.c \
 				find_object.c \
 				shade.c \
                 Parser/parse.c Parser/parse_camera.c Parser/parse_spheres.c Parser/parse_planes.c Parser/light_utils.c Parser/cylinder_utils.c Parser/parser_utils.c Parser/free.c\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/23 14:04:17 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/26 11:39:37 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,43 +176,6 @@ typedef struct s_scene
 	t_hooks		*hooks;
 }	t_scene;
 
-// error.c
-void		error(char *message, t_scene *scene);
-
-// events.c
-void		event_loop(t_scene scene);
-
-// find_object.c
-t_hit		find_closest_object(t_scene scene, t_ray ray);
-
-// intersect.c
-float		intersect_sphere(t_sphere *sphere, t_ray ray);
-float		intersect_plane(t_plane *plane, t_ray ray);
-float		intersect_cylinder(t_cylinder *cylinder, t_ray ray);
-
-// parse.c
-t_scene		parse_scene(char *filename, t_scene scene);
-
-// ray_utils.c
-t_vector	normalise_vector(t_vector v);
-t_vector	get_intersection_point(t_ray ray, float t);
-t_vector	get_normal(t_vector v, t_hit hit);
-t_vector	rotate_vector(t_vector v, t_vector orientation);
-
-// ray_utils2.c
-float		dot_product(t_vector a, t_vector b);
-t_vector	cross_product(t_vector a, t_vector b);
-
-// ray.c
-t_color		trace_ray(t_scene scene, t_ray ray);
-t_ray		get_ray(t_scene scene, int x, int y);
-
-// render.c
-void		render_scene(t_scene scene);
-
-// shade.c
-t_color		calc_shade(t_scene scene, t_shade shade, t_hit object_hit);
-
 typedef struct s_rgb
 {
 	int	r;
@@ -227,6 +190,59 @@ typedef struct s_flags
 	int	light_found;
 }	t_flags;
 
+// error.c
+void		error(char *message, t_scene *scene);
+
+// events.c
+void		event_loop(t_scene scene);
+
+// find_object.c
+t_hit		find_closest_object(t_scene scene, t_ray ray);
+
+// intersect.c
+float		intersect_sphere(t_sphere *sphere, t_ray ray);
+float		intersect_plane(t_plane *plane, t_ray ray);
+float		intersect_cylinder(t_cylinder *cylinder, t_ray ray);
+
+// intersect_utils.c
+void		calc_coefficients(t_ray ray, t_cylinder *cylinder,
+				t_vector *oc, t_coefficients *coeff);
+float		check_intersection(float t, t_ray ray,
+				t_cylinder *cylinder, t_vector oc);
+float		intersect_top_bottom(t_vector point, t_vector normal, t_ray ray);
+float		check_caps(t_cylinder *cylinder, t_ray ray, float t, float scale);
+float		check_discriminant(t_coefficients coeff, t_ray ray,
+				t_cylinder *cylinder, t_vector oc);
+
+// ray_utils.c
+t_vector	normalise_vector(t_vector v);
+t_vector	get_intersection_point(t_ray ray, float t);
+t_vector	get_normal(t_vector v, t_hit hit);
+t_vector	rotate_vector(t_vector v, t_vector orientation);
+
+// short_utils.c
+t_vector	vector_add(t_vector a, t_vector b);
+t_vector	vector_scale(t_vector a, float b);
+t_vector	ray_at(t_ray ray, float t);
+float		vector_length(t_vector a);
+t_vector	get_center(t_cylinder *cylinder, float scale);
+
+// short_utils2.c
+float		dot_product(t_vector a, t_vector b);
+t_vector	cross_product(t_vector a, t_vector b);
+t_vector	vector_subtract(t_vector a, t_vector b);
+
+// ray.c
+t_color		trace_ray(t_scene scene, t_ray ray);
+t_ray		get_ray(t_scene scene, int x, int y);
+
+// render.c
+void		render_scene(t_scene scene);
+
+// shade.c
+t_color		calc_shade(t_scene scene, t_shade shade, t_hit object_hit);
+
+// Parser/.
 void		free_spheres(t_sphere *spheres);
 void		free_planes(t_plane *planes);
 void		free_cylinders(t_cylinder *cylinders);
@@ -266,11 +282,9 @@ void		parse_cylinder(char *line, t_cylinder **cylinders);
 void		parse_sphere(char *line, t_sphere **spheres);
 void		parse_plane(char *line, t_plane **planes);
 void		parse_ambient(char *line, t_amblight *ambient);
-void		error(char *message, t_scene *scene);
 void		check_file(char *file);
 void		parse_camera(char *line, t_camera *camera);
 void		parse_light(char *line, t_light *light);
-void		error(char *message, t_scene *scene);
 t_scene		parse_scene(char *filename, t_scene scene);
 
 #endif
