@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/26 10:24:39 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:26:36 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,30 +245,37 @@ t_scene		init_scene(t_scene scene);
 void		check_file(char *file);
 void		parse_color_sphere(char *line, int *i, t_sphere *sphere,
 				t_scene *scene);
-void		parse_axis(char *line, int *i, t_cylinder *cylinder, t_scene *scene);
+void		parse_axis(char *line, int *i,
+				t_cylinder *cylinder, t_scene *scene);
 void		validate_cylinder_identifier(char *line, int *i, t_scene *scene);
-float		parse_float(char *line, int *i, char *error_message, t_scene *scene);
-void		parse_center(char *line, int *i, t_cylinder *cylinder, t_scene *scene);
-int			parse_color_component(char *line, int *i, char *error_message, t_scene *scene);
-void		parse_plane_coordinates(char *line, int *i, t_plane *plane, t_scene *scene);
-float		parse_coordinate(char *line, int *i, char *error_message, t_scene *scene);
+float		parse_float(char *line, int *i,
+				char *error_message, t_scene *scene);
+void		parse_center(char *line, int *i,
+				t_cylinder *cylinder, t_scene *scene);
+int			parse_color_component(char *line, int *i,
+				char *error_message, t_scene *scene);
+void		parse_plane_coordinates(char *line, int *i,
+				t_plane *plane, t_scene *scene);
+float		parse_coordinate(char *line, int *i,
+				char *error_message, t_scene *scene);
 void		validate_plane_identifier(char *line, int *i, t_scene *scene);
 void		parse_single_position(char *line, int *i,
 				float *position_component, t_scene *scene);
-void		parse_position(char *line, int *i, t_light *light,t_scene *scene);
-void		parse_intensity_light(char *line, int *i, t_light *light, t_scene *scene);
+void		parse_position(char *line, int *i, t_light *light, t_scene *scene);
+void		parse_intensity_light(char *line, int *i,
+				t_light *light, t_scene *scene);
 void		skip_whitespace(char *line, int *i);
 void		print_camera(t_camera *camera);
 float		parse_float_with_check(char **line, int *i, t_scene *scene);
 void		skip_whitespacess(char **line, int *i);
-void		parse_cylinder(char *line, t_cylinder **cylinders,t_scene *scene);
-void		parse_sphere(char *line, t_sphere **spheres,t_scene *scene);
-void		parse_plane(char *line, t_plane **planes,t_scene *scene);
-void		parse_ambient(char *line, t_amblight *ambient,t_scene *scene);
+void		parse_cylinder(char *line, t_cylinder **cylinders, t_scene *scene);
+void		parse_sphere(char *line, t_sphere **spheres, t_scene *scene);
+void		parse_plane(char *line, t_plane **planes, t_scene *scene);
+void		parse_ambient(char *line, t_amblight *ambient, t_scene *scene);
 void		error(char *message, t_scene *scene);
 void		check_file(char *file);
-void		parse_camera(char *line, t_camera *camera,t_scene *scene);
-void		parse_light(char *line, t_light *light,t_scene *scene);
+void		parse_camera(char *line, t_camera *camera, t_scene *scene);
+void		parse_light(char *line, t_light *light, t_scene *scene);
 void		error(char *message, t_scene *scene);
 t_scene		parse_scene(char *filename, t_scene scene);
 

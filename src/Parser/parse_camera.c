@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:38:31 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/26 10:33:20 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:30:34 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	validate_end_of_line(char *line, int i, t_scene *scene)
 }
 
 // Function to parse the camera
-void	parse_camera(char *line, t_camera *camera,t_scene *scene)
+void	parse_camera(char *line, t_camera *camera, t_scene *scene)
 {
 	int	i;
 

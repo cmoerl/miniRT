@@ -6,13 +6,14 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 13:11:08 by mafurnic          #+#    #+#             */
-/*   Updated: 2024/08/26 10:24:53 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:28:40 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-void	parse_single_position(char *line, int *i, float *position_component,t_scene *scene)
+void	parse_single_position(char *line, int *i,
+			float *position_component, t_scene *scene)
 {
 	int	start;
 
@@ -28,14 +29,15 @@ void	parse_single_position(char *line, int *i, float *position_component,t_scene
 		(*i)++;
 }
 
-void	parse_position(char *line, int *i, t_light *light,t_scene *scene)
+void	parse_position(char *line, int *i, t_light *light, t_scene *scene)
 {
-	parse_single_position(line, i, &light->position.x,scene);
-	parse_single_position(line, i, &light->position.y,scene);
-	parse_single_position(line, i, &light->position.z,scene);
+	parse_single_position(line, i, &light->position.x, scene);
+	parse_single_position(line, i, &light->position.y, scene);
+	parse_single_position(line, i, &light->position.z, scene);
 }
 
-void	parse_intensity_light(char *line, int *i, t_light *light,t_scene *scene)
+void	parse_intensity_light(char *line, int *i,
+			t_light *light, t_scene *scene)
 {
 	int	start;
 

@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:45:00 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/26 10:14:46 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:25:30 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	validate_plane_identifier(char *line, int *i, t_scene *scene)
 	*i += 2;
 }
 
-float	parse_coordinate(char *line, int *i, char *error_message, t_scene *scene)
+float	parse_coordinate(char *line, int *i,
+			char *error_message, t_scene *scene)
 {
 	int	start;
 
@@ -34,7 +35,8 @@ float	parse_coordinate(char *line, int *i, char *error_message, t_scene *scene)
 	return (ft_atof(&line[start]));
 }
 
-void	parse_plane_coordinates(char *line, int *i, t_plane *plane, t_scene *scene)
+void	parse_plane_coordinates(char *line, int *i,
+		t_plane *plane, t_scene *scene)
 {
 	plane->point.x = parse_coordinate(line, i,
 			"Invalid character in plane definition", scene);

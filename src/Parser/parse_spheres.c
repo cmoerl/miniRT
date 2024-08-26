@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:50:01 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/26 10:26:23 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:29:37 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ void	validate_sphere_identifier(char *line, int *i, t_scene *scene)
 {
 	skip_whitespace(line, i);
 	if (line[*i] != 's' || line[*i + 1] != 'p')
-		error("Missing 'sp' identifier for sphere",scene);
+		error("Missing 'sp' identifier for sphere", scene);
 	*i += 2;
 }
 
-void	parse_center_sphere(char *line, int *i, t_sphere *sphere, t_scene *scene)
+void	parse_center_sphere(char *line, int *i,
+			t_sphere *sphere, t_scene *scene)
 {
 	sphere->center.x = parse_float(line, i,
 			"Invalid character in sphere definition", scene);
@@ -38,15 +39,17 @@ void	parse_center_sphere(char *line, int *i, t_sphere *sphere, t_scene *scene)
 			"Invalid character in sphere definition", scene);
 }
 
-void	parse_radius_sphere(char *line, int *i, t_sphere *sphere, t_scene *scene)
+void	parse_radius_sphere(char *line, int *i,
+			t_sphere *sphere, t_scene *scene)
 {
 	sphere->radius = parse_float(line, i,
-			"Invalid character in sphere definition",scene) / 2;
+			"Invalid character in sphere definition", scene) / 2;
 	if (sphere->radius <= 0)
 		error("Sphere radius must be positive", NULL);
 }
 
-void	parse_sphere_properties(char *line, int *i, t_sphere *sphere, t_scene *scene)
+void	parse_sphere_properties(char *line, int *i,
+			t_sphere *sphere, t_scene *scene)
 {
 	skip_whitespace(line, i);
 	parse_center_sphere(line, i, sphere, scene);

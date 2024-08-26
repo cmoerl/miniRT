@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:13:14 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/26 10:20:43 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:25:09 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	parse_color_sphere(char *line, int *i, t_sphere *sphere, t_scene *scene)
 	int	b;
 
 	r = parse_color_component(line, i,
-			"Invalid character in sphere definition",scene);
+			"Invalid character in sphere definition", scene);
 	skip_whitespace(line, i);
 	if (line[*i] == ',')
 		(*i)++;

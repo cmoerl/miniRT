@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:51:44 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/26 10:33:45 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:25:01 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	skip_whitespacess(char **line, int *i)
 }
 
 // Helper function to parse a float with validation
-float	parse_float_with_check(char **line, int *i,t_scene *scene)
+float	parse_float_with_check(char **line, int *i, t_scene *scene)
 
 {
 	int		start;
