@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/26 09:34:32 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/26 11:06:07 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int main(int argc, char **argv)
 
        // Free the allocated scene memory before exiting
     free_scene(&scene);
+    free_get_next_line_backup();
 
     return 0;
 }

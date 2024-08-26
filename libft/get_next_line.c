@@ -6,94 +6,80 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 11:41:24 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/26 10:37:59 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/26 11:11:35 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h" 
 
-static char	*backup = NULL;
+static char *backup = NULL;
 
-void	free_get_next_line_backup(void)
+void free_get_next_line_backup(void)
 {
-	if (backup)
-	{
-		free(backup);
-		backup = NULL;
-	}
+    if (backup)
+    {
+        free(backup);
+        backup = NULL;
+    }
 }
 
-static char	*read_line(int fd, char *buf, char *backup)
+static char *extract_line(char *str)
 {
-	int		read_line;
-	char	*temp;
+    char *line;
+    int i;
 
-	read_line = 1;
-	while (read_line != '\0')
-	{
-		read_line = read(fd, buf, BUFFER_SIZE);
-		if (read_line == -1)
-		{
-			free(backup);
-			return (NULL);
-		}
-		else if (read_line == 0)
-			break ;
-		buf[read_line] = '\0';
-		if (!backup)
-			backup = ft_strdup("");
-		temp = backup;
-		backup = ft_strjoin(temp, buf);
-		free(temp);
-		temp = NULL;
-		if (ft_strchr(buf, '\n'))
-			break ;
-	}
-	return (backup);
+    i = 0;
+    while (str[i] && str[i] != '\n')
+        i++;
+    line = ft_substr(str, 0, i);
+    return (line);
 }
 
-static char	*extract_line(char *content)
+static char *read_line(int fd, char *buf, char *backup)
 {
-	size_t	count;
-	char	*backup;
+    int read_line;
+    char *temp;
 
-	if (!content || *content == '\0')
-		return (NULL);
-	count = 0;
-	while (content[count] != '\n' && content[count] != '\0')
-		count++;
-	if (content[count] == '\0')
-		return (NULL);
-	backup = ft_substr(content, count + 1, ft_strlen(content) - count - 1);
-	if (!backup)
-		return (NULL);
-	if (*backup == '\0')
-	{
-		free(backup);
-		backup = NULL;
-	}
-	content[count + 1] = '\0';
-	return (backup);
+    read_line = 1;
+    while (read_line != '\0')
+    {
+        read_line = read(fd, buf, BUFFER_SIZE);
+        if (read_line == -1)
+        {
+            free_get_next_line_backup();
+            return (NULL);
+        }
+        else if (read_line == 0)
+            break;
+        buf[read_line] = '\0';
+        if (!backup)
+            backup = ft_strdup("");
+        temp = backup;
+        backup = ft_strjoin(temp, buf);
+        free(temp);
+        temp = NULL;
+    }
+    return (backup);
 }
 
-char	*get_next_line(int fd)
+char *get_next_line(int fd)
 {
-	char	*line;
-	char	*buf;
+    char *buf;
+    char *line;
+    char *temp;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buf)
-		return (NULL);
-	line = read_line(fd, buf, backup);
-	if (!line)
-	{
-		free(buf);
-		free_get_next_line_backup();
-		return (NULL);
-	}
-	free(buf);
-	backup = extract_line(line);
-	return (line);
+    if (fd < 0 || BUFFER_SIZE <= 0)
+        return (NULL);
+    buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
+    if (!buf)
+        return (NULL);
+    backup = read_line(fd, buf, backup);
+    free(buf);
+    if (!backup)
+        return (NULL);
+    line = extract_line(backup);
+    temp = backup;
+    backup = ft_strdup(backup + ft_strlen(line) + (backup[ft_strlen(line)] == '\n'));
+    free(temp);
+    return (line);
 }
