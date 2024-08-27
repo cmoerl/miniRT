@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 11:41:24 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/27 16:49:55 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/27 16:52:45 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*get_next_line(int fd, int flag)
 
 	if (flag == 1)
 	{
-		return (free(backup),NULL);
+		return (free(backup), NULL);
 	}
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);

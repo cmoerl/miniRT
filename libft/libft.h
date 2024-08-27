@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:28:03 by mafurnic          #+#    #+#             */
-/*   Updated: 2024/08/27 16:40:28 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/27 16:52:27 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_list
 	int				index;
 	struct s_list	*next;
 }	t_list;
-
 
 float			ft_atof(const char *str);
 char			*get_next_line(int fd, int flag);

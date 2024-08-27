@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 11:25:58 by mafurnic          #+#    #+#             */
-/*   Updated: 2024/08/27 16:48:06 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/27 16:51:43 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ void	free_scene(t_scene *scene)
 		free_cylinders(scene->objects->cylinders);
 		free(scene->objects);
 	}
-	get_next_line(0,1);
+	get_next_line(0, 1);
 }
