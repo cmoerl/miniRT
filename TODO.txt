@@ -1,19 +1,11 @@
-Open Questions:
-
-what do we need to be able to do with the picture once rendered?
--> obviously exit
--> resolution should be changeable? - only via macro
--> what does rotate and translate objects mean?? !needs research!
--> in subject it says: "Your program must be able to resize the object’s unique properties: diameter for a
-sphere and the width and height for a cylinder." - not meant interactively
--> do we need to move the camera, and zoom in and out? - no
-
-we are supposed to handle the inside of an object. Does that mean darkness? - yes
 
 TODO:
 
-- implement phong for shading
-- get rid of distortions
-    - Anti-Aliasing Techniques?
-    - lens distortion correction (LDC) mechanism
-    - tangential distortin vs radial distortion
+-we are supposed to handle the inside of an object. Does that mean darkness? - yes
+--> at the moment a very dark shade of the color of the surrounding object. Is that enough?
+
+-scene.hooks and scene.img need to be initiated in a separate function and need to be freed at the end
+
+-is destroying the window at the end enough? Does it need to be done in steps?
+
+-leaks + norminette
