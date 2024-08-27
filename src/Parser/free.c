@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 11:25:58 by mafurnic          #+#    #+#             */
-/*   Updated: 2024/08/23 13:51:11 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/27 10:24:08 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,5 @@ void	free_scene(t_scene *scene)
 		free_cylinders(scene->objects->cylinders);
 		free(scene->objects);
 	}
+	free_get_next_line_backup();
 }
