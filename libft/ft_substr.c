@@ -6,12 +6,11 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 08:26:24 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/26 10:29:21 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/27 09:14:30 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h" 
-#include <stdlib.h>
 /*#include <string.h>
 
 unsigned long	ft_strlen(const char *s)

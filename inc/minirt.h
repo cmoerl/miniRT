@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/26 12:26:36 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/27 08:58:31 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,6 +226,16 @@ typedef struct s_flags
 	int	camera_found;
 	int	light_found;
 }	t_flags;
+
+typedef struct s_color_params
+{
+	int			*i;
+	int			r;
+	int			g;
+	int			b;
+	const char	*color_name;
+	t_scene		*scene;
+}	t_color_params;
 
 void		free_spheres(t_sphere *spheres);
 void		free_planes(t_plane *planes);

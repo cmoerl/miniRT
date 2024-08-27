@@ -6,14 +6,14 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:32:14 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/26 12:32:14 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/27 09:15:04 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
 void	parse_single_color_component(char *line, int *i,
-			int *color_component,t_scene *scene)
+			int *color_component, t_scene *scene)
 {
 	int	start;
 
@@ -39,12 +39,12 @@ void	parse_rgb(char *line, int *i, t_rgb *color, t_scene *scene)
 }
 
 void	parse_light_properties(char *line, int *i,
-			t_light *light, t_rgb *color, t_scene *scene)
+			t_rgb *color, t_scene *scene)
 {
 	skip_whitespace(line, i);
-	parse_position(line, i, light, scene);
+	parse_position(line, i, &scene->light, scene);
 	skip_whitespace(line, i);
-	parse_intensity_light(line, i, light, scene);
+	parse_intensity_light(line, i, &scene->light, scene);
 	skip_whitespace(line, i);
 	if (line[*i])
 		parse_rgb(line, i, color, scene);
@@ -66,7 +66,7 @@ void	parse_light(char *line, t_light *light, t_scene *scene)
 	if (line[i] != 'L')
 		error("Missing 'L' identifier for light", scene);
 	i++;
-	parse_light_properties(line, &i, light, &color, scene);
+	parse_light_properties(line, &i, &color, scene);
 	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
 		i++;
 	if (line[i] != '\0')

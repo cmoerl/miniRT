@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/26 12:29:12 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/27 08:56:52 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,44 +27,47 @@ void	parse_intensity(char *line, int *i, float *intensity, t_scene *scene)
 		error("Ambient lighting intensity out of range [0.0, 1.0]", scene);
 }
 
-void	parse_color_value(char *line, int *i,
-			int *color_value, const char *color_name, t_scene *scene)
+void	parse_color_value(char *line, t_color_params *params, int *color_value)
 {
 	int	start;
 
-	start = *i;
-	while (line[*i] && ft_isdigit(line[*i]))
-		(*i)++;
-	if (start == *i)
-		error("Invalid character in ambient lighting definition", scene);
+	start = *(params->i);
+	while (line[*(params->i)] && ft_isdigit(line[*(params->i)]))
+		(*(params->i))++;
+	if (start == *(params->i))
+		error("Invalid character in ambient lighting definition",
+			params->scene);
 	*color_value = ft_atoi(&line[start]);
 	if (*color_value < 0 || *color_value > 255)
 	{
 		printf("Error: Ambient lighting %s value out of range [0, 255]\n",
-			color_name);
-		error(NULL, scene);
+			params->color_name);
+		error(NULL, params->scene);
 	}
 }
 
 void	parse_color_values(char *line, int *i, t_color *color, t_scene *scene)
 {
-	int	r;
-	int	g;
-	int	b;
+	t_color_params	params;
 
-	parse_color_value(line, i, &r, "red", scene);
+	params.i = i;
+	params.scene = scene;
+	params.color_name = "red";
+	parse_color_value(line, &params, &params.r);
 	while (line[*i] && (line[*i] == ' ' || line[*i] == '\t' || line[*i] == ','))
 		(*i)++;
-	parse_color_value(line, i, &g, "green", scene);
+	params.color_name = "green";
+	parse_color_value(line, &params, &params.g);
 	while (line[*i] && (line[*i] == ' ' || line[*i] == '\t' || line[*i] == ','))
 		(*i)++;
-	parse_color_value(line, i, &b, "blue", scene);
+	params.color_name = "blue";
+	parse_color_value(line, &params, &params.b);
 	while (line[*i] && (line[*i] == ' '
 			|| line[*i] == '\t' || line[*i] == '\n'))
 		(*i)++;
-	color->r = r;
-	color->g = g;
-	color->b = b;
+	color->r = params.r;
+	color->g = params.g;
+	color->b = params.b;
 }
 
 void	print_ambient_details(t_amblight *ambient, float intensity)
