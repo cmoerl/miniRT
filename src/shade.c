@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shade.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:18:29 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/23 14:00:24 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/27 14:43:05 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	in_shadow(t_scene scene, t_vector ip, t_light_ray light, t_hit object_hit)
 		shadow_ray.origin.z = ip.z + jitter.z;
 		shadow_ray.direction = light.direction;
 		hit = find_closest_object(scene, shadow_ray);
-		if (hit.t < light.distance
+		if (hit.t < light.distance && hit.t > 0
 			&& (hit.type != object_hit.type || hit.index != object_hit.index))
 			return (1);
 		i++;
@@ -96,11 +96,13 @@ t_color	calc_shade(t_scene scene, t_shade shade, t_hit object_hit)
 	light.distance = sqrt(light.direction.x * light.direction.x
 			+ light.direction.y * light.direction.y
 			+ light.direction.z * light.direction.z);
-	light.direction = normalise_vector(light.direction);
+	light.direction = normalise_vector(light.direction);	
 	if (in_shadow(scene, shade.ip, light, object_hit))
 		return (color);
 	dot = dot_product(shade.normal, light.direction);
-	if (dot < 0)
+	if (dot < 0 && object_hit.type == PLANE)
+		dot *= -1;
+	else if (dot < 0)
 		dot = 0;
 	attenuation = 1.0 / (1.0 + 0.1 * light.distance);
 	color.r += DIFFUSE * shade.object_color.r
