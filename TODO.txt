@@ -1,8 +1,8 @@
 
 TODO:
 
--we are supposed to handle the inside of an object. Does that mean darkness? - yes
---> at the moment a very dark shade of the color of the surrounding object. Is that enough?
+x-we are supposed to handle the inside of an object. Does that mean darkness? - yes
+x--> at the moment a very dark shade of the color of the surrounding object. Is that enough?
 
 -scene.hooks and scene.img need to be initiated in a separate function and need to be freed at the end
 
