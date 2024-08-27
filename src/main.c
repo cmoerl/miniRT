@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/23 14:30:42 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:26:19 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,30 +79,30 @@ int main(int argc, char **argv)
         sphere = sphere->next;
     }
 
-    scene.mlx_ptr = mlx_init();
-    scene.hooks = malloc(sizeof(t_hooks));
-    // if (!scene.hooks)
-    //     error("Error: Failed to allocate memory for hooks\n", scene);
-    scene.hooks->key_press = 0;
-    scene.hooks->key_release = 0;
-    scene.hooks->mouse_press = 0;
-    scene.hooks->mouse_release = 0;
-    scene.hooks->mouse_move = 0;
+    // scene.mlx_ptr = mlx_init();
+    // scene.hooks = malloc(sizeof(t_hooks));
+    // // if (!scene.hooks)
+    // //     error("Error: Failed to allocate memory for hooks\n", scene);
+    // scene.hooks->key_press = 0;
+    // scene.hooks->key_release = 0;
+    // scene.hooks->mouse_press = 0;
+    // scene.hooks->mouse_release = 0;
+    // scene.hooks->mouse_move = 0;
 
-    scene.img = malloc(sizeof(t_img));
-    // if (!scene.img)
-    //     error("Error: Failed to allocate memory for image\n", scene);
-    scene.img->bits_per_pixel = 32;
-    scene.img->line_length = WIDTH * 4;
-    scene.img->endian = 0;
-    scene.img->img_ptr = mlx_new_image(scene.mlx_ptr, WIDTH, HEIGHT);
-    scene.img->pxl = mlx_get_data_addr(scene.img->img_ptr, &scene.img->bits_per_pixel, &scene.img->line_length, &scene.img->endian);
+    // scene.img = malloc(sizeof(t_img));
+    // // if (!scene.img)
+    // //     error("Error: Failed to allocate memory for image\n", scene);
+    // scene.img->bits_per_pixel = 32;
+    // scene.img->line_length = WIDTH * 4;
+    // scene.img->endian = 0;
+    // scene.img->img_ptr = mlx_new_image(scene.mlx_ptr, WIDTH, HEIGHT);
+    // scene.img->pxl = mlx_get_data_addr(scene.img->img_ptr, &scene.img->bits_per_pixel, &scene.img->line_length, &scene.img->endian);
 
-    scene.win_ptr = mlx_new_window(scene.mlx_ptr, WIDTH, HEIGHT, "MiniRT");
+    // scene.win_ptr = mlx_new_window(scene.mlx_ptr, WIDTH, HEIGHT, "MiniRT");
     
     // scene = parse_scene(argv[1], scene);
-    render_scene(scene);
-    event_loop(scene);
+    // render_scene(scene);
+    // event_loop(scene);
 
        // Free the allocated scene memory before exiting
     free_scene(&scene);
