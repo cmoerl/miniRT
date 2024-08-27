@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 11:25:58 by mafurnic          #+#    #+#             */
-/*   Updated: 2024/08/27 10:42:17 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:48:06 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ void	free_scene(t_scene *scene)
 		free_cylinders(scene->objects->cylinders);
 		free(scene->objects);
 	}
-	free_get_next_line_backup();
+	get_next_line(0,1);
 }

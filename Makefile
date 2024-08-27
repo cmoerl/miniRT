@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+         #
+#    By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/21 12:23:07 by csturm            #+#    #+#              #
-#    Updated: 2024/08/26 09:34:07 by mafurnic         ###   ########.fr        #
+#    Updated: 2024/08/27 16:32:04 by marianfurni      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME := miniRT
 COMPILER := cc
 FLAGS := -Wall -Wextra -Werror -g
 CLEANUP := rm -rf
-MLX_LIBS := -L minilibx-linux -lmlx -lm -lXext -lX11
+# MLX_LIBS := -L minilibx-linux -lmlx -lm -lXext -lX11
 
 # Directory Paths
 OBJECTS_PATH := obj/

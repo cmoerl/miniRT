@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:36:52 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/27 10:41:22 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:35:19 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ void	error(char *message, t_scene *scene)
 	{
 		free_scene(scene);
 	}
-	free_get_next_line_backup();
 	exit(1);
 }
