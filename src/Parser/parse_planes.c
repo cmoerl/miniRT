@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_planes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:47:53 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/26 12:31:58 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:00:41 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,28 +74,27 @@ void	parse_plane_color(char *line, int *i, t_plane *plane, t_scene *scene)
 void	parse_plane(char *line, t_plane **planes, t_scene *scene)
 {
 	int		i;
-	t_plane	*plane;
 
 	i = 0;
 	skip_whitespace(line, &i);
 	validate_plane_identifier(line, &i, scene);
 	skip_whitespace(line, &i);
-	plane = malloc(sizeof(t_plane));
-	if (!plane)
+	scene->objects->planes = malloc(sizeof(t_plane));
+	if (!scene->objects->planes)
 		error("Memory allocation failed", scene);
-	parse_plane_coordinates(line, &i, plane, scene);
+	memset(scene->objects->planes, 0, sizeof(t_plane));
+	parse_plane_coordinates(line, &i, scene->objects->planes, scene);
 	skip_whitespace(line, &i);
-	parse_plane_axis(line, &i, plane, scene);
+	parse_plane_axis(line, &i, scene->objects->planes, scene);
 	skip_whitespace(line, &i);
-	parse_plane_color(line, &i, plane, scene);
+	parse_plane_color(line, &i, scene->objects->planes, scene);
 	skip_whitespace(line, &i);
 	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
 		i++;
 	if (line[i] != '\0')
 	{
-		free(plane);
+		free(scene->objects->planes);
 		error("Invalid character in plane definition", scene);
 	}
-	plane->next = *planes;
-	*planes = plane;
+	scene->objects->planes->next = *planes;
 }
