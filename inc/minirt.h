@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/28 08:44:28 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 09:22:34 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,11 @@ typedef struct s_hit
 	int				index;
 }	t_hit;
 
+typedef struct s_color_info {
+    int *color_value;
+    const char *color_name;
+} t_color_info;
+
 typedef struct s_scene
 {
 	t_object	*objects;
@@ -174,6 +179,8 @@ typedef struct s_scene
 	void		*win_ptr;
 	t_img		*img;
 	t_hooks		*hooks;
+	int			*color_value;
+	char		*color_name;
 }	t_scene;
 
 // error.c
