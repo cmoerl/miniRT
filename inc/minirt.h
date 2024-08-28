@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/27 18:26:06 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/28 08:18:14 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <string.h>
 # include <math.h>
 # include "../libft/libft.h"
-// # include <mlx.h>
-// # include "mlx.h"
+# include <mlx.h>
+# include "mlx.h"
 
 # define WIDTH 1000
 # define HEIGHT 700

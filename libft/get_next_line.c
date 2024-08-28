@@ -6,22 +6,11 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 11:41:24 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/23 13:39:28 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 08:23:17 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h" 
-
-static char	*backup = NULL;
-
-void	free_get_next_line_backup(void)
-{
-	if (backup)
-	{
-		free(backup);
-		backup = NULL;
-	}
-}
 
 static char	*read_line(int fd, char *buf, char *backup)
 {
@@ -73,11 +62,18 @@ static char	*extract_line(char *content)
 	return (backup);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int flag)
 {
-	char	*line;
-	char	*buf;
+	char		*line;
+	char		*buf;
+	static char	*backup;
 
+	if (flag == 1)
+	{
+		free(backup);
+		backup = NULL;
+		return (NULL);
+	}
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
@@ -87,7 +83,6 @@ char	*get_next_line(int fd)
 	if (!line)
 	{
 		free(buf);
-		free_get_next_line_backup();
 		return (NULL);
 	}
 	free(buf);
