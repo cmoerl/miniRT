@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:28:03 by mafurnic          #+#    #+#             */
-/*   Updated: 2024/08/28 08:20:32 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 11:36:10 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,11 @@ char			*ft_strndup(const char *s, size_t n);
 int				ft_strcmp(const char *s1, const char *s2);
 size_t			ft_strcspn(const char *s, const char *reject);
 size_t			ft_strnlen(const char *s, size_t maxlen);
+
+
+char* ali_get_next_line(int fd, int flag);
+size_t ft_strlengnl(char *s);
+char* ft_strchrgnl(char *s, int c);
+char* ft_strjoingnl(char *s1, char *s2);
 
 #endif

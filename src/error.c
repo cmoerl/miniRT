@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:36:52 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 08:46:00 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 11:39:49 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	error(char *message, t_scene *scene)
 		printf("scene is not NULL\n");
 		free_scene(scene);
 	}
-	get_next_line(0, 1);
+	ali_get_next_line(0, 1);
 	exit(1);
 }
