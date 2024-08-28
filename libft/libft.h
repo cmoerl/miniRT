@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:28:03 by mafurnic          #+#    #+#             */
-/*   Updated: 2024/08/23 13:39:42 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 08:20:32 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_list
 
 void			free_get_next_line_backup(void);
 float			ft_atof(const char *str);
-char			*get_next_line(int fd);
+char			*get_next_line(int fd, int flag);
 t_list			*ft_lstnew(int content);
 int				ft_lstsize(t_list *head);
 void			ft_lstadd_front(t_list **stack, t_list *newnode);

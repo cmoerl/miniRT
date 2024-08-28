@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 19:07:04 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 11:41:27 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/28 12:00:50 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	parse_light_line(char *line, t_scene *scene, int *light_found)
 {
 	if (*light_found)
 		error("Multiple light definitions found", scene);
-	parse_light(line, &scene->light);
+	parse_light(line, &scene->light, scene);
 	*light_found = 1;
 }
 
