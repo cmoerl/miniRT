@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:50:01 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 15:12:26 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:39:47 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	validate_sphere_identifier(char *line, int *i, t_scene *scene)
 {
 	skip_whitespace(line, i);
 	if (line[*i] != 's' || line[*i + 1] != 'p')
-		error("Missing 'sp' identifier for sphere", scene);
+		error("Missing 'sp' identifier for sphere", scene, line);
 	*i += 2;
 }
 
@@ -45,7 +45,7 @@ void	parse_radius_sphere(char *line, int *i,
 	sphere->radius = parse_float(line, i,
 			"Invalid character in sphere definition", scene) / 2;
 	if (sphere->radius <= 0)
-		error("Sphere radius must be positive", scene);
+		error("Sphere radius must be positive", scene, line);
 }
 
 void	parse_sphere_properties(char *line, int *i,
@@ -72,7 +72,7 @@ void	parse_sphere(char *line, t_sphere **spheres, t_scene *scene)
 	new_sphere = malloc(sizeof(t_sphere));
 	if (!new_sphere)
 	{
-		error("Memory allocation failed", scene);
+		error("Memory allocation failed", scene, line);
 	}
 	add_sphere_to_list(spheres, new_sphere);
 	parse_sphere_properties(line, &i, new_sphere, scene);
@@ -82,6 +82,6 @@ void	parse_sphere(char *line, t_sphere **spheres, t_scene *scene)
 	}
 	if (line[i] != '\0')
 	{
-		error("Invalid character in sphere definition", scene);
+		error("Invalid character in sphere definition", scene, line);
 	}
 }

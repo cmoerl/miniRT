@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:42:55 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 12:01:02 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:40:52 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_scene	init_scene(t_scene scene)
 	scene.win_ptr = NULL;
 	scene.objects = malloc(sizeof(t_object));
 	if (!scene.objects)
-		error("Memory allocation failed", &scene);
+		error("Memory allocation failed", &scene, NULL);
 	scene.objects->spheres = NULL;
 	scene.objects->planes = NULL;
 	scene.objects->cylinders = NULL;
@@ -48,7 +48,7 @@ t_scene	init_scene(t_scene scene)
 void	parse_ambient_line(char *line, t_scene *scene, int *ambient_found)
 {
 	if (*ambient_found)
-		error("Multiple ambient lighting definitions found", scene);
+		error("Multiple ambient lighting definitions found", scene, line);
 	parse_ambient(line, &scene->amblight, scene);
 	*ambient_found = 1;
 }
@@ -56,7 +56,7 @@ void	parse_ambient_line(char *line, t_scene *scene, int *ambient_found)
 void	parse_camera_line(char *line, t_scene *scene, int *camera_found)
 {
 	if (*camera_found)
-		error("Multiple camera definitions found", scene);
+		error("Multiple camera definitions found", scene, line);
 	parse_camera(line, &scene->camera, scene);
 	*camera_found = 1;
 }
@@ -79,6 +79,6 @@ void	parse_object_line(char *line, t_scene *scene)
 	}
 	else
 	{
-		error("Invalid scene description", scene);
+		error("Invalid scene description", scene,line);
 	}
 }

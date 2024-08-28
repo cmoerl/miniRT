@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:34:34 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 15:07:31 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:34:53 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	validate_cylinder_identifier(char *line, int *i)
 {
 	skip_whitespace(line, i);
 	if (line[*i] != 'c' || line[*i + 1] != 'y')
-		error("Missing 'cy' identifier for cylinder", NULL);
+		error("Missing 'cy' identifier for cylinder", NULL, line);
 	*i += 2;
 }
 
@@ -29,7 +29,7 @@ float	parse_float(char *line, int *i, char *error_message, t_scene *scene)
 			|| line[*i] == '.' || line[*i] == '-' || line[*i] == '+'))
 		(*i)++;
 	if (start == *i)
-		error(error_message, scene);
+		error(error_message, scene, line);
 	return (ft_atof(&line[start]));
 }
 

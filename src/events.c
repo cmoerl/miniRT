@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:44:34 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/28 11:51:05 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/28 15:46:31 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	close_window(t_scene *scene)
 {
-	error(NULL, scene);
+	error(NULL, scene, NULL);
 	return (0);
 }
 

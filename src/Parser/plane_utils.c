@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:45:00 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 10:54:49 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:48:22 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	validate_plane_identifier(char *line, int *i, t_scene *scene)
 {
 	skip_whitespace(line, i);
 	if (line[*i] != 'p' || line[*i + 1] != 'l')
-		error("Missing 'pl' identifier for plane", scene);
+		error("Missing 'pl' identifier for plane", scene, line);
 	*i += 2;
 }
 
@@ -31,7 +31,7 @@ float	parse_coordinate(char *line, int *i,
 			|| line[*i] == '.' || line[*i] == '-' || line[*i] == '+'))
 		(*i)++;
 	if (start == *i)
-		error(error_message, scene);
+		error(error_message, scene, line);
 	return (ft_atof(&line[start]));
 }
 

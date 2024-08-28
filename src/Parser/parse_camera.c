@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:38:31 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 10:01:50 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:46:58 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	validate_identifier(char actual, char expected)
 {
 	if (actual != expected)
-		error("Invalid identifier", NULL);
+		error("Invalid identifier", NULL, NULL);
 }
 
 // Helper function to parse a vector
@@ -34,7 +34,7 @@ t_vector	parse_vector(char **line, int *i, t_scene *scene)
 void	validate_fov(float fov)
 {
 	if (fov < 0.0 || fov > 180.0)
-		error("Camera FOV out of range [0.0, 180.0]", NULL);
+		error("Camera FOV out of range [0.0, 180.0]", NULL, NULL);
 }
 
 // Helper function to validate the end of line
@@ -43,7 +43,7 @@ void	validate_end_of_line(char *line, int i, t_scene *scene)
 	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
 		i++;
 	if (line[i] != '\0')
-		error("Invalid character in camera definition", scene);
+		error("Invalid character in camera definition", scene, line);
 }
 
 // Function to parse the camera

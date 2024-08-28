@@ -6,19 +6,21 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:36:52 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 08:46:00 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:36:13 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void	error(char *message, t_scene *scene)
+void	error(char *message, t_scene *scene, char *line)
 {
+	if (line != NULL)
+		free(line);
 	if (message != NULL)
 	{
-		write(1, "Error: ", 7);
-		write(1, message, ft_strlen(message));
-		write(1, "\n", 1);
+		write(2, "Error: ", 7);
+		write(2, message, ft_strlen(message));
+		write(2, "\n", 1);
 	}
 	printf("before free_scene\n");
 	if (scene != NULL)

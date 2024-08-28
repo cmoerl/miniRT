@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:53:37 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 14:58:23 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:41:17 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	parse_radius(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
 	cylinder->radius = parse_float(line, i,
 			"Invalid character in cylinder definition", scene) / 2;
 	if (cylinder->radius <= 0)
-		error("Cylinder radius must be positive", scene);
+		error("Cylinder radius must be positive", scene, line);
 }
 
 void	parse_height(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
@@ -25,7 +25,7 @@ void	parse_height(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
 	cylinder->height = parse_float(line, i,
 			"Invalid character in cylinder definition", scene);
 	if (cylinder->height <= 0)
-		error("Cylinder height must be positive", scene);
+		error("Cylinder height must be positive", scene, line);
 }
 
 void	parse_color(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
@@ -49,7 +49,7 @@ void	parse_color(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
 	b = parse_color_component(line, i,
 			"Invalid character in cylinder definition", scene);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		error("Cylinder color values out of range [0, 255]", scene);
+		error("Cylinder color values out of range [0, 255]", scene, line);
 	cylinder->color.r = r;
 	cylinder->color.g = g;
 	cylinder->color.b = b;
@@ -83,7 +83,7 @@ void	parse_cylinder(char *line, t_cylinder **cylinders, t_scene *scene)
 	new_cylinder = malloc(sizeof(t_cylinder));
 	if (!new_cylinder)
 	{
-		error("Memory allocation failed", scene);
+		error("Memory allocation failed", scene, line);
 	}
 	add_cylinder_to_list(cylinders, new_cylinder);
 	parse_cylinder_properties(line, &i, new_cylinder, scene);
@@ -93,6 +93,6 @@ void	parse_cylinder(char *line, t_cylinder **cylinders, t_scene *scene)
 	}
 	if (line[i] != '\0')
 	{
-		error("Invalid character in cylinder definition", scene);
+		error("Invalid character in cylinder definition", scene, line);
 	}
 }

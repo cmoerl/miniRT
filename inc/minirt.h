@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/28 15:13:11 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:46:22 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,7 @@ typedef struct s_flags
 }	t_flags;
 
 // error.c
-void		error(char *message, t_scene *scene);
+void		error(char *message, t_scene *scene, char *line);
 
 // events.c
 void		event_loop(t_scene scene);
@@ -290,11 +290,9 @@ void		parse_cylinder(char *line, t_cylinder **cylinders, t_scene *scene);
 void		parse_sphere(char *line, t_sphere **spheres, t_scene *scene);
 void		parse_plane(char *line, t_plane **planes, t_scene *scene);
 void		parse_ambient(char *line, t_amblight *ambient, t_scene *scene);
-void		error(char *message, t_scene *scene);
 void		check_file(char *file);
 void		parse_camera(char *line, t_camera *camera, t_scene *scene);
 void		parse_light(char *line, t_light *light, t_scene *scene);
-void		error(char *message, t_scene *scene);
 t_scene		parse_scene(char *filename, t_scene scene);
 void		init_scene_mlx(t_scene *scene);
 void		add_cylinder_to_list(t_cylinder **cylinders,

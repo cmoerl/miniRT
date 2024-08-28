@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 09:24:50 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:47:56 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	parse_intensity(char *line, int *i, float *intensity, t_scene *scene)
 			|| line[*i] == '.' || line[*i] == '-' || line[*i] == '+'))
 		(*i)++;
 	if (start == *i)
-		error("Invalid character in ambient lighting definition", scene);
+		error("Invalid character in ambient lighting definition", scene, line);
 	*intensity = ft_atof(&line[start]);
 	if (*intensity < 0.0 || *intensity > 1.0)
-		error("Ambient lighting intensity out of range [0.0, 1.0]", scene);
+		error("Ambient lighting intensity out of range [0.0, 1.0]", scene, line);
 }
 
 void	parse_color_value(char *line, int *i,
@@ -36,13 +36,13 @@ void	parse_color_value(char *line, int *i,
 	while (line[*i] && ft_isdigit(line[*i]))
 		(*i)++;
 	if (start == *i)
-		error("Invalid character in ambient lighting definition", scene);
+		error("Invalid character in ambient lighting definition", scene, line);
 	*(color_info->color_value) = ft_atoi(&line[start]);
 	if (*(color_info->color_value) < 0 || *(color_info->color_value) > 255)
 	{
 		printf("Error: Ambient lighting %s value out of range [0, 255]\n",
 			color_info->color_name);
-		error(NULL, scene);
+		error(NULL, scene, line);
 	}
 }
 
@@ -98,14 +98,14 @@ void	parse_ambient(char *line, t_amblight *ambient, t_scene *scene)
 	i = 0;
 	skip_whitespace(line, &i);
 	if (line[i] != 'A')
-		error("Missing 'A' identifier for ambient lighting", scene);
+		error("Missing 'A' identifier for ambient lighting", scene, line);
 	i++;
 	skip_whitespace(line, &i);
 	parse_intensity(line, &i, &intensity, scene);
 	skip_whitespace(line, &i);
 	parse_color_values(line, &i, &ambient->color, scene);
 	if (line[i] != '\0')
-		error("Invalid character in ambient lighting definition", scene);
+		error("Invalid character in ambient lighting definition", scene, line);
 	ambient->intensity = intensity;
 	print_ambient_details(ambient, intensity);
 }

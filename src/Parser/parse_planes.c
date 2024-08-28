@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:47:53 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 15:02:31 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:38:04 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	parse_color_component(char *line, int *i,
 	while (line[*i] && ft_isdigit(line[*i]))
 		(*i)++;
 	if (start == *i)
-		error(error_message, scene);
+		error(error_message, scene, line);
 	return (ft_atoi(&line[start]));
 }
 
@@ -64,7 +64,7 @@ void	parse_plane_color(char *line, int *i, t_plane *plane, t_scene *scene)
 	b = parse_color_component(line, i,
 			"Invalid character in plane definition", scene);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		error("Plane color values out of range [0, 255]", scene);
+		error("Plane color values out of range [0, 255]", scene, line);
 	plane->color.r = r;
 	plane->color.g = g;
 	plane->color.b = b;
@@ -101,7 +101,7 @@ void	parse_plane(char *line, t_plane **planes, t_scene *scene)
 	skip_whitespace(line, &i);
 	new_plane = malloc(sizeof(t_plane));
 	if (!new_plane)
-		error("Memory allocation failed", scene);
+		error("Memory allocation failed", scene, line);
 	add_plane_to_list(planes, new_plane);
 	parse_plane_coordinates(line, &i, new_plane, scene);
 	skip_whitespace(line, &i);
@@ -115,6 +115,6 @@ void	parse_plane(char *line, t_plane **planes, t_scene *scene)
 	}
 	if (line[i] != '\0')
 	{
-		error("Invalid character in plane definition", scene);
+		error("Invalid character in plane definition", scene, line);
 	}
 }

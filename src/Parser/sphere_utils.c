@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:13:14 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 15:12:05 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:36:22 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	parse_color_sphere(char *line, int *i, t_sphere *sphere, t_scene *scene)
 	b = parse_color_component(line, i,
 			"Invalid character in sphere definition", scene);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		error("Sphere color values out of range [0, 255]", NULL);
+		error("Sphere color values out of range [0, 255]", NULL, line);
 	sphere->color.r = r;
 	sphere->color.g = g;
 	sphere->color.b = b;

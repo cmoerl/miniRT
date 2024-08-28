@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/28 12:57:13 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/28 15:46:17 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	scene = parse_scene(argv[1], scene);
 	if (scene.objects == NULL)
 	{
-		error("No objects found in scene", &scene);
+		error("No objects found in scene", &scene, NULL);
 		return (1);
 	}
 	init_scene_mlx(&scene);

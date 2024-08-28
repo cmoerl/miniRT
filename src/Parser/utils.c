@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:51:44 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 09:57:46 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:35:18 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ float	parse_float_with_check(char **line, int *i, t_scene *scene)
 		|| (*line)[*i] == '.' || (*line)[*i] == '-' || (*line)[*i] == '+'))
 		(*i)++;
 	if (start == *i)
-		error("Error: Invalid character in camera definition", scene);
+		error("Error: Invalid character in camera definition", scene, *line);
 	value = ft_atof(&(*line)[start]);
 	if ((*line)[*i] == ',')
 		(*i)++;

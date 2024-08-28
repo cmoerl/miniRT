@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/28 08:21:28 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:40:46 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,13 @@ void	read_and_parse_lines(int fd, t_scene *scene, t_flags *flags)
 	line = get_next_line(fd, 0);
 	while (line != NULL)
 	{
+		printf("a\n");
 		parse_scene_line(line, scene, flags);
+		printf("h\n");
 		free(line);
+		printf("o\n");
 		line = get_next_line(fd, 0);
+		printf("l\n");
 	}
 }
 
@@ -60,7 +64,7 @@ t_scene	parse_scene(char *file, t_scene scene)
 	scene = init_and_check_file(file, scene);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		error("Could not open file", &scene);
+		error("Could not open file", &scene, NULL);
 	read_and_parse_lines(fd, &scene, &flags);
 	close(fd);
 	check_essential_components(flags.ambient_found,
