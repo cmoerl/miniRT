@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/28 15:46:22 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:54:27 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,7 @@ typedef struct s_scene
 	void		*win_ptr;
 	t_img		*img;
 	t_hooks		*hooks;
+	int			fd;
 	int			*color_value;
 	char		*color_name;
 }	t_scene;

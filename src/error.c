@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:36:52 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 15:36:13 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 16:04:40 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 
 void	error(char *message, t_scene *scene, char *line)
 {
+	if (scene->fd != 0)
+	{
+		if (close(scene->fd) == -1)
+		{
+			perror("Error closing file descriptor");
+		}
+		scene->fd = 0;
+	}
 	if (line != NULL)
 		free(line);
 	if (message != NULL)
