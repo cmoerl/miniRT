@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 09:44:34 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/22 10:55:12 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/28 11:51:05 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	close_window(t_scene *scene)
 {
-	mlx_destroy_window(scene->mlx_ptr, scene->win_ptr);
 	error(NULL, scene);
 	return (0);
 }

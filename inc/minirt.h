@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/26 11:39:37 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/28 11:13:43 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,6 @@ typedef struct s_coefficients
 typedef struct s_hooks
 {
 	int	key_press;
-	int	key_release;
-	int	mouse_press;
-	int	mouse_release;
-	int	mouse_move;
 }	t_hooks;
 
 typedef struct s_img
@@ -167,8 +163,6 @@ typedef struct s_scene
 	t_amblight	amblight;
 	t_light		light;
 	t_camera	camera;
-	int			width;
-	int			height;
 	int			objects_count;
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -286,5 +280,6 @@ void		check_file(char *file);
 void		parse_camera(char *line, t_camera *camera);
 void		parse_light(char *line, t_light *light);
 t_scene		parse_scene(char *filename, t_scene scene);
+void 		init_scene_mlx(t_scene *scene);
 
 #endif

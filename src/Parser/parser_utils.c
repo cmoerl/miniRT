@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:42:55 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/21 18:54:44 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/28 11:41:48 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ void	check_file(char *file)
 
 t_scene	init_scene(t_scene scene)
 {
+	scene.objects = NULL;
+	scene.hooks = NULL;
+	scene.img = NULL;
+	scene.mlx_ptr = NULL;
+	scene.win_ptr = NULL;
 	scene.objects = malloc(sizeof(t_object));
 	if (!scene.objects)
 		error("Memory allocation failed", &scene);
