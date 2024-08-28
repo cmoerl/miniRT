@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/28 15:58:47 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 16:37:31 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,9 @@ void	read_and_parse_lines(t_scene *scene, t_flags *flags)
 	line = get_next_line(scene->fd, 0);
 	while (line != NULL)
 	{
-		printf("a\n");
 		parse_scene_line(line, scene, flags);
-		printf("h\n");
 		free(line);
-		printf("o\n");
 		line = get_next_line(scene->fd, 0);
-		printf("l\n");
 	}
 }
 
