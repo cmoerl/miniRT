@@ -3,51 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/28 12:03:24 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 12:57:13 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_scene scene = {0};
+	t_scene	scene;
 
-    if (argc != 2)
-    {
-        printf("Usage: %s <scene.rt>\n", argv[0]);
-        return 1;
-    }
-
-    // Test check_file function
-    check_file(argv[1]);
-
-    // If the file is valid, proceed with parsing
-    scene = parse_scene(argv[1], scene);
-    if(scene.objects == NULL)
-    {
-        error("No objects found in scene", &scene);
-        return 1;
-    }
-    init_scene_mlx(&scene);
-    // // Print parsed ambient lighting for testing
-    // printf("Ambient lighting intensity: %f\n", scene.amblight.intensity);
-    // printf("Ambient lighting color: %f, %f, %f\n", scene.amblight.color.r, scene.amblight.color.g, scene.amblight.color.b);
-
-    // // Print parsed camera for testing
-    // printf("Camera position: %f, %f, %f\n", scene.camera.center.x, scene.camera.center.y, scene.camera.center.z);
-    // printf("Camera orientation: %f, %f, %f\n", scene.camera.orientation.x, scene.camera.orientation.y, scene.camera.orientation.z);
-    // printf("Camera FOV: %f\n", scene.camera.fov);
-
-    // // Print parsed light for testing
-    // printf("Light position: %f, %f, %f\n", scene.light.position.x, scene.light.position.y, scene.light.position.z);
-    // printf("Light intensity: %f\n", scene.light.intensity);
-
-    // Print parsed planes for testing
+	scene = (t_scene){0};
+	if (argc != 2)
+	{
+		printf("Usage: %s <scene.rt>\n", argv[0]);
+		return (1);
+	}
+	check_file(argv[1]);
+	scene = parse_scene(argv[1], scene);
+	if (scene.objects == NULL)
+	{
+		error("No objects found in scene", &scene);
+		return (1);
+	}
+	init_scene_mlx(&scene);
     t_plane *plane = scene.objects->planes;
     while (plane)
     {
@@ -78,11 +60,8 @@ int main(int argc, char **argv)
         printf("Sphere color: %f, %f, %f\n", sphere->color.r, sphere->color.g, sphere->color.b);
         sphere = sphere->next;
     }
-    render_scene(scene);
-    event_loop(scene);
-
-       // Free the allocated scene memory before exiting
-    free_scene(&scene);
-
-    return 0;
+	render_scene(scene);
+	event_loop(scene);
+	free_scene(&scene);
+	return (0);
 }

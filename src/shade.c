@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:18:29 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/27 14:43:05 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/28 12:43:57 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,8 @@ t_color	calc_shade(t_scene scene, t_shade shade, t_hit object_hit)
 
 	color = calc_ambient(scene, shade.object_color);
 	light.direction = calc_light_dir(scene, shade.ip);
-	light.distance = sqrt(light.direction.x * light.direction.x
-			+ light.direction.y * light.direction.y
-			+ light.direction.z * light.direction.z);
-	light.direction = normalise_vector(light.direction);	
+	light.distance = vector_length(light.direction);
+	light.direction = normalise_vector(light.direction);
 	if (in_shadow(scene, shade.ip, light, object_hit))
 		return (color);
 	dot = dot_product(shade.normal, light.direction);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/28 12:00:11 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 12:48:41 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -296,6 +296,6 @@ void		parse_camera(char *line, t_camera *camera, t_scene *scene);
 void		parse_light(char *line, t_light *light, t_scene *scene);
 void		error(char *message, t_scene *scene);
 t_scene		parse_scene(char *filename, t_scene scene);
-void 		init_scene_mlx(t_scene *scene);
+void		init_scene_mlx(t_scene *scene);
 
 #endif
