@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 19:07:04 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/23 13:52:39 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 10:15:16 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void	parse_light_line(char *line, t_scene *scene, int *light_found)
 {
 	if (*light_found)
 		error("Multiple light definitions found", scene);
-	parse_light(line, &scene->light);
+	parse_light(line, &scene->light, scene);
 	*light_found = 1;
 }

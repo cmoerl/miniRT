@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/28 10:03:09 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 10:28:46 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,9 +261,10 @@ void		parse_plane_coordinates(char *line, int *i, t_plane *plane);
 float		parse_coordinate(char *line, int *i, char *error_message);
 void		validate_plane_identifier(char *line, int *i);
 void		parse_single_position(char *line, int *i,
-				float *position_component);
-void		parse_position(char *line, int *i, t_light *light);
-void		parse_intensity_light(char *line, int *i, t_light *light);
+				float *position_component, t_scene *scene);
+void		parse_position(char *line, int *i, t_light *light, t_scene *scene);
+void		parse_intensity_light(char *line, int *i,
+				t_light *light, t_scene *scene);
 void		skip_whitespace(char *line, int *i);
 void		print_camera(t_camera *camera);
 float		parse_float_with_check(char **line, int *i, t_scene *scene);
@@ -277,7 +278,7 @@ void		parse_ambient(char *line, t_amblight *ambient, t_scene *scene);
 void		error(char *message, t_scene *scene);
 void		check_file(char *file);
 void		parse_camera(char *line, t_camera *camera, t_scene *scene);
-void		parse_light(char *line, t_light *light);
+void		parse_light(char *line, t_light *light, t_scene *scene);
 void		error(char *message, t_scene *scene);
 t_scene		parse_scene(char *filename, t_scene scene);
 
