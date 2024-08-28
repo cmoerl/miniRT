@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 13:11:08 by mafurnic          #+#    #+#             */
-/*   Updated: 2024/08/28 10:29:34 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 10:55:03 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,3 @@ void	parse_intensity_light(char *line, int *i,
 	if (light->intensity < 0.0 || light->intensity > 1.0)
 		error("Light intensity out of range [0.0, 1.0]", scene);
 }
-

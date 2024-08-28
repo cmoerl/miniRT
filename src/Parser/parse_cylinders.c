@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:53:37 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 08:41:18 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 10:53:33 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,26 @@ void	parse_height(char *line, int *i, t_cylinder *cylinder)
 		error("Cylinder height must be positive", NULL);
 }
 
-void	parse_color(char *line, int *i, t_cylinder *cylinder)
+void	parse_color(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
 {
 	int	r;
 	int	g;
 	int	b;
 
 	r = parse_color_component(line, i,
-			"Invalid character in cylinder definition");
+			"Invalid character in cylinder definition", scene);
 	skip_whitespace(line, i);
 	if (line[*i] == ',')
 		(*i)++;
 	skip_whitespace(line, i);
 	g = parse_color_component(line, i,
-			"Invalid character in cylinder definition");
+			"Invalid character in cylinder definition", scene);
 	skip_whitespace(line, i);
 	if (line[*i] == ',')
 		(*i)++;
 	skip_whitespace(line, i);
 	b = parse_color_component(line, i,
-			"Invalid character in cylinder definition");
+			"Invalid character in cylinder definition", scene);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		error("Cylinder color values out of range [0, 255]", NULL);
 	cylinder->color.r = r;
@@ -55,7 +55,8 @@ void	parse_color(char *line, int *i, t_cylinder *cylinder)
 	cylinder->color.b = b;
 }
 
-void	parse_cylinder_properties(char *line, int *i, t_cylinder *cylinder)
+void	parse_cylinder_properties(char *line, int *i,
+				t_cylinder *cylinder, t_scene *scene)
 {
 	skip_whitespace(line, i);
 	parse_center(line, i, cylinder);
@@ -66,11 +67,11 @@ void	parse_cylinder_properties(char *line, int *i, t_cylinder *cylinder)
 	skip_whitespace(line, i);
 	parse_height(line, i, cylinder);
 	skip_whitespace(line, i);
-	parse_color(line, i, cylinder);
+	parse_color(line, i, cylinder, scene);
 	skip_whitespace(line, i);
 }
 
-void	parse_cylinder(char *line, t_cylinder **cylinders)
+void	parse_cylinder(char *line, t_cylinder **cylinders, t_scene *scene)
 {
 	int			i;
 	t_cylinder	*cylinder;
@@ -82,7 +83,7 @@ void	parse_cylinder(char *line, t_cylinder **cylinders)
 	cylinder = malloc(sizeof(t_cylinder));
 	if (!cylinder)
 		error("Memory allocation failed", NULL);
-	parse_cylinder_properties(line, &i, cylinder);
+	parse_cylinder_properties(line, &i, cylinder, scene);
 	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
 		i++;
 	if (line[i] != '\0')

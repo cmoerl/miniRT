@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:50:01 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 08:41:35 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 10:54:37 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,19 @@ void	parse_radius_sphere(char *line, int *i, t_sphere *sphere)
 		error("Sphere radius must be positive", NULL);
 }
 
-void	parse_sphere_properties(char *line, int *i, t_sphere *sphere)
+void	parse_sphere_properties(char *line, int *i,
+			t_sphere *sphere, t_scene *scene)
 {
 	skip_whitespace(line, i);
 	parse_center_sphere(line, i, sphere);
 	skip_whitespace(line, i);
 	parse_radius_sphere(line, i, sphere);
 	skip_whitespace(line, i);
-	parse_color_sphere(line, i, sphere);
+	parse_color_sphere(line, i, sphere, scene);
 	skip_whitespace(line, i);
 }
 
-void	parse_sphere(char *line, t_sphere **spheres)
+void	parse_sphere(char *line, t_sphere **spheres, t_scene *scene)
 {
 	int			i;
 	t_sphere	*sphere;
@@ -69,13 +70,13 @@ void	parse_sphere(char *line, t_sphere **spheres)
 	sphere = malloc(sizeof(t_sphere));
 	if (!sphere)
 		error("Memory allocation failed", NULL);
-	parse_sphere_properties(line, &i, sphere);
+	parse_sphere_properties(line, &i, sphere, scene);
 	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
 		i++;
 	if (line[i] != '\0')
 	{
 		free(sphere);
-		error("Invalid character in sphere definition", NULL);
+		error("Invalid character in sphere definition", scene);
 	}
 	sphere->next = *spheres;
 	*spheres = sphere;
