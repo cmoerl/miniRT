@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_spheres.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:50:01 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/21 19:19:21 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/28 08:41:35 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/23 14:39:43 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 08:45:39 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	print_ambient_details(t_amblight *ambient, float intensity)
 		ambient->color.g, ambient->color.b);
 }
 
-void	parse_ambient(char *line, t_amblight *ambient)
+void	parse_ambient(char *line, t_amblight *ambient, t_scene *scene)
 {
 	int		i;
 	float	intensity;
@@ -91,14 +91,14 @@ void	parse_ambient(char *line, t_amblight *ambient)
 	i = 0;
 	skip_whitespace(line, &i);
 	if (line[i] != 'A')
-		error("Missing 'A' identifier for ambient lighting", NULL);
+		error("Missing 'A' identifier for ambient lighting", scene);
 	i++;
 	skip_whitespace(line, &i);
 	parse_intensity(line, &i, &intensity);
 	skip_whitespace(line, &i);
 	parse_color_values(line, &i, &ambient->color);
 	if (line[i] != '\0')
-		error("Invalid character in ambient lighting definition", NULL);
+		error("Invalid character in ambient lighting definition", scene);
 	ambient->intensity = intensity;
 	print_ambient_details(ambient, intensity);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:42:55 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/21 18:54:44 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/28 08:44:44 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	parse_ambient_line(char *line, t_scene *scene, int *ambient_found)
 {
 	if (*ambient_found)
 		error("Multiple ambient lighting definitions found", scene);
-	parse_ambient(line, &scene->amblight);
+	parse_ambient(line, &scene->amblight, scene);
 	*ambient_found = 1;
 }
 
