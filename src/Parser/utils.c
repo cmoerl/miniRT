@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:51:44 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/21 19:18:58 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/28 09:34:13 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,15 @@ void	skip_whitespacess(char **line, int *i)
 }
 
 // Helper function to parse a float with validation
-float	parse_float_with_check(char **line, int *i)
+float	parse_float_with_check(char **line, int *i, t_scene *scene)
 {
-	int		start;
 	float	value;
 
-	start = *i;
-	while ((*line)[*i] && (ft_isdigit((*line)[*i])
-		|| (*line)[*i] == '.' || (*line)[*i] == '-' || (*line)[*i] == '+'))
-		(*i)++;
-	if (start == *i)
-		error("Error: Invalid character in camera definition", NULL);
-	value = ft_atof(&(*line)[start]);
-	if ((*line)[*i] == ',')
-		(*i)++;
+	skip_whitespacess(line, i);
+	if (!ft_isdigit((*line)[*i]) && (*line)[*i] != '.' && (*line)[*i] != '-'
+		&& (*line)[*i] != '+')
+		error("Error: Invalid character in camera definition", scene);
+	value = ft_atof(&(*line)[*i]);
 	skip_whitespacess(line, i);
 	return (value);
 }
