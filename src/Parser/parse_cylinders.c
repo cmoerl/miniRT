@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:53:37 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 11:03:42 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 11:11:55 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	parse_color(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
 	b = parse_color_component(line, i,
 			"Invalid character in cylinder definition", scene);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		error("Cylinder color values out of range [0, 255]", NULL);
+		error("Cylinder color values out of range [0, 255]", scene);
 	cylinder->color.r = r;
 	cylinder->color.g = g;
 	cylinder->color.b = b;
@@ -74,23 +74,21 @@ void	parse_cylinder_properties(char *line, int *i,
 void	parse_cylinder(char *line, t_cylinder **cylinders, t_scene *scene)
 {
 	int			i;
-	t_cylinder	*cylinder;
 
 	i = 0;
 	skip_whitespace(line, &i);
 	validate_cylinder_identifier(line, &i);
 	skip_whitespace(line, &i);
-	cylinder = malloc(sizeof(t_cylinder));
-	if (!cylinder)
+	scene->objects->cylinders = malloc(sizeof(t_cylinder));
+	scene->objects->cylinders->next = NULL;
+	if (!scene->objects->cylinders)
 		error("Memory allocation failed", NULL);
-	parse_cylinder_properties(line, &i, cylinder, scene);
+	parse_cylinder_properties(line, &i, scene->objects->cylinders, scene);
 	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
 		i++;
 	if (line[i] != '\0')
 	{
-		free(cylinder);
-		error("Invalid character in cylinder definition", NULL);
+		error("Invalid character in cylinder definition", scene);
 	}
-	cylinder->next = *cylinders;
-	*cylinders = cylinder;
+	scene->objects->cylinders = *cylinders;
 }
