@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/28 10:45:42 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 11:01:16 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,10 +253,13 @@ t_scene		init_scene(t_scene scene);
 void		check_file(char *file);
 void		parse_color_sphere(char *line, int *i, t_sphere *sphere,
 				t_scene *scene);
-void		parse_axis(char *line, int *i, t_cylinder *cylinder);
+void		parse_axis(char *line, int *i,
+				t_cylinder *cylinder, t_scene *scene);
 void		validate_cylinder_identifier(char *line, int *i);
-float		parse_float(char *line, int *i, char *error_message);
-void		parse_center(char *line, int *i, t_cylinder *cylinder);
+float		parse_float(char *line, int *i, char *error_message,
+				t_scene *scene);
+void		parse_center(char *line, int *i, t_cylinder *cylinder,
+				t_scene *scene);
 int			parse_color_component(char *line, int *i, char *error_message,
 				t_scene *scene);
 void		parse_plane_coordinates(char *line, int *i, t_plane *plane,

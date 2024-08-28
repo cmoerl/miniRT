@@ -6,26 +6,26 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:53:37 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 10:53:33 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 11:03:42 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-void	parse_radius(char *line, int *i, t_cylinder *cylinder)
+void	parse_radius(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
 {
 	cylinder->radius = parse_float(line, i,
-			"Invalid character in cylinder definition") / 2;
+			"Invalid character in cylinder definition", scene) / 2;
 	if (cylinder->radius <= 0)
-		error("Cylinder radius must be positive", NULL);
+		error("Cylinder radius must be positive", scene);
 }
 
-void	parse_height(char *line, int *i, t_cylinder *cylinder)
+void	parse_height(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
 {
 	cylinder->height = parse_float(line, i,
-			"Invalid character in cylinder definition");
+			"Invalid character in cylinder definition", scene);
 	if (cylinder->height <= 0)
-		error("Cylinder height must be positive", NULL);
+		error("Cylinder height must be positive", scene);
 }
 
 void	parse_color(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
@@ -59,13 +59,13 @@ void	parse_cylinder_properties(char *line, int *i,
 				t_cylinder *cylinder, t_scene *scene)
 {
 	skip_whitespace(line, i);
-	parse_center(line, i, cylinder);
+	parse_center(line, i, cylinder, scene);
 	skip_whitespace(line, i);
-	parse_axis(line, i, cylinder);
+	parse_axis(line, i, cylinder, scene);
 	skip_whitespace(line, i);
-	parse_radius(line, i, cylinder);
+	parse_radius(line, i, cylinder, scene);
 	skip_whitespace(line, i);
-	parse_height(line, i, cylinder);
+	parse_height(line, i, cylinder, scene);
 	skip_whitespace(line, i);
 	parse_color(line, i, cylinder, scene);
 	skip_whitespace(line, i);

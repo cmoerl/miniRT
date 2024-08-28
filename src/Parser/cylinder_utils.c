@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:34:34 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/21 17:48:58 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/08/28 11:01:19 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	validate_cylinder_identifier(char *line, int *i)
 	*i += 2;
 }
 
-float	parse_float(char *line, int *i, char *error_message)
+float	parse_float(char *line, int *i, char *error_message, t_scene *scene)
 {
 	int	start;
 
@@ -29,42 +29,42 @@ float	parse_float(char *line, int *i, char *error_message)
 			|| line[*i] == '.' || line[*i] == '-' || line[*i] == '+'))
 		(*i)++;
 	if (start == *i)
-		error(error_message, NULL);
+		error(error_message, scene);
 	return (ft_atof(&line[start]));
 }
 
-void	parse_center(char *line, int *i, t_cylinder *cylinder)
+void	parse_center(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
 {
 	cylinder->center.x = parse_float(line, i,
-			"Invalid character in cylinder definition");
+			"Invalid character in cylinder definition", scene);
 	skip_whitespace(line, i);
 	if (line[*i] == ',')
 		(*i)++;
 	skip_whitespace(line, i);
 	cylinder->center.y = parse_float(line, i,
-			"Invalid character in cylinder definition");
+			"Invalid character in cylinder definition", scene);
 	skip_whitespace(line, i);
 	if (line[*i] == ',')
 		(*i)++;
 	skip_whitespace(line, i);
 	cylinder->center.z = parse_float(line, i,
-			"Invalid character in cylinder definition");
+			"Invalid character in cylinder definition", scene);
 }
 
-void	parse_axis(char *line, int *i, t_cylinder *cylinder)
+void	parse_axis(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
 {
 	cylinder->axis.x = parse_float(line, i,
-			"Invalid character in cylinder definition");
+			"Invalid character in cylinder definition", scene);
 	skip_whitespace(line, i);
 	if (line[*i] == ',')
 		(*i)++;
 	skip_whitespace(line, i);
 	cylinder->axis.y = parse_float(line, i,
-			"Invalid character in cylinder definition");
+			"Invalid character in cylinder definition", scene);
 	skip_whitespace(line, i);
 	if (line[*i] == ',')
 		(*i)++;
 	skip_whitespace(line, i);
 	cylinder->axis.z = parse_float(line, i,
-			"Invalid character in cylinder definition");
+			"Invalid character in cylinder definition", scene);
 }
