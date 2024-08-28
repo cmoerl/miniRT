@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:13:14 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 10:46:54 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:12:05 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,24 @@ void	parse_color_sphere(char *line, int *i, t_sphere *sphere, t_scene *scene)
 	sphere->color.r = r;
 	sphere->color.g = g;
 	sphere->color.b = b;
+}
+
+void	add_sphere_to_list(t_sphere **spheres, t_sphere *new_sphere)
+{
+	t_sphere	*current;
+
+	new_sphere->next = NULL;
+	if (*spheres == NULL)
+	{
+		*spheres = new_sphere;
+	}
+	else
+	{
+		current = *spheres;
+		while (current->next != NULL)
+		{
+			current = current->next;
+		}
+		current->next = new_sphere;
+	}
 }

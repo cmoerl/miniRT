@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:50:01 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 12:04:05 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:12:26 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,21 +63,25 @@ void	parse_sphere_properties(char *line, int *i,
 void	parse_sphere(char *line, t_sphere **spheres, t_scene *scene)
 {
 	int			i;
+	t_sphere	*new_sphere;
 
 	i = 0;
 	skip_whitespace(line, &i);
 	validate_sphere_identifier(line, &i, scene);
 	skip_whitespace(line, &i);
-	scene->objects->spheres = malloc(sizeof(t_sphere));
-	scene->objects->spheres->next = NULL;
-	if (!scene->objects->spheres)
-		error("Memory allocation failed", NULL);
-	parse_sphere_properties(line, &i, scene->objects->spheres, scene);
+	new_sphere = malloc(sizeof(t_sphere));
+	if (!new_sphere)
+	{
+		error("Memory allocation failed", scene);
+	}
+	add_sphere_to_list(spheres, new_sphere);
+	parse_sphere_properties(line, &i, new_sphere, scene);
 	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
+	{
 		i++;
+	}
 	if (line[i] != '\0')
 	{
 		error("Invalid character in sphere definition", scene);
 	}
-	scene->objects->spheres = *spheres;
 }

@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:53:37 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 14:25:36 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 14:58:23 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,47 +71,28 @@ void	parse_cylinder_properties(char *line, int *i,
 	skip_whitespace(line, i);
 }
 
-void parse_cylinder(char *line, t_cylinder **cylinders, t_scene *scene)
+void	parse_cylinder(char *line, t_cylinder **cylinders, t_scene *scene)
 {
-    int i = 0;
-    t_cylinder *new_cylinder;
-    t_cylinder *current;
+	int			i;
+	t_cylinder	*new_cylinder;
 
-    skip_whitespace(line, &i);
-    validate_cylinder_identifier(line, &i);
-    skip_whitespace(line, &i);
-
-    new_cylinder = malloc(sizeof(t_cylinder));
-    if (!new_cylinder)
-    {
-        error("Memory allocation failed", scene);
-    }
-    new_cylinder->next = NULL;
-
-    // Append the new cylinder to the end of the linked list
-    if (*cylinders == NULL)
-    {
-        *cylinders = new_cylinder;
-    }
-    else
-    {
-        current = *cylinders;
-        while (current->next != NULL)
-        {
-            current = current->next;
-        }
-        current->next = new_cylinder;
-    }
-    parse_cylinder_properties(line, &i, new_cylinder, scene);
-
-    while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
-    {
-        i++;
-    }
-    if (line[i] != '\0')
-    {
-        // free(new_cylinder);  // Free the allocated memory if there's an error
-        error("Invalid character in cylinder definition", scene);
-    }
-
+	i = 0;
+	skip_whitespace(line, &i);
+	validate_cylinder_identifier(line, &i);
+	skip_whitespace(line, &i);
+	new_cylinder = malloc(sizeof(t_cylinder));
+	if (!new_cylinder)
+	{
+		error("Memory allocation failed", scene);
+	}
+	add_cylinder_to_list(cylinders, new_cylinder);
+	parse_cylinder_properties(line, &i, new_cylinder, scene);
+	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
+	{
+		i++;
+	}
+	if (line[i] != '\0')
+	{
+		error("Invalid character in cylinder definition", scene);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:34:34 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 11:01:19 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:07:31 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,24 @@ void	parse_axis(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
 	skip_whitespace(line, i);
 	cylinder->axis.z = parse_float(line, i,
 			"Invalid character in cylinder definition", scene);
+}
+
+void	add_cylinder_to_list(t_cylinder **cylinders, t_cylinder *new_cylinder)
+{
+	t_cylinder	*current;
+
+	new_cylinder->next = NULL;
+	if (*cylinders == NULL)
+	{
+		*cylinders = new_cylinder;
+	}
+	else
+	{
+		current = *cylinders;
+		while (current->next != NULL)
+		{
+			current = current->next;
+		}
+		current->next = new_cylinder;
+	}
 }
