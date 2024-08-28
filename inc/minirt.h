@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/28 09:22:34 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/28 10:03:09 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,10 +161,11 @@ typedef struct s_hit
 	int				index;
 }	t_hit;
 
-typedef struct s_color_info {
-    int *color_value;
-    const char *color_name;
-} t_color_info;
+typedef struct s_color_info
+{
+	int			*color_value;
+	const char	*color_name;
+}	t_color_info;
 
 typedef struct s_scene
 {
@@ -265,7 +266,7 @@ void		parse_position(char *line, int *i, t_light *light);
 void		parse_intensity_light(char *line, int *i, t_light *light);
 void		skip_whitespace(char *line, int *i);
 void		print_camera(t_camera *camera);
-float		parse_float_with_check(char **line, int *i);
+float		parse_float_with_check(char **line, int *i, t_scene *scene);
 void		skip_whitespacess(char **line, int *i);
 void		parse_sphere(char *line, t_sphere **spheres);
 void		parse_plane(char *line, t_plane **planes);
@@ -275,7 +276,7 @@ void		parse_plane(char *line, t_plane **planes);
 void		parse_ambient(char *line, t_amblight *ambient, t_scene *scene);
 void		error(char *message, t_scene *scene);
 void		check_file(char *file);
-void		parse_camera(char *line, t_camera *camera);
+void		parse_camera(char *line, t_camera *camera, t_scene *scene);
 void		parse_light(char *line, t_light *light);
 void		error(char *message, t_scene *scene);
 t_scene		parse_scene(char *filename, t_scene scene);
