@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:38:31 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/29 11:18:27 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/29 11:55:50 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,4 @@ void	parse_camera(char *line, t_camera *camera, t_scene *scene)
 	camera->fov = parse_float_with_check(&line, &i, scene);
 	validate_fov(camera->fov);
 	validate_end_of_line(line, i, scene);
-	print_camera(camera);
 }

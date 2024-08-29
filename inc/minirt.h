@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/28 15:54:27 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:54:20 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,7 +293,7 @@ void		parse_plane(char *line, t_plane **planes, t_scene *scene);
 void		parse_ambient(char *line, t_amblight *ambient, t_scene *scene);
 void		check_file(char *file);
 void		parse_camera(char *line, t_camera *camera, t_scene *scene);
-void		parse_light(char *line, t_light *light, t_scene *scene);
+void		parse_light(char *line, t_scene *scene);
 t_scene		parse_scene(char *filename, t_scene scene);
 void		init_scene_mlx(t_scene *scene);
 void		add_cylinder_to_list(t_cylinder **cylinders,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:51:44 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 15:35:18 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:45:34 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ float	parse_float_with_check(char **line, int *i, t_scene *scene)
 }
 
 // Helper function to print the parsed camera values
-void	print_camera(t_camera *camera)
-{
-	printf("Parsed Camera:\n");
-	printf("  Position: x=%f, y=%f, z=%f\n",
-		camera->center.x, camera->center.y, camera->center.z);
-	printf("  Orientation: x=%f, y=%f, z=%f\n",
-		camera->orientation.x, camera->orientation.y, camera->orientation.z);
-	printf("  FOV: %f\n", camera->fov);
-}
+// void	print_camera(t_camera *camera)
+// {
+// 	printf("Parsed Camera:\n");
+// 	printf("  Position: x=%f, y=%f, z=%f\n",
+// 		camera->center.x, camera->center.y, camera->center.z);
+// 	printf("  Orientation: x=%f, y=%f, z=%f\n",
+// 		camera->orientation.x, camera->orientation.y, camera->orientation.z);
+// 	printf("  FOV: %f\n", camera->fov);
+// }

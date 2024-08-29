@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:36:52 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 16:04:40 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:36:34 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,8 @@ void	error(char *message, t_scene *scene, char *line)
 		write(2, message, ft_strlen(message));
 		write(2, "\n", 1);
 	}
-	printf("before free_scene\n");
 	if (scene != NULL)
-	{
-		printf("scene is not NULL\n");
 		free_scene(scene);
-	}
 	get_next_line(0, 1);
 	exit(1);
 }
