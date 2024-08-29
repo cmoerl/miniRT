@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:38:31 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 15:52:48 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:18:27 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	parse_camera(char *line, t_camera *camera, t_scene *scene)
 	if (camera->orientation.x == 0
 		&& camera->orientation.y == 0 && camera->orientation.z == 0)
 		error("Camera orientation cannot be zero", scene, line);
+	camera->orientation = normalise_vector(camera->orientation);
 	camera->fov = parse_float_with_check(&line, &i, scene);
 	validate_fov(camera->fov);
 	validate_end_of_line(line, i, scene);

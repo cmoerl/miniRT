@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:25:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/23 14:17:24 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/29 10:45:57 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ t_color	trace_ray(t_scene scene, t_ray ray)
 t_ray	get_ray(t_scene scene, int x, int y)
 {
 	t_vector	ray_dir;
-	t_vector	orientation;
 	t_ray		ray;
 	float		aspect_ratio;
 	float		tan_fov;
@@ -60,8 +59,7 @@ t_ray	get_ray(t_scene scene, int x, int y)
 	ray_dir.y = (1 - 2 * (y + 0.5) / (double)HEIGHT) * tan_fov;
 	ray_dir.z = -1;
 	ray_dir = normalise_vector(ray_dir);
-	orientation = normalise_vector(scene.camera.orientation);
-	ray_dir = rotate_vector(ray_dir, orientation);
+	ray_dir = rotate_vector(ray_dir, scene.camera.orientation);
 	ray.origin = scene.camera.center;
 	ray.direction = ray_dir;
 	return (ray);
