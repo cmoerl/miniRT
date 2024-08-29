@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 11:25:58 by mafurnic          #+#    #+#             */
-/*   Updated: 2024/08/28 12:01:29 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/29 15:19:25 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,5 @@ void	free_scene(t_scene *scene)
 	if (scene->hooks)
 		free(scene->hooks);
 	if (scene->mlx_ptr)
-	{
-		mlx_destroy_display(scene->mlx_ptr);
 		free(scene->mlx_ptr);
-	}
 }
