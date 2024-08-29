@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:30:14 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/21 11:57:55 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/29 11:02:30 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ t_vector	rotate_vector(t_vector v, t_vector orientation)
 	float		s;
 	float		angle;
 
+	if (orientation.x == 0 && orientation.y == 0 && orientation.z == 1)
+		return (v);
+	if (orientation.x == 0 && orientation.y == 0 && orientation.z == -1)
+		return ((t_vector){-v.x, -v.y, v.z});
 	axis = cross_product(orientation, (t_vector){0, 0, 1});
 	angle = acos(dot_product(orientation, (t_vector){0, 0, 1}));
 	c = cos(angle);

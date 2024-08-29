@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_planes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:47:53 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/28 15:02:31 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/08/29 10:12:34 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	parse_plane_axis(char *line, int *i, t_plane *plane, t_scene *scene)
 	skip_whitespace(line, i);
 	plane->axis.z = parse_coordinate(line, i,
 			"Invalid character in plane definition", scene);
+	plane->axis = normalise_vector(plane->axis);
 }
 
 int	parse_color_component(char *line, int *i,

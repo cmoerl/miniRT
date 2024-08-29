@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:23:36 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/26 11:25:52 by csturm           ###   ########.fr       */
+/*   Updated: 2024/08/29 10:30:07 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ float	intersect_plane(t_plane *plane, t_ray ray)
 	float	denominator;
 
 	denominator = dot_product(plane->axis, ray.direction);
-	if (denominator == 0)
+	if (fabs(denominator) < 1e-6)
 		return (INFINITY);
 	t = dot_product((t_vector){plane->point.x - ray.origin.x,
 			plane->point.y - ray.origin.y, plane->point.z - ray.origin.z},
@@ -90,7 +90,6 @@ float	intersect_cylinder(t_cylinder *cylinder, t_ray ray)
 	t = INFINITY;
 	calc_coefficients(ray, cylinder, &oc, &coeff);
 	t = check_discriminant(coeff, ray, cylinder, oc);
-	cylinder->axis = normalise_vector(cylinder->axis);
 	t = check_caps(cylinder, ray, t, -cylinder->height / 2);
 	t = check_caps(cylinder, ray, t, cylinder->height / 2);
 	return (t);
