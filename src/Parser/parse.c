@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/28 16:37:31 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/02 17:15:20 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_scene	parse_scene(char *file, t_scene scene)
 {
 	t_flags	flags;
 
-	flags = (t_flags){0, 0, 0};
+	flags = (t_flags){0, 0, 0,   0, 0, 0};
 	scene = init_and_check_file(file, scene);
 	scene.fd = open(file, O_RDONLY);
 	if (scene.fd < 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/29 11:54:20 by csturm           ###   ########.fr       */
+/*   Updated: 2024/09/02 17:18:20 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,12 +163,22 @@ typedef struct s_color_info
 	const char	*color_name;
 }	t_color_info;
 
+typedef struct s_flags
+{
+	int	ambient_found;
+	int	camera_found;
+	int	light_found;
+	int	comma_count;
+	int	dot_count;
+	int	sign_count;
+}	t_flags;
 typedef struct s_scene
 {
 	t_object	*objects;
 	t_amblight	amblight;
 	t_light		light;
 	t_camera	camera;
+	t_flags		flags;
 	int			objects_count;
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -186,12 +196,6 @@ typedef struct s_rgb
 	int	b;
 }	t_rgb;
 
-typedef struct s_flags
-{
-	int	ambient_found;
-	int	camera_found;
-	int	light_found;
-}	t_flags;
 
 // error.c
 void		error(char *message, t_scene *scene, char *line);
