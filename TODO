@@ -3,9 +3,6 @@ TODO:
 - several ++, -- or +-
 --> should cause an error
 
-- fov 180 was black
---> handle edge case
-
 - leaks for mlx
 --> destroy_display?
 
