@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:42:55 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/29 10:33:47 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/02 12:45:53 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 void	check_file(char *file)
 {
+	int		fd;
 	char	*extension;
 
-	if (!file || access(file, F_OK) == -1)
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
 	{
 		perror("Error accessing file");
 		exit(EXIT_FAILURE);
 	}
+	close(fd);
 	extension = ft_strrchr(file, '.');
 	if (!extension || ft_strcmp(extension, ".rt") != 0)
 	{
