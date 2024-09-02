@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:25:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/29 10:45:57 by csturm           ###   ########.fr       */
+/*   Updated: 2024/09/02 13:34:29 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_color	trace_ray(t_scene scene, t_ray ray)
 	t_color	color;
 	t_hit	hit;
 
+	if (scene.camera.fov == 0)
+		return ((t_color){0, 0, 0});
 	color = (t_color){0, 0, 0};
 	shade.object_color = (t_color){0, 0, 0};
 	hit = find_closest_object(scene, ray);
@@ -53,7 +55,10 @@ t_ray	get_ray(t_scene scene, int x, int y)
 	float		tan_fov;
 
 	aspect_ratio = WIDTH / (float)HEIGHT;
-	tan_fov = tan((scene.camera.fov * PI / 180) / 2.0);
+	if (scene.camera.fov == 180)
+		tan_fov = 750;
+	else
+		tan_fov = tan((scene.camera.fov * PI / 180) / 2.0);
 	ray_dir.x = (2 * (x + 0.5) / (double)WIDTH - 1)
 		* aspect_ratio * tan_fov;
 	ray_dir.y = (1 - 2 * (y + 0.5) / (double)HEIGHT) * tan_fov;
