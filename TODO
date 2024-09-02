@@ -1,0 +1,16 @@
+TODO:
+
+- several ++, -- or +-
+--> should cause an error
+
+- fov 180 was black
+--> handle edge case
+
+- leaks for mlx
+--> destroy_display?
+
+- camera orientation
+--> tips to side when rotated
+
+- access
+--> use if (close == -1) instead
