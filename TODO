@@ -11,6 +11,3 @@ TODO:
 
 - camera orientation
 --> tips to side when rotated
-
-- access
---> use if (close == -1) instead
