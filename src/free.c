@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 11:25:58 by mafurnic          #+#    #+#             */
-/*   Updated: 2024/08/29 15:19:25 by csturm           ###   ########.fr       */
+/*   Updated: 2024/09/02 16:25:50 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ void	free_cylinders(t_cylinder *cylinders)
 
 void	free_scene(t_scene *scene)
 {
-	if (scene->img)
-	{
-		if (scene->img->img_ptr)
-			mlx_destroy_image(scene->mlx_ptr, scene->img->img_ptr);
-		free(scene->img);
-	}
-	if (scene->win_ptr)
-		mlx_destroy_window(scene->mlx_ptr, scene->win_ptr);
+	// if (scene->img)
+	// {
+	// 	if (scene->img->img_ptr)
+	// 		mlx_destroy_image(scene->mlx_ptr, scene->img->img_ptr);
+	// 	free(scene->img);
+	// }
+	// if (scene->win_ptr)
+	// 	mlx_destroy_window(scene->mlx_ptr, scene->win_ptr);
 	if (scene->objects)
 	{
 		free_spheres(scene->objects->spheres);
@@ -65,8 +65,8 @@ void	free_scene(t_scene *scene)
 		free_cylinders(scene->objects->cylinders);
 		free(scene->objects);
 	}
-	if (scene->hooks)
-		free(scene->hooks);
-	if (scene->mlx_ptr)
-		free(scene->mlx_ptr);
+	// if (scene->hooks)
+	// 	free(scene->hooks);
+	// if (scene->mlx_ptr)
+	// 	free(scene->mlx_ptr);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/29 11:34:21 by csturm           ###   ########.fr       */
+/*   Updated: 2024/09/02 16:19:12 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	main(int argc, char **argv)
 		error("No objects found in scene", &scene, NULL);
 		return (1);
 	}
-	init_scene_mlx(&scene);
-	render_scene(scene);
-	event_loop(scene);
+	// init_scene_mlx(&scene);
+	// render_scene(scene);
+	// event_loop(scene);
 	free_scene(&scene);
 	return (0);
 }

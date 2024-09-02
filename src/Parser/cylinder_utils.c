@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:34:34 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/29 11:17:30 by csturm           ###   ########.fr       */
+/*   Updated: 2024/09/02 16:24:23 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	parse_axis(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
 	skip_whitespace(line, i);
 	cylinder->axis.z = parse_float(line, i,
 			"Invalid character in cylinder definition", scene);
-	cylinder->axis = normalise_vector(cylinder->axis);
+	// cylinder->axis = normalise_vector(cylinder->axis);
 }
 
 void	add_cylinder_to_list(t_cylinder **cylinders, t_cylinder *new_cylinder)
