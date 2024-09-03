@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/03 17:09:20 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/03 18:35:01 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,6 +304,6 @@ void		add_cylinder_to_list(t_cylinder **cylinders,
 				t_cylinder *new_cylinder);
 void		add_sphere_to_list(t_sphere **spheres, t_sphere *new_sphere);
 void		validate_line_format(char *line, t_scene *scene);
-void	validate_end_of_line(char *line, int i, t_scene *scene);
+void		validate_end_of_line(char *line, int i, t_scene *scene);
 
 #endif
