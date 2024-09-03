@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:51:44 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/03 11:39:44 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:09:09 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,15 @@ float	parse_float_with_check(char **line, int *i, t_scene *scene)
 		(*i)++;
 	skip_whitespacess(line, i);
 	return (value);
+}
+
+// Helper function to validate the end of line
+void	validate_end_of_line(char *line, int i, t_scene *scene)
+{
+	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
+		i++;
+	if (line[i] != '\0')
+		error("Invalid character in camera definition", scene, line);
 }
 
 // Helper function to print the parsed camera values

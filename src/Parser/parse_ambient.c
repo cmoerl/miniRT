@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/03 13:32:16 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:41:49 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	parse_ambient(char *line, t_amblight *ambient, t_scene *scene)
 	if (line[i] != 'A')
 		error("Missing 'A' identifier for ambient lighting", scene, line);
 	i++;
-    validate_line_format( line, scene);
+	validate_line_format(line, scene);
 	skip_whitespace(line, &i);
 	parse_intensity(line, &i, &intensity, scene);
 	skip_whitespace(line, &i);

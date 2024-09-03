@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_planes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:47:53 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/03 13:20:38 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/03 16:39:57 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,5 @@ void	parse_plane(char *line, t_plane **planes, t_scene *scene)
         i++;
     }
     if (line[i] != '\0')
-    {
         error("Invalid character in plane definition", scene, line);
-    }
 }
