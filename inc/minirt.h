@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/02 17:18:20 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/03 12:52:59 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,5 +303,6 @@ void		init_scene_mlx(t_scene *scene);
 void		add_cylinder_to_list(t_cylinder **cylinders,
 				t_cylinder *new_cylinder);
 void		add_sphere_to_list(t_sphere **spheres, t_sphere *new_sphere);
+void		validate_line_format(char *line, t_scene *scene);
 
 #endif
