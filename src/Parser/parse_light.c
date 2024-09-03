@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:32:14 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/03 12:53:34 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/03 13:16:37 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	parse_single_color_component(char *line, int *i,
     if (start == *i)
         error("Invalid character in light definition", scene, line);
     *color_component = ft_atoi(&line[start]);
+    if (*color_component < 0 || *color_component > 255)
+        error("Light color values out of range [0, 255]", scene, line);
     if (line[*i] == ',')
         (*i)++;
 }
@@ -34,9 +36,6 @@ void	parse_rgb(char *line, int *i, t_rgb *color, t_scene *scene)
     parse_single_color_component(line, i, &color->r, scene);
     parse_single_color_component(line, i, &color->g, scene);
     parse_single_color_component(line, i, &color->b, scene);
-    if (color->r < 0 || color->r > 255
-        || color->g < 0 || color->g > 255 || color->b < 0 || color->b > 255)
-        error("Light color values out of range [0, 255]", scene, line);
 }
 
 void	parse_light_properties(char *line, int *i, t_rgb *color, t_scene *scene)

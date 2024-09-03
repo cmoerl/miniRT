@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/02 17:41:26 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/03 13:09:29 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,6 @@ void	parse_ambient(char *line, t_amblight *ambient, t_scene *scene)
     skip_whitespace(line, &i);
     parse_color_values(line, &i, &ambient->color, scene);
     if (line[i] != '\0')
-        error("Invalid input in ambient lighting definition", scene, line);
+        error("123Invalid input in ambient lighting definition", scene, line);
     ambient->intensity = intensity;
 }
