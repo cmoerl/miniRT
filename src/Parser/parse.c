@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/04 10:17:27 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/04 13:58:54 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_scene	parse_scene(char *file, t_scene scene)
 		error("Could not open file", &scene, NULL);
 	read_and_parse_lines(&scene, &flags);
 	close(scene.fd);
+	scene.fd = -1;
 	check_essential_components(flags.ambient_found,
 		flags.camera_found, flags.light_found, &scene);
 	return (scene);
