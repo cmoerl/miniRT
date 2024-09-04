@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 11:25:58 by mafurnic          #+#    #+#             */
-/*   Updated: 2024/09/04 14:00:52 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:43:02 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ void	free_scene(t_scene *scene)
 	}
 	if (scene->win_ptr)
 		mlx_destroy_window(scene->mlx_ptr, scene->win_ptr);
+	if (scene->mlx_ptr)
+	{
 	mlx_destroy_display(scene->mlx_ptr);
+	}
 	if (scene->objects)
 	{
 		free_spheres(scene->objects->spheres);
