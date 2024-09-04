@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/04 10:11:41 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/04 15:02:10 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,61 +248,102 @@ void		render_scene(t_scene scene);
 // shade.c
 t_color		calc_shade(t_scene scene, t_shade shade, t_hit object_hit);
 
-// Parser/.
+// Parser
+
+// File Handling & Initialization 
+
+t_scene		init_and_check_file(char *file, t_scene scene);
+void		check_file(char *file);
+void		check_essential_components(int ambient_found,
+				int camera_found, int light_found, t_scene *scene);
+t_scene		init_scene(t_scene scene);
+t_scene		parse_scene(char *filename, t_scene scene);
+void		init_scene_mlx(t_scene *scene);
+
+// Scene Parsing Functions
+
+//Ambient Parsing
+
+void		parse_ambient_line(char *line, t_scene *scene, int *ambient_found);
+void		parse_ambient(char *line, t_amblight *ambient, t_scene *scene);
+
+// Camera Parsing
+
+void		parse_camera_line(char *line, t_scene *scene, int *camera_found);
+void		parse_camera(char *line, t_camera *camera, t_scene *scene);
+
+// Light Parsing
+
+void		parse_light_line(char *line, t_scene *scene, int *light_found);
+void		parse_light(char *line, t_scene *scene);
+void		parse_position(char *line, int *i, t_light *light, t_scene *scene);
+void		parse_intensity_light(char *line, int *i,
+				t_light *light, t_scene *scene);
+
+// Object Parsing
+
+void		parse_object_line(char *line, t_scene *scene);
+
+// Cylinders
+
+void		parse_cylinder(char *line, t_cylinder **cylinders, t_scene *scene);
+void		parse_axis(char *line, int *i,
+				t_cylinder *cylinder, t_scene *scene);
+void		parse_center(char *line, int *i,
+				t_cylinder *cylinder, t_scene *scene);
+void		validate_cylinder_identifier(char *line, int *i);
+void		add_cylinder_to_list(t_cylinder **cylinders,
+				t_cylinder *new_cylinder);
+
+// Spheres
+
+void		parse_sphere(char *line, t_sphere **spheres, t_scene *scene);
+void		parse_color_sphere(char *line, int *i,
+				t_sphere *sphere, t_scene *scene);
+void		add_sphere_to_list(t_sphere **spheres, t_sphere *new_sphere);
+
+// Planes
+
+void		parse_plane(char *line, t_plane **planes, t_scene *scene);
+void		parse_plane_coordinates(char *line, int *i,
+				t_plane *plane, t_scene *scene);
+void		validate_plane_identifier(char *line, int *i, t_scene *scene);
+
+// Parsing Utility Functions
+
+float		parse_float(char *line, int *i,
+				char *error_message, t_scene *scene);
+float		parse_float_with_check(char **line, int *i, t_scene *scene);
+void		parse_single_position(char *line, int *i,
+				float *position_component, t_scene *scene);
+t_vector	parse_vector(char **line, int *i, t_scene *scene);
+float		parse_coordinate(char *line, int *i,
+				char *error_message, t_scene *scene);
+int			parse_color_component(char *line, int *i,
+				char *error_message, t_scene *scene);
+
+// Validation Functions
+
+void		validate_line_format(char *line, t_scene *scene);
+void		validate_end_of_line(char *line, int i, t_scene *scene);
+void		validate_fov(float fov);
+void		validate_cylinder_identifier(char *line, int *i);
+void		validate_plane_identifier(char *line, int *i, t_scene *scene);
+void		validate_identifier(char actual, char expected);
+
+// Memory Management & Freeing
+// These functions handle memory management and freeing allocated resources.
+
 void		free_spheres(t_sphere *spheres);
 void		free_planes(t_plane *planes);
 void		free_cylinders(t_cylinder *cylinders);
 void		free_scene(t_scene *scene);
-void		parse_light_line(char *line, t_scene *scene, int *light_found);
-t_scene		init_and_check_file(char *file, t_scene scene);
-void		check_essential_components(int ambient_found,
-				int camera_found, int light_found, t_scene *scene);
-void		parse_object_line(char *line, t_scene *scene);
-void		parse_camera_line(char *line, t_scene *scene, int *camera_found);
-void		parse_ambient_line(char *line, t_scene *scene, int *ambient_found);
-t_scene		parse_scene(char *file, t_scene scene);
-void		check_essential_components(int ambient_found,
-				int camera_found, int light_found, t_scene *scene);
-t_scene		init_scene(t_scene scene);
-void		check_file(char *file);
-void		parse_color_sphere(char *line, int *i, t_sphere *sphere,
-				t_scene *scene);
-void		parse_axis(char *line, int *i,
-				t_cylinder *cylinder, t_scene *scene);
-void		validate_cylinder_identifier(char *line, int *i);
-float		parse_float(char *line, int *i, char *error_message,
-				t_scene *scene);
-void		parse_center(char *line, int *i, t_cylinder *cylinder,
-				t_scene *scene);
-int			parse_color_component(char *line, int *i, char *error_message,
-				t_scene *scene);
-void		parse_plane_coordinates(char *line, int *i, t_plane *plane,
-				t_scene *scene);
-float		parse_coordinate(char *line, int *i, char *error_message,
-				t_scene *scene);
-void		validate_plane_identifier(char *line, int *i, t_scene *scene);
-void		parse_single_position(char *line, int *i,
-				float *position_component, t_scene *scene);
-void		parse_position(char *line, int *i, t_light *light, t_scene *scene);
-void		parse_intensity_light(char *line, int *i,
-				t_light *light, t_scene *scene);
+
+// Miscellaneous Utilities
+// General helper functions for skipping whitespaces and printing.
+
 void		skip_whitespace(char *line, int *i);
-void		print_camera(t_camera *camera);
-float		parse_float_with_check(char **line, int *i, t_scene *scene);
 void		skip_whitespacess(char **line, int *i);
-void		parse_cylinder(char *line, t_cylinder **cylinders, t_scene *scene);
-void		parse_sphere(char *line, t_sphere **spheres, t_scene *scene);
-void		parse_plane(char *line, t_plane **planes, t_scene *scene);
-void		parse_ambient(char *line, t_amblight *ambient, t_scene *scene);
-void		check_file(char *file);
-void		parse_camera(char *line, t_camera *camera, t_scene *scene);
-void		parse_light(char *line, t_scene *scene);
-t_scene		parse_scene(char *filename, t_scene scene);
-void		init_scene_mlx(t_scene *scene);
-void		add_cylinder_to_list(t_cylinder **cylinders,
-				t_cylinder *new_cylinder);
-void		add_sphere_to_list(t_sphere **spheres, t_sphere *new_sphere);
-void		validate_line_format(char *line, t_scene *scene);
-void		validate_end_of_line(char *line, int i, t_scene *scene);
+void		print_camera(t_camera *camera);
 
 #endif
