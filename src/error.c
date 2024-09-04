@@ -6,13 +6,13 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:36:52 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/04 14:11:26 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:40:07 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
 
-void	error(char *message, t_scene *scene, char *line, int exit_code)
+void	error(char *message, t_scene *scene, char *line)
 {
 	if (scene->fd != -1)
 	{
@@ -33,5 +33,5 @@ void	error(char *message, t_scene *scene, char *line, int exit_code)
 	if (scene != NULL)
 		free_scene(scene);
 	get_next_line(0, 1);
-	exit(exit_code);
+	exit(1);
 }
