@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:36:52 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/08/29 11:36:34 by csturm           ###   ########.fr       */
+/*   Updated: 2024/09/04 14:40:07 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	error(char *message, t_scene *scene, char *line)
 {
-	if (scene->fd != 0)
+	if (scene->fd != -1)
 	{
 		if (close(scene->fd) == -1)
 		{
 			perror("Error closing file descriptor");
 		}
-		scene->fd = 0;
+		scene->fd = -1;
 	}
 	if (line != NULL)
 		free(line);

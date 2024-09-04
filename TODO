@@ -1,8 +1,5 @@
 TODO:
 
-- several ++, -- or +-
---> should cause an error
-
 - leaks for mlx
 --> destroy_display?
 
