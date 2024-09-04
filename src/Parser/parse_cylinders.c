@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cylinders.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:53:37 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/03 18:49:20 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/04 10:11:58 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
-
 
 void	parse_radius(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
 {

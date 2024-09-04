@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_planes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:47:53 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/03 18:25:44 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/04 10:13:37 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
-
 
 void	parse_plane_axis(char *line, int *i, t_plane *plane, t_scene *scene)
 {
@@ -28,8 +27,8 @@ void	parse_plane_axis(char *line, int *i, t_plane *plane, t_scene *scene)
 		(*i)++;
 	skip_whitespace(line, i);
 	plane->axis.z = parse_coordinate(line, i,
-"Invalid character in plane definition", scene);
-    // plane->axis = normalise_vector(plane->axis);
+			"Invalid character in plane definition", scene);
+	plane->axis = normalise_vector(plane->axis);
 }
 
 int	parse_color_component(char *line, int *i,

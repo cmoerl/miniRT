@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/03 17:41:49 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/04 10:13:47 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
-
 
 void	parse_intensity(char *line, int *i, float *intensity, t_scene *scene)
 {

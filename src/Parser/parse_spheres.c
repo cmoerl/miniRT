@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_spheres.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:50:01 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/03 18:41:33 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/04 10:12:21 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	parse_radius_sphere(char *line, int *i,
 	if (sphere->radius <= 0)
 		error("Sphere radius must be positive", scene, line);
 }
-
 
 void	parse_sphere_properties(char *line, int *i,
 			t_sphere *sphere, t_scene *scene)
