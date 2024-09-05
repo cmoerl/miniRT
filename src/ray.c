@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:25:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/02 13:34:29 by csturm           ###   ########.fr       */
+/*   Updated: 2024/09/05 11:38:23 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,22 @@ t_color	trace_ray(t_scene scene, t_ray ray)
 	return (color);
 }
 
+t_vector	calc_ray_dir(int x, int y, t_cam_params params)
+{
+	t_vector	ray_dir;
+
+	ray_dir.x = (2 * (x + 0.5) / (double)WIDTH - 1)
+		* params.aspect_ratio * params.tan_fov;
+	ray_dir.y = (1 - 2 * (y + 0.5) / (double)HEIGHT) * params.tan_fov;
+	ray_dir.z = -1;
+	ray_dir = vector_add(vector_add(vector_scale
+				(params.orient.right, ray_dir.x),
+				vector_scale(params.orient.up, ray_dir.y)),
+			vector_scale(params.orient.forward, ray_dir.z));
+	ray_dir = normalise_vector(ray_dir);
+	return (ray_dir);
+}
+
 // for each pixel:
 // calculate the aspect ratio
 // calculate the tan of the fov
@@ -49,23 +65,24 @@ t_color	trace_ray(t_scene scene, t_ray ray)
 // ray origin is the camera center
 t_ray	get_ray(t_scene scene, int x, int y)
 {
-	t_vector	ray_dir;
-	t_ray		ray;
-	float		aspect_ratio;
-	float		tan_fov;
+	t_orientation	orient;
+	t_cam_params	params;
+	t_ray			ray;
 
-	aspect_ratio = WIDTH / (float)HEIGHT;
+	params.aspect_ratio = WIDTH / (float)HEIGHT;
 	if (scene.camera.fov == 180)
-		tan_fov = 750;
+		params.tan_fov = 750;
 	else
-		tan_fov = tan((scene.camera.fov * PI / 180) / 2.0);
-	ray_dir.x = (2 * (x + 0.5) / (double)WIDTH - 1)
-		* aspect_ratio * tan_fov;
-	ray_dir.y = (1 - 2 * (y + 0.5) / (double)HEIGHT) * tan_fov;
-	ray_dir.z = -1;
-	ray_dir = normalise_vector(ray_dir);
-	ray_dir = rotate_vector(ray_dir, scene.camera.orientation);
+		params.tan_fov = tan((scene.camera.fov * PI / 180) / 2.0);
+	orient.world_up = (t_vector){0, 1, 0};
+	orient.forward = vector_scale(scene.camera.orientation, -1);
+	if (fabs(scene.camera.orientation.y) > 0.9999)
+		orient.world_up = (t_vector){1, 0, 0};
+	orient.right = normalise_vector
+		(cross_product(orient.world_up, orient.forward));
+	orient.up = cross_product(orient.forward, orient.right);
+	params.orient = orient;
 	ray.origin = scene.camera.center;
-	ray.direction = ray_dir;
+	ray.direction = calc_ray_dir(x, y, params);
 	return (ray);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/04 15:08:11 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/05 11:37:39 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,14 @@ typedef struct s_ray
 	t_vector	direction;
 }	t_ray;
 
+typedef struct s_orientation
+{
+	t_vector	right;
+	t_vector	up;
+	t_vector	forward;
+	t_vector	world_up;
+}	t_orientation;
+
 typedef struct s_shade
 {
 	t_vector	ip;
@@ -96,6 +104,13 @@ typedef struct s_light_ray
 	t_vector	direction;
 	float		distance;
 }	t_light_ray;
+
+typedef struct s_cam_params
+{
+	t_orientation	orient;
+	float			aspect_ratio;
+	float			tan_fov;
+}	t_cam_params;
 
 typedef struct s_sphere
 {
@@ -172,6 +187,14 @@ typedef struct s_flags
 	int	dot_count;
 	int	sign_count;
 }	t_flags;
+
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb;
+
 typedef struct s_scene
 {
 	t_object	*objects;
@@ -188,13 +211,6 @@ typedef struct s_scene
 	int			*color_value;
 	char		*color_name;
 }	t_scene;
-
-typedef struct s_rgb
-{
-	int	r;
-	int	g;
-	int	b;
-}	t_rgb;
 
 // error.c
 void		error(char *message, t_scene *scene, char *line);
@@ -224,7 +240,6 @@ float		check_discriminant(t_coefficients coeff, t_ray ray,
 t_vector	normalise_vector(t_vector v);
 t_vector	get_intersection_point(t_ray ray, float t);
 t_vector	get_normal(t_vector v, t_hit hit);
-t_vector	rotate_vector(t_vector v, t_vector orientation);
 
 // short_utils.c
 t_vector	vector_add(t_vector a, t_vector b);
@@ -326,7 +341,7 @@ int			parse_color_component(char *line, int *i,
 
 void		validate_line_format(char *line, t_scene *scene);
 void		validate_end_of_line(char *line, int i, t_scene *scene);
-void    	validate_fov(float fov, t_scene *scene, char *line);
+void		validate_fov(float fov, t_scene *scene, char *line);
 void		validate_cylinder_identifier(char *line, int *i);
 void		validate_plane_identifier(char *line, int *i, t_scene *scene);
 void		validate_identifier(char actual, char expected);

@@ -6,40 +6,11 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:30:14 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/29 11:02:30 by csturm           ###   ########.fr       */
+/*   Updated: 2024/09/05 11:06:01 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
-
-// changing the direction of a vector
-t_vector	rotate_vector(t_vector v, t_vector orientation)
-{
-	t_vector	rotated;
-	t_vector	axis;
-	float		c;
-	float		s;
-	float		angle;
-
-	if (orientation.x == 0 && orientation.y == 0 && orientation.z == 1)
-		return (v);
-	if (orientation.x == 0 && orientation.y == 0 && orientation.z == -1)
-		return ((t_vector){-v.x, -v.y, v.z});
-	axis = cross_product(orientation, (t_vector){0, 0, 1});
-	angle = acos(dot_product(orientation, (t_vector){0, 0, 1}));
-	c = cos(angle);
-	s = sin(angle);
-	rotated.x = (c + (1 - c) * axis.x * axis.x) * v.x
-		+ ((1 - c) * axis.x * axis.y - axis.z * s) * v.y
-		+ ((1 - c) * axis.x * axis.z + axis.y * s) * v.z;
-	rotated.y = ((1 - c) * axis.x * axis.y + axis.z * s) * v.x
-		+ (c + (1 - c) * axis.y * axis.y) * v.y
-		+ ((1 - c) * axis.y * axis.z - axis.x * s) * v.z;
-	rotated.z = ((1 - c) * axis.x * axis.z - axis.y * s) * v.x
-		+ ((1 - c) * axis.y * axis.z + axis.x * s) * v.y
-		+ (c + (1 - c) * axis.z * axis.z) * v.z;
-	return (rotated);
-}
 
 // setting the length of a vector to 1
 // lenght = magnitude (length) of the vector
