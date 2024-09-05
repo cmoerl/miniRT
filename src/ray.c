@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:25:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/05 11:38:23 by csturm           ###   ########.fr       */
+/*   Updated: 2024/09/05 12:14:10 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 // for each ray:
 // check if the ray intersects with any object
-// if the ray intersects with an object, calculate the color of the pixel
 // if the ray does not intersect with any object, the pixel is black
+// if the ray intersects with an object, calculate the color of the pixel
 // check if the pixel is in shadow
 t_color	trace_ray(t_scene scene, t_ray ray)
 {
@@ -42,6 +42,10 @@ t_color	trace_ray(t_scene scene, t_ray ray)
 	return (color);
 }
 
+// normalise the pixel coordinates
+// scale the pixel coordinates to the aspect ratio
+// combine the scaled coordinates with the orientation of the camera
+// normalise the direction of the ray
 t_vector	calc_ray_dir(int x, int y, t_cam_params params)
 {
 	t_vector	ray_dir;
@@ -61,6 +65,8 @@ t_vector	calc_ray_dir(int x, int y, t_cam_params params)
 // for each pixel:
 // calculate the aspect ratio
 // calculate the tan of the fov
+// calculate the orientation of the camera
+// adjust world_up if the camera is looking straight up or down
 // calculate the direction of the ray
 // ray origin is the camera center
 t_ray	get_ray(t_scene scene, int x, int y)

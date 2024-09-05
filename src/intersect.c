@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:23:36 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/29 10:30:07 by csturm           ###   ########.fr       */
+/*   Updated: 2024/09/05 12:05:27 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,6 @@ float	intersect_plane(t_plane *plane, t_ray ray)
 // checking if a ray intersects with a cylinder
 // oc is the vector from the center of the cylinder to the origin of the ray
 // discriminant measures the intersection of the ray and the cylinder
-// if the discriminant is less than 0,
-// the ray does not intersect with the cylinder
-// t1 and t2 are the distances to the intersection points
-// if t1 is greater than 0, the ray intersects with the cylinder
-// if t2 is greater than 0, the ray intersects with the cylinder
-// if t1 is less than 0, the ray intersects with the cylinder behind the origin
-// if t2 is less than 0, the ray intersects with the cylinder behind the origin
-// if t1 is equal to 0, the ray intersects with the cylinder at the origin
-// if t2 is equal to 0, the ray intersects with the cylinder at the origin
 float	intersect_cylinder(t_cylinder *cylinder, t_ray ray)
 {
 	t_coefficients	coeff;

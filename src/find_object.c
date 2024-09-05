@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:55:06 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/21 11:18:30 by csturm           ###   ########.fr       */
+/*   Updated: 2024/09/05 12:11:16 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_intersect(t_hit *hit, float t, t_intersect_info info)
 	}
 }
 
-// calculating the intersection point
+// calculating the intersection point of the ray and a sphere
 void	find_closest_sphere(t_hit *hit, t_sphere *sphere, t_ray ray, int i)
 {
 	t_intersect_info	info;
@@ -39,7 +39,7 @@ void	find_closest_sphere(t_hit *hit, t_sphere *sphere, t_ray ray, int i)
 	find_closest_sphere(hit, sphere->next, ray, i + 1);
 }
 
-// calculating the intersection point
+// calculating the intersection point of the ray and a plane
 void	find_closest_plane(t_hit *hit, t_plane *plane, t_ray ray, int i)
 {
 	t_intersect_info	info;
@@ -53,7 +53,7 @@ void	find_closest_plane(t_hit *hit, t_plane *plane, t_ray ray, int i)
 	find_closest_plane(hit, plane->next, ray, i + 1);
 }
 
-// calculating the intersection point
+// calculating the intersection point of the ray and a cylinder
 void	find_closest_cylinder(t_hit *hit, t_cylinder *cylinder,
 			t_ray ray, int i)
 {

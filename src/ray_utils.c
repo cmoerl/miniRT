@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:30:14 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/05 11:06:01 by csturm           ###   ########.fr       */
+/*   Updated: 2024/09/05 12:14:25 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ t_vector	get_intersection_point(t_ray ray, float t)
 }
 
 // calculating the normal of an object at a given point
+// normal: a vector that is perpendicular to the surface
+// of an object at a given point
 t_vector	get_normal(t_vector v, t_hit hit)
 {
 	t_vector	normal;

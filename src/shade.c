@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:18:29 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/28 12:43:57 by csturm           ###   ########.fr       */
+/*   Updated: 2024/09/05 12:04:40 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,12 @@ t_color	cap_color(t_color color)
 }
 
 // for each pixel that is part of an object:
-// calculate how far the light is from the object
-// by casting multiple shadow rays
-// if no object is blocking the light, calculate the color of the pixel
-// dot is the angle between the normal and the light direction
-// attenuation is the distance between the light and the object
-// the color of the pixel is the object color
-// multiplied by the light intensity and the dot divided by the attenuation
+// calculate the ambient color contribution
+// calculate the direction and distance of the light
+// check if the pixel is in shadow
+// calculate the attenuation of the light
+// calculate the diffuse color contribution
+// cap the color at 255
 t_color	calc_shade(t_scene scene, t_shade shade, t_hit object_hit)
 {
 	t_light_ray	light;

@@ -6,7 +6,7 @@
 /*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:10:31 by csturm            #+#    #+#             */
-/*   Updated: 2024/08/26 11:28:00 by csturm           ###   ########.fr       */
+/*   Updated: 2024/09/05 12:14:01 by csturm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ float	check_intersection(float t, t_ray ray,
 	return (INFINITY);
 }
 
+// calculate whether the ray intersects with the top or bottom of the cylinder
 float	intersect_top_bottom(t_vector point, t_vector normal, t_ray ray)
 {
 	t_vector	p0l0;
@@ -68,6 +69,7 @@ float	intersect_top_bottom(t_vector point, t_vector normal, t_ray ray)
 	return (INFINITY);
 }
 
+// calculate the top and bottom of the cylinder
 float	check_caps(t_cylinder *cylinder, t_ray ray, float t, float scale)
 {
 	t_vector	center;
@@ -85,6 +87,11 @@ float	check_caps(t_cylinder *cylinder, t_ray ray, float t, float scale)
 	return (t);
 }
 
+// calculate the discriminant of the quadratic equation
+// a discriminant above 0 means the ray intersects with the cylinder
+// an intersection point above 0 means the ray intersects with the cylinder
+// it is checked twice to find the closest intersection point
+// if both intersection points are less than 0, the ray does not intersect
 float	check_discriminant(t_coefficients coeff, t_ray ray,
 			t_cylinder *cylinder, t_vector oc)
 {
