@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/09 13:27:17 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/09 13:44:09 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	read_and_parse_lines(t_scene *scene)
 
 t_scene	parse_scene(char *file, t_scene scene)
 {
-	scene.flags = (t_flags){0, 0, 0, 0, 0, 0};
+	scene.flags = (t_flags){0, 0, 0, 0, 0, 0, 0};
 	scene = init_scene(scene);
 	scene.fd = open(file, O_RDONLY);
 	if (scene.fd < 0)
@@ -56,5 +56,7 @@ t_scene	parse_scene(char *file, t_scene scene)
 	read_and_parse_lines(&scene);
 	close(scene.fd);
 	scene.fd = -1;
+	if (!scene.flags.objects_found)
+		error("No objects found in scene", &scene, NULL);
 	return (scene);
 }

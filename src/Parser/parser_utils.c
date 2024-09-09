@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:42:55 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/09 13:20:15 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/09 13:40:58 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,19 @@ void	parse_object_line(char *line, t_scene *scene)
 	if (line[0] == 'p' && line[1] == 'l' && (line[2] == ' ' || line[2] == '\t'))
 	{
 		parse_plane(line, &scene->objects->planes, scene);
+		scene->flags.objects_found = 1;
 	}
 	else if (line[0] == 'c' && line[1] == 'y'
 		&& (line[2] == ' ' || line[2] == '\t'))
 	{
 		parse_cylinder(line, &scene->objects->cylinders, scene);
+		scene->flags.objects_found = 1;
 	}
 	else if (line[0] == 's' && line[1] == 'p'
 		&& (line[2] == ' ' || line[2] == '\t'))
 	{
 		parse_sphere(line, &scene->objects->spheres, scene);
+		scene->flags.objects_found = 1;
 	}
 	else
 	{
