@@ -6,11 +6,16 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/09 11:06:54 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/09 11:13:06 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minirt.h"
+
+// main function, declaring the scene struct,
+//checking the file, parsing the scene, initializing the mlx, 
+//rendering the scene, and starting the event loop
+//freeing the scene at the end
 
 int	main(int argc, char **argv)
 {

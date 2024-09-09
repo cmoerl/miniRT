@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:38:31 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/04 10:12:52 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/09 11:17:25 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ void	parse_camera(char *line, t_camera *camera, t_scene *scene)
 	int	i;
 
 	i = 0;
-	skip_whitespacess(&line, &i);
+	skip_whitespace(line, &i);
 	validate_identifier(line[i], 'C');
 	i++;
 	validate_line_format(line, scene);
-	skip_whitespacess(&line, &i);
+	skip_whitespace(line, &i);
 	camera->center = parse_vector(&line, &i, scene);
 	camera->orientation = parse_vector(&line, &i, scene);
 	if (camera->orientation.x == 0

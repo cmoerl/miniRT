@@ -6,12 +6,13 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:42:55 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/04 13:58:41 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/09 11:15:29 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
+// check if the file exists and has the correct format
 void	check_file(char *file)
 {
 	int		fd;
@@ -32,6 +33,7 @@ void	check_file(char *file)
 	}
 }
 
+// initialize the scene struct
 t_scene	init_scene(t_scene scene)
 {
 	scene.objects = NULL;
@@ -48,6 +50,7 @@ t_scene	init_scene(t_scene scene)
 	return (scene);
 }
 
+// if the ambient light is found, parse it
 void	parse_ambient_line(char *line, t_scene *scene, int *ambient_found)
 {
 	if (*ambient_found)
@@ -56,6 +59,7 @@ void	parse_ambient_line(char *line, t_scene *scene, int *ambient_found)
 	*ambient_found = 1;
 }
 
+// if the camera is found, parse it
 void	parse_camera_line(char *line, t_scene *scene, int *camera_found)
 {
 	if (*camera_found)
@@ -64,6 +68,7 @@ void	parse_camera_line(char *line, t_scene *scene, int *camera_found)
 	*camera_found = 1;
 }
 
+//if the object is found, parse it
 void	parse_object_line(char *line, t_scene *scene)
 {
 	if (line[0] == 'p' && line[1] == 'l' && (line[2] == ' ' || line[2] == '\t'))

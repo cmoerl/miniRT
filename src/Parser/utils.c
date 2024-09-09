@@ -3,25 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:51:44 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/03 17:09:09 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/09 11:18:55 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
+// Helper function to skip whitespace
 void	skip_whitespace(char *line, int *i)
 {
 	while (line[*i] && (line[*i] == ' ' || line[*i] == '\t'))
-		(*i)++;
-}
-
-// Helper function to skip whitespace
-void	skip_whitespacess(char **line, int *i)
-{
-	while ((*line)[*i] && ((*line)[*i] == ' ' || (*line)[*i] == '\t'))
 		(*i)++;
 }
 
@@ -40,7 +34,7 @@ float	parse_float_with_check(char **line, int *i, t_scene *scene)
 	value = ft_atof(&(*line)[start]);
 	if ((*line)[*i] == ',')
 		(*i)++;
-	skip_whitespacess(line, i);
+	skip_whitespace(*line, i);
 	return (value);
 }
 
