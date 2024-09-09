@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/09 11:13:06 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:47:46 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ int	main(int argc, char **argv)
 	}
 	check_file(argv[1]);
 	scene = parse_scene(argv[1], scene);
-	if (scene.objects == NULL)
-	{
-		error("No objects found in scene", &scene, NULL);
-		return (1);
-	}
 	init_scene_mlx(&scene);
 	render_scene(scene);
 	event_loop(scene);
