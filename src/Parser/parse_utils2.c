@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 19:07:04 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/04 10:39:23 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/09 11:07:05 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,6 @@ void	check_essential_components(int ambient_found,
 		error("Missing camera definition", scene, NULL);
 	if (!light_found)
 		error("Missing light definition", scene, NULL);
-}
-
-t_scene	init_and_check_file(char *file, t_scene scene)
-{
-	scene = init_scene(scene);
-	check_file(file);
-	return (scene);
 }
 
 void	parse_light_line(char *line, t_scene *scene, int *light_found)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csturm <csturm@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/05 11:37:39 by csturm           ###   ########.fr       */
+/*   Updated: 2024/09/09 11:02:49 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,7 +267,6 @@ t_color		calc_shade(t_scene scene, t_shade shade, t_hit object_hit);
 
 // File Handling & Initialization 
 
-t_scene		init_and_check_file(char *file, t_scene scene);
 void		check_file(char *file);
 void		check_essential_components(int ambient_found,
 				int camera_found, int light_found, t_scene *scene);

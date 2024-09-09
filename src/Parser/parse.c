@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/04 13:58:54 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/09 11:02:38 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_scene	parse_scene(char *file, t_scene scene)
 	t_flags	flags;
 
 	flags = (t_flags){0, 0, 0, 0, 0, 0};
-	scene = init_and_check_file(file, scene);
+	scene = init_scene(scene);
 	scene.fd = open(file, O_RDONLY);
 	if (scene.fd < 0)
 		error("Could not open file", &scene, NULL);
