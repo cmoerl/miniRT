@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:42:55 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/09 13:40:58 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:30:53 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,6 @@ void	parse_object_line(char *line, t_scene *scene)
 	}
 	else
 	{
-		error("Invalid scene description", scene, line);
+		scene->flags.invalid_line_found = 1;
 	}
 }

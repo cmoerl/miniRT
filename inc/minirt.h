@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/09 13:36:09 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:30:16 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ typedef struct s_flags
 	int	dot_count;
 	int	sign_count;
 	int	objects_found;
+	int	invalid_line_found;
 }	t_flags;
 
 typedef struct s_rgb
