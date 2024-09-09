@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/09 11:02:49 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/09 13:22:47 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,8 +268,7 @@ t_color		calc_shade(t_scene scene, t_shade shade, t_hit object_hit);
 // File Handling & Initialization 
 
 void		check_file(char *file);
-void		check_essential_components(int ambient_found,
-				int camera_found, int light_found, t_scene *scene);
+void		check_essential_components(t_scene *scene, char *line);
 t_scene		init_scene(t_scene scene);
 t_scene		parse_scene(char *filename, t_scene scene);
 void		init_scene_mlx(t_scene *scene);
@@ -278,17 +277,17 @@ void		init_scene_mlx(t_scene *scene);
 
 //Ambient Parsing
 
-void		parse_ambient_line(char *line, t_scene *scene, int *ambient_found);
+void		parse_ambient_line(char *line, t_scene *scene);
 void		parse_ambient(char *line, t_amblight *ambient, t_scene *scene);
 
 // Camera Parsing
 
-void		parse_camera_line(char *line, t_scene *scene, int *camera_found);
+void		parse_camera_line(char *line, t_scene *scene);
 void		parse_camera(char *line, t_camera *camera, t_scene *scene);
 
 // Light Parsing
 
-void		parse_light_line(char *line, t_scene *scene, int *light_found);
+void		parse_light_line(char *line, t_scene *scene);
 void		parse_light(char *line, t_scene *scene);
 void		parse_position(char *line, int *i, t_light *light, t_scene *scene);
 void		parse_intensity_light(char *line, int *i,

@@ -6,29 +6,28 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 19:07:04 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/09 11:07:05 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/09 13:22:49 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-void	check_essential_components(int ambient_found,
-			int camera_found, int light_found, t_scene *scene)
+void	check_essential_components(t_scene *scene, char *line)
 {
-	if (!ambient_found)
-		error("Missing ambient lighting definition", scene, NULL);
-	if (!camera_found)
-		error("Missing camera definition", scene, NULL);
-	if (!light_found)
-		error("Missing light definition", scene, NULL);
+	if (!scene->flags.ambient_found)
+		error("Missing ambient lighting definition", scene, line);
+	if (!scene->flags.camera_found)
+		error("Missing camera definition", scene, line);
+	if (!scene->flags.light_found)
+		error("Missing light definition", scene, line);
 }
 
-void	parse_light_line(char *line, t_scene *scene, int *light_found)
+void	parse_light_line(char *line, t_scene *scene)
 {
-	if (*light_found)
+	if (scene->flags.light_found)
 		error("Multiple light definitions found", scene, line);
 	parse_light(line, scene);
-	*light_found = 1;
+	scene->flags.light_found = 1;
 }
 
 void	init_scene_mlx(t_scene *scene)

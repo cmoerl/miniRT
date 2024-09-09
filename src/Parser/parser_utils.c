@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:42:55 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/09 11:15:29 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/09 13:20:15 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,21 @@ t_scene	init_scene(t_scene scene)
 }
 
 // if the ambient light is found, parse it
-void	parse_ambient_line(char *line, t_scene *scene, int *ambient_found)
+void	parse_ambient_line(char *line, t_scene *scene)
 {
-	if (*ambient_found)
+	if (scene->flags.ambient_found)
 		error ("Multiple ambient lighting definitions found", scene, line);
 	parse_ambient(line, &scene->amblight, scene);
-	*ambient_found = 1;
+	scene->flags.ambient_found = 1;
 }
 
 // if the camera is found, parse it
-void	parse_camera_line(char *line, t_scene *scene, int *camera_found)
+void	parse_camera_line(char *line, t_scene *scene)
 {
-	if (*camera_found)
+	if (scene->flags.camera_found)
 		error("Multiple camera definitions found", scene, line);
 	parse_camera(line, &scene->camera, scene);
-	*camera_found = 1;
+	scene->flags.camera_found = 1;
 }
 
 //if the object is found, parse it
