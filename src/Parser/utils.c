@@ -6,11 +6,34 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:51:44 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 15:59:43 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/10 16:33:01 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
+
+// Helper function to validate the line for multiple consecutive signs or dots
+void	validate_line_format(char *line, t_scene *scene)
+{
+	int	i;
+
+	i = 0;
+	count_characters(line, scene);
+	while (line[i])
+	{
+		if ((line[i] == '+' || line[i] == '-'
+				|| line[i] == '.' || line[i] == ',')
+			&& (line[i] == line[i + 1]))
+			error("Multiple consecutive signs or dots in line", scene, line);
+		if ((line[i] == '+' && line[i + 1] == '-')
+			|| (line[i] == '-' && line[i + 1] == '+'))
+			error("Invalid sign sequence in line", scene, line);
+		if ((line[i] == '.' && (line[i + 1] == '-' || line[i + 1] == '+'))
+			|| ((line[i] == '-' || line[i] == '+') && line[i + 1] == '.'))
+			error("Invalid dot and sign sequence in line", scene, line);
+		i++;
+	}
+}
 
 // Helper function to skip whitespace
 void	skip_whitespace(char *line, int *i)

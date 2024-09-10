@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/10 16:03:56 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/10 16:33:39 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -344,6 +344,8 @@ void		validate_fov(float fov, t_scene *scene, char *line);
 void		validate_cylinder_identifier(char *line, int *i);
 void		validate_plane_identifier(char *line, int *i, t_scene *scene);
 void		validate_identifier(char actual, char expected);
+void		validate_line_format(char *line, t_scene *scene);
+void		count_characters(char *line, t_scene *scene);
 
 // Memory Management & Freeing
 // These functions handle memory management and freeing allocated resources.

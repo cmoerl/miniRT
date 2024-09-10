@@ -6,21 +6,20 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:38:31 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 15:56:36 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/10 16:33:46 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-// Helper function to validate the line for multiple consecutive signs or dots
-void	validate_line_format(char *line, t_scene *scene)
+// Helper function to count the number of signs, dots, and commas in the line
+void	count_characters(char *line, t_scene *scene)
 {
 	int	i;
 
 	scene->flags.dot_count = 0;
 	scene->flags.sign_count = 0;
 	scene->flags.comma_count = 0;
-	i = 0;
 	while (line[i])
 	{
 		if (line[i] == '.')
@@ -29,13 +28,6 @@ void	validate_line_format(char *line, t_scene *scene)
 			scene->flags.sign_count++;
 		else if (line[i] == ',')
 			scene->flags.comma_count++;
-		if ((line[i] == '+' || line[i] == '-'
-				|| line[i] == '.' || line[i] == ',')
-			&& (line[i] == line[i + 1]))
-			error("Multiple consecutive signs or dots in line", scene, line);
-		if ((line[i] == '+' && line[i + 1] == '-')
-			|| (line[i] == '-' && line[i + 1] == '+'))
-			error("Invalid sign sequence in line", scene, line);
 		i++;
 	}
 }
