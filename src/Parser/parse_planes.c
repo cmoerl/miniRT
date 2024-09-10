@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:47:53 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 15:52:02 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/10 16:38:29 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	parse_plane_axis(char *line, int *i, t_plane *plane, t_scene *scene)
 		|| plane->axis.y < -1 || plane->axis.y > 1
 		|| plane->axis.z < -1 || plane->axis.z > 1)
 		error("Plane axis values out of range [-1, 1]", scene, line);
-	plane->axis = normalise_vector(plane->axis);
+	// plane->axis = normalise_vector(plane->axis);
 }
 
 int	parse_color_component(char *line, int *i,
