@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:51:44 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/09 11:18:55 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:32:51 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,25 @@ void	skip_whitespace(char *line, int *i)
 // Helper function to parse a float with validation
 float	parse_float_with_check(char **line, int *i, t_scene *scene)
 {
-	int		start;
-	float	value;
+    int		start;
+    int		dot_count = 0;
+    float	value;
 
-	start = *i;
-	while ((*line)[*i] && (ft_isdigit((*line)[*i])
-		|| (*line)[*i] == '.' || (*line)[*i] == '-' || (*line)[*i] == '+'))
-		(*i)++;
-	if (start == *i)
-		error("Error: Invalid character in camera definition", scene, *line);
-	value = ft_atof(&(*line)[start]);
-	if ((*line)[*i] == ',')
-		(*i)++;
-	skip_whitespace(*line, i);
-	return (value);
+    start = *i;
+    while ((*line)[*i] && (ft_isdigit((*line)[*i])
+        || (*line)[*i] == '.' || (*line)[*i] == '-' || (*line)[*i] == '+'))
+    {
+        if ((*line)[*i] == '.')
+            dot_count++;
+        (*i)++;
+    }
+    if (start == *i || dot_count > 1)
+        error("Error: Invalid character in camera definition", scene, *line);
+    value = ft_atof(&(*line)[start]);
+    if ((*line)[*i] == ',')
+        (*i)++;
+    skip_whitespace(*line, i);
+    return (value);
 }
 
 // Helper function to validate the end of line

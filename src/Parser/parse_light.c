@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:32:14 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 12:45:46 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:16:29 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,9 @@ void	parse_light(char *line, t_scene *scene)
 		i++;
 	if (line[i] != '\0')
 		error("Invalid character in light definition", scene, line);
+	    // Print parsed values in a clear format
+    printf("Parsed Light:\n");
+    printf("  Position: x=%f, y=%f, z=%f\n", scene->light.position.x, scene->light.position.y, scene->light.position.z);
+    printf("  Intensity: %f\n", scene->light.intensity);
+    printf("  Color: R=%d, G=%d, B=%d\n", color.r, color.g, color.b);
 }

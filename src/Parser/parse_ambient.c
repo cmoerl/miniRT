@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 13:22:32 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:15:02 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,9 @@ void	parse_ambient(char *line, t_amblight *ambient, t_scene *scene)
 	if (line[i] != '\0')
 		error("Invalid character in ambient lighting definition", scene, line);
 	ambient->intensity = intensity;
+	printf("Ambient lighting intensity: %f\n", ambient->intensity);
+	printf("Ambient lighting color: %f, %f, %f\n",
+		ambient->color.r, ambient->color.g, ambient->color.b);
 }
+
+ 

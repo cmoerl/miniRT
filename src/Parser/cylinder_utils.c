@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:34:34 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 13:13:52 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:30:26 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,21 @@ void	validate_cylinder_identifier(char *line, int *i)
 	*i += 2;
 }
 
-float	parse_float(char *line, int *i, char *error_message, t_scene *scene)
+float parse_float(char *line, int *i, char *error_message, t_scene *scene)
 {
-	int	start;
+    int start;
+    int dot_count = 0;
 
-	start = *i;
-	while (line[*i] && (ft_isdigit(line[*i])
-			|| line[*i] == '.' || line[*i] == '-' || line[*i] == '+'))
-		(*i)++;
-	if (start == *i)
-		error(error_message, scene, line);
-	return (ft_atof(&line[start]));
+    start = *i;
+    while (line[*i] && (ft_isdigit(line[*i]) || line[*i] == '.' || line[*i] == '-' || line[*i] == '+'))
+    {
+        if (line[*i] == '.')
+            dot_count++;
+        (*i)++;
+    }
+    if (start == *i || dot_count > 1)
+        error(error_message, scene, line);
+    return (ft_atof(&line[start]));
 }
 
 void	parse_center(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
@@ -71,7 +75,7 @@ void	parse_axis(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
 		|| cylinder->axis.y < -1 || cylinder->axis.y > 1
 		|| cylinder->axis.z < -1 || cylinder->axis.z > 1)
 		error("Cylinder axis values out of range [-1, 1]", scene, line);
-	cylinder->axis = normalise_vector(cylinder->axis);
+	// cylinder->axis = normalise_vector(cylinder->axis);
 }
 
 void	add_cylinder_to_list(t_cylinder **cylinders, t_cylinder *new_cylinder)

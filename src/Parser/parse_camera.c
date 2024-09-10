@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:38:31 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 12:33:10 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:15:16 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,13 @@ void	parse_camera(char *line, t_camera *camera, t_scene *scene)
 		|| camera->orientation.y < -1 || camera->orientation.y > 1
 		|| camera->orientation.z < -1 || camera->orientation.z > 1)
 		error("Camera orientation out of range [-1.0, 1.0]", scene, line);
-	camera->orientation = normalise_vector(camera->orientation);
+	// camera->orientation = normalise_vector(camera->orientation);
 	camera->fov = parse_float_with_check(&line, &i, scene);
 	validate_fov(camera->fov, scene, line);
 	validate_end_of_line(line, i, scene);
+	 // Print parsed values in a clear format
+    printf("Parsed Camera:\n");
+    printf("  Position: x=%f, y=%f, z=%f\n", camera->center.x, camera->center.y, camera->center.z);
+    printf("  Orientation: x=%f, y=%f, z=%f\n", camera->orientation.x, camera->orientation.y, camera->orientation.z);
+    printf("  FOV: %f\n", camera->fov);
 }
