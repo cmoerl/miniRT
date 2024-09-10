@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/04 10:13:47 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:31:04 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,13 @@ void	parse_color_value(char *line, int *i,
 	int	start;
 
 	start = *i;
-	while (line[*i] && ft_isdigit(line[*i]))
+	validate_line_format(line, scene);
+	if (line[*i] == '-' || line[*i] == '+')
+		(*i)++;
+	while (line[*i] && (ft_isdigit(line[*i])))
 		(*i)++;
 	if (start == *i)
-		error("Invalid character in ambient lighting definition", scene, line);
+		error("1Invalid character in ambient lighting definition", scene, line);
 	*(color_info->color_value) = ft_atoi(&line[start]);
 	if (*(color_info->color_value) < 0 || *(color_info->color_value) > 255)
 	{

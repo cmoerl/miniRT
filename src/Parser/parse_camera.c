@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:38:31 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/09 11:17:25 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:26:07 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	validate_line_format(char *line, t_scene *scene)
 	{
 		if (line[i] == '.')
 			scene->flags.dot_count++;
-		else if (line[i] == '+' || line[i] == '-')
+		else if (line[i] == '-')
 			scene->flags.sign_count++;
 		else if (line[i] == ',')
 			scene->flags.comma_count++;
@@ -81,6 +81,10 @@ void	parse_camera(char *line, t_camera *camera, t_scene *scene)
 	if (camera->orientation.x == 0
 		&& camera->orientation.y == 0 && camera->orientation.z == 0)
 		error("Camera orientation cannot be zero", scene, line);
+	if (camera->orientation.x < -1 || camera->orientation.x > 1
+		|| camera->orientation.y < -1 || camera->orientation.y > 1
+		|| camera->orientation.z < -1 || camera->orientation.z > 1)
+		error("Camera orientation out of range [-1.0, 1.0]", scene, line);
 	camera->orientation = normalise_vector(camera->orientation);
 	camera->fov = parse_float_with_check(&line, &i, scene);
 	validate_fov(camera->fov, scene, line);
