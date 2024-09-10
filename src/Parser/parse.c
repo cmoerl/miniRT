@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/10 12:30:10 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/10 20:52:09 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
+//This function  is searching for Ambient light, Camera, Light, and Objects in the scene description
 void	parse_scene_line(char *line, t_scene *scene)
 {
 	int	i;
@@ -32,6 +33,7 @@ void	parse_scene_line(char *line, t_scene *scene)
 	}
 }
 
+//This function reads and parses the lines of a scene description from a file
 void	read_and_parse_lines(t_scene *scene)
 {
 	char	*line;
@@ -45,6 +47,8 @@ void	read_and_parse_lines(t_scene *scene)
 	}
 }
 
+//This function reads and parses a scene description from a file,
+//Initializes the scene, and performs various checks to ensure the scene is valid.
 t_scene	parse_scene(char *file, t_scene scene)
 {
 	scene.flags = (t_flags){0, 0, 0, 0, 0, 0, 0, 0};

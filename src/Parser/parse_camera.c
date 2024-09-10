@@ -6,14 +6,14 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:38:31 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 16:40:30 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/10 20:56:58 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
 // Helper function to count the number of signs, dots, and commas in the line
-void	count_characters(char *line, t_scene *scene)
+void	count_instances(char *line, t_scene *scene)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:51:44 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 16:33:01 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/10 20:59:20 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	validate_line_format(char *line, t_scene *scene)
 	int	i;
 
 	i = 0;
-	count_characters(line, scene);
+	count_instances(line, scene);
 	while (line[i])
 	{
 		if ((line[i] == '+' || line[i] == '-'
