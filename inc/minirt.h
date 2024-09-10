@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/10 16:36:56 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/10 17:20:23 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -361,6 +361,5 @@ void		free_scene(t_scene *scene);
 void		skip_whitespace(char *line, int *i);
 void		skip_whitespacess(char **line, int *i);
 void		print_camera(t_camera *camera);
-int			check_for_dots(char *line, int *i);
 
 #endif

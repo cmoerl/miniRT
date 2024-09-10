@@ -6,28 +6,11 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 16:03:29 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/10 17:19:42 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
-
-int	check_for_dots(char *line, int *i)
-{
-	int	dot_count;
-
-	dot_count = 0;
-	while (line[*i] && (line[*i] == '.' || line[*i] == ' '))
-	{
-		if (line[*i] == '.')
-			dot_count++;
-		(*i)++;
-	}
-	printf("dot_count: %d\n", dot_count);
-	if (dot_count > 1)
-		return (1);
-	return (0);
-}
 
 void	parse_intensity(char *line, int *i, float *intensity, t_scene *scene)
 {
