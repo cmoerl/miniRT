@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 15:58:54 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/10 16:03:29 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	parse_intensity(char *line, int *i, float *intensity, t_scene *scene)
 	int	dot_count;
 
 	start = *i;
+	dot_count = 0;
 	while (line[*i] && (ft_isdigit(line[*i])
 			|| line[*i] == '.' || line[*i] == '-' || line[*i] == '+'))
 	{

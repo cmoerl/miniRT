@@ -6,13 +6,12 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/10 15:55:19 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/10 16:03:56 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
-
 # include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
