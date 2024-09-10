@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/09 14:30:16 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/10 13:08:31 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -355,10 +355,11 @@ void		free_cylinders(t_cylinder *cylinders);
 void		free_scene(t_scene *scene);
 
 // Miscellaneous Utilities
-// General helper functions for skipping whitespaces and printing.
+// General helper functions for skipping whitespaces , printing, and checking for dots. 
 
 void		skip_whitespace(char *line, int *i);
 void		skip_whitespacess(char **line, int *i);
 void		print_camera(t_camera *camera);
+int			check_for_dots(char *line, int *i);
 
 #endif

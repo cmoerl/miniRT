@@ -6,26 +6,46 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 12:18:17 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/10 13:22:32 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-void	parse_intensity(char *line, int *i, float *intensity, t_scene *scene)
+int	check_for_dots(char *line, int *i)
 {
-	int	start;
+	int	dot_count;
 
-	start = *i;
-	while (line[*i] && (ft_isdigit(line[*i])
-			|| line[*i] == '.' || line[*i] == '-' || line[*i] == '+'))
+	dot_count = 0;
+	while (line[*i] && (line[*i] == '.' || line[*i] == ' '))
+	{
+		if (line[*i] == '.')
+			dot_count++;
 		(*i)++;
-	if (start == *i)
-		error("Invalid character in ambient lighting definition", scene, line);
-	*intensity = ft_atof(&line[start]);
-	if (*intensity < 0.0 || *intensity > 1.0)
-		error("Ambient lighting intensity out of range [0.0, 1.0]",
-			scene, line);
+	}
+	printf("dot_count: %d\n", dot_count);
+	if (dot_count > 1)
+		return (1);
+	return (0);
+}
+
+void parse_intensity(char *line, int *i, float *intensity, t_scene *scene)
+{
+    int start;
+    int dot_count = 0;
+
+    start = *i;
+    while (line[*i] && (ft_isdigit(line[*i]) || line[*i] == '.' || line[*i] == '-' || line[*i] == '+'))
+    {
+        if (line[*i] == '.')
+            dot_count++;
+        (*i)++;
+    }
+    if (start == *i || dot_count > 1)
+        error("Invalid character in ambient lighting definition", scene, line);
+    *intensity = ft_atof(&line[start]);
+    if (*intensity < 0.0 || *intensity > 1.0)
+        error("Ambient lighting intensity out of range [0.0, 1.0]", scene, line);
 }
 
 void	parse_color_value(char *line, int *i,
@@ -40,7 +60,7 @@ void	parse_color_value(char *line, int *i,
 	while (line[*i] && (ft_isdigit(line[*i])))
 		(*i)++;
 	if (start == *i)
-		error("1Invalid character in ambient lighting definition", scene, line);
+		error("Invalid character in ambient lighting definition", scene, line);
 	*(color_info->color_value) = ft_atoi(&line[start]);
 	if (*(color_info->color_value) < 0 || *(color_info->color_value) > 255)
 	{
