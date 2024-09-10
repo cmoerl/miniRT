@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:38:31 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 16:33:46 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/10 16:41:38 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	count_characters(char *line, t_scene *scene)
 {
 	int	i;
 
+	i = 0;
 	scene->flags.dot_count = 0;
 	scene->flags.sign_count = 0;
 	scene->flags.comma_count = 0;
