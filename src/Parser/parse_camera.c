@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:38:31 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 11:26:07 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/10 12:33:10 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	parse_camera(char *line, t_camera *camera, t_scene *scene)
 	skip_whitespace(line, &i);
 	validate_identifier(line[i], 'C');
 	i++;
+	if (line[i] != ' ')
+		error("Missing space after 'C' identifier for camera", scene, line);
 	validate_line_format(line, scene);
 	skip_whitespace(line, &i);
 	camera->center = parse_vector(&line, &i, scene);

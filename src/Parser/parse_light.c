@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:32:14 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 12:20:21 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/10 12:45:46 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	parse_light(char *line, t_scene *scene)
 
 	i = 0;
 	validate_line_format(line, scene);
+	if (line[i + 1] != ' ')
+		error("Missing space afer identifier for light", scene, line);
 	skip_whitespace(line, &i);
 	i++;
 	parse_light_properties(line, &i, &color, scene);

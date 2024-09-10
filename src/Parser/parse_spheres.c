@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:50:01 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/04 10:12:21 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/10 12:37:59 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	parse_sphere(char *line, t_sphere **spheres, t_scene *scene)
 	validate_line_format(line, scene);
 	skip_whitespace(line, &i);
 	validate_sphere_identifier(line, &i, scene);
+	if (line[i] != ' ')
+		error("Missing space after 'sp' identifier for sphere", scene, line);
 	skip_whitespace(line, &i);
 	new_sphere = malloc(sizeof(t_sphere));
 	if (!new_sphere)
