@@ -6,12 +6,15 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 17:19:42 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/10 21:31:47 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
+//parse the intensity of the ambient light
+//check if the intensity is in the range [0.0, 1.0]
+//convert the intensity to a float 
 void	parse_intensity(char *line, int *i, float *intensity, t_scene *scene)
 {
 	int	start;
@@ -55,6 +58,7 @@ void	parse_color_value(char *line, int *i,
 	}
 }
 
+ 
 void	parse_color_values(char *line, int *i, t_color *color, t_scene *scene)
 {
 	int				r;
