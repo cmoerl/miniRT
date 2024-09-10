@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:32:14 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/04 10:16:36 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/10 12:20:21 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ void	parse_light(char *line, t_scene *scene)
 	i = 0;
 	validate_line_format(line, scene);
 	skip_whitespace(line, &i);
-	if (line[i] != 'L')
-		error("Missing 'L' identifier for light", scene, line);
 	i++;
 	parse_light_properties(line, &i, &color, scene);
 	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))

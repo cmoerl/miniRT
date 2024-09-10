@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:18:53 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/09 14:36:22 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/10 12:30:10 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	parse_scene_line(char *line, t_scene *scene)
 		parse_light_line(&line[i], scene);
 	else
 	{
-		check_essential_components(scene, line);
 		parse_object_line(&line[i], scene);
 	}
 }
@@ -54,6 +53,7 @@ t_scene	parse_scene(char *file, t_scene scene)
 	if (scene.fd < 0)
 		error("Could not open file", &scene, NULL);
 	read_and_parse_lines(&scene);
+	check_essential_components(&scene, NULL);
 	close(scene.fd);
 	scene.fd = -1;
 	if (!scene.flags.objects_found)

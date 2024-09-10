@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:47:53 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 11:36:39 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/10 12:08:03 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	parse_color_component(char *line, int *i,
 
 	skip_whitespace(line, i);
 	start = *i;
+	if (line[*i] == '+')
+		(*i)++;
 	while (line[*i] && ft_isdigit(line[*i]))
 		(*i)++;
 	if (start == *i)
