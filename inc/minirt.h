@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/10 14:41:08 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/10 15:55:19 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <string.h>
 # include <math.h>
 # include "../libft/libft.h"
-// # include <mlx.h>
-// # include "mlx.h"
+# include <mlx.h>
+# include "mlx.h"
 
 # define WIDTH 1000
 # define HEIGHT 700
@@ -355,7 +355,7 @@ void		free_cylinders(t_cylinder *cylinders);
 void		free_scene(t_scene *scene);
 
 // Miscellaneous Utilities
-// General helper functions for skipping whitespaces , printing, and checking for dots. 
+// General helper functions 
 
 void		skip_whitespace(char *line, int *i);
 void		skip_whitespacess(char **line, int *i);

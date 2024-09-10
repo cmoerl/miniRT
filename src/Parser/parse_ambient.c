@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 15:15:02 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/10 15:58:54 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,24 @@ int	check_for_dots(char *line, int *i)
 	return (0);
 }
 
-void parse_intensity(char *line, int *i, float *intensity, t_scene *scene)
+void	parse_intensity(char *line, int *i, float *intensity, t_scene *scene)
 {
-    int start;
-    int dot_count = 0;
+	int	start;
+	int	dot_count;
 
-    start = *i;
-    while (line[*i] && (ft_isdigit(line[*i]) || line[*i] == '.' || line[*i] == '-' || line[*i] == '+'))
-    {
-        if (line[*i] == '.')
-            dot_count++;
-        (*i)++;
-    }
-    if (start == *i || dot_count > 1)
-        error("Invalid character in ambient lighting definition", scene, line);
-    *intensity = ft_atof(&line[start]);
-    if (*intensity < 0.0 || *intensity > 1.0)
-        error("Ambient lighting intensity out of range [0.0, 1.0]", scene, line);
+	start = *i;
+	while (line[*i] && (ft_isdigit(line[*i])
+			|| line[*i] == '.' || line[*i] == '-' || line[*i] == '+'))
+	{
+		if (line[*i] == '.')
+			dot_count++;
+		(*i)++;
+	}
+	if (start == *i || dot_count > 1)
+		error("Invalid character in ambient lighting definition", scene, line);
+	*intensity = ft_atof(&line[start]);
+	if (*intensity < 0.0 || *intensity > 1.0)
+		error("Ambient lighting intensity out of range[0.0, 1.0]", scene, line);
 }
 
 void	parse_color_value(char *line, int *i,
@@ -117,9 +118,4 @@ void	parse_ambient(char *line, t_amblight *ambient, t_scene *scene)
 	if (line[i] != '\0')
 		error("Invalid character in ambient lighting definition", scene, line);
 	ambient->intensity = intensity;
-	printf("Ambient lighting intensity: %f\n", ambient->intensity);
-	printf("Ambient lighting color: %f, %f, %f\n",
-		ambient->color.r, ambient->color.g, ambient->color.b);
 }
-
- 

@@ -6,7 +6,7 @@
 /*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:45:00 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 15:47:29 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/10 15:54:36 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,24 @@ void	validate_plane_identifier(char *line, int *i, t_scene *scene)
 }
 
 float	parse_coordinate(char *line, int *i,
-        char *error_message, t_scene *scene)
+		char *error_message, t_scene *scene)
 {
-    int	start;
-    int	dot_count = 0;
+	int	start;
+	int	dot_count;
 
-    skip_whitespace(line, i);
-    start = *i;
-    while (line[*i] && (ft_isdigit(line[*i])
-            || line[*i] == '.' || line[*i] == '-' || line[*i] == '+'))
-    {
-        if (line[*i] == '.')
-            dot_count++;
-        (*i)++;
-    }
-    if (start == *i || dot_count > 1)
-        error(error_message, scene, line);
-    return (ft_atof(&line[start]));
+	dot_count = 0;
+	skip_whitespace(line, i);
+	start = *i;
+	while (line[*i] && (ft_isdigit(line[*i])
+			|| line[*i] == '.' || line[*i] == '-' || line[*i] == '+'))
+	{
+		if (line[*i] == '.')
+			dot_count++;
+	(*i)++;
+	}
+	if (start == *i || dot_count > 1)
+		error(error_message, scene, line);
+	return (ft_atof(&line[start]));
 }
 
 void	parse_plane_coordinates(char *line, int *i,
