@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cylinders.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:53:37 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 12:50:45 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/10 23:12:34 by marianfurni      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	parse_cylinder(char *line, t_cylinder **cylinders, t_scene *scene)
 	i = 0;
 	validate_line_format(line, scene);
 	skip_whitespace(line, &i);
-	validate_cylinder_identifier(line, &i);
+	validate_cylinder_identifier(line, &i); // needs checking, might be useless
 	skip_whitespace(line, &i);
 	new_cylinder = malloc(sizeof(t_cylinder));
 	if (!new_cylinder)
