@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/11 10:51:22 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/11 11:40:20 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,8 +173,8 @@ typedef struct s_hit
 
 typedef struct s_color_info
 {
-	int			*color_value;
-	const char	*color_name;
+	float			*color_value;
+	const char		*color_name;
 }	t_color_info;
 
 typedef struct s_flags
@@ -190,9 +190,9 @@ typedef struct s_flags
 
 typedef struct s_rgb
 {
-	int	r;
-	int	g;
-	int	b;
+	float	r;
+	float	g;
+	float	b;
 }	t_rgb;
 
 typedef struct s_scene

@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/11 10:49:34 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/11 11:55:26 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	parse_color_value(char *line, int *i,
 		t_color_info *color_info, t_scene *scene)
 {
 	int	start;
+	int	error_overflow;
 
 	start = *i;
 	validate_line_format(line, scene);
@@ -49,7 +50,13 @@ void	parse_color_value(char *line, int *i,
 		(*i)++;
 	if (start == *i)
 		error("Invalid character in ambient lighting definition", scene, line);
-	*(color_info->color_value) = ft_atoi(&line[start]);
+	*(color_info->color_value) = ft_atoi_overflow(&line[start], &error_overflow);
+	if (error_overflow)
+	{
+		printf("Error: Ambient lighting %s value out of range [0, 255]\n",
+			color_info->color_name);
+		error(NULL, scene, line);
+	}
 	if (*(color_info->color_value) < 0 || *(color_info->color_value) > 255)
 	{
 		printf("Error: Ambient lighting %s value out of range [0, 255]\n",
@@ -60,10 +67,10 @@ void	parse_color_value(char *line, int *i,
 
 void	parse_color_values(char *line, int *i, t_color *color, t_scene *scene)
 {
-	int				r;
-	int				g;
-	int				b;
-	t_color_info	color_info;
+	float				r;
+	float				g;
+	float				b;
+	t_color_info		color_info;
 
 	color_info.color_value = &r;
 	color_info.color_name = "red";
@@ -81,9 +88,9 @@ void	parse_color_values(char *line, int *i, t_color *color, t_scene *scene)
 	while (line[*i] && (line[*i] == ' '
 			|| line[*i] == '\t' || line[*i] == '\n'))
 		(*i)++;
-	color->r = r / 255.0;
-	color->g = g / 255.0;
-	color->b = b / 255.0;
+	color->r = r;
+	color->g = g;
+	color->b = b;
 }
 
 void	parse_ambient(char *line, t_amblight *ambient, t_scene *scene)
