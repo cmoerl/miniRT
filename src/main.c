@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:56:02 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/10 16:53:35 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/11 10:49:55 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	main(int argc, char **argv)
 	}
 	check_file(argv[1]);
 	scene = parse_scene(argv[1], scene);
-	// init_scene_mlx(&scene);
-	// render_scene(scene);
-	// event_loop(scene);
+	init_scene_mlx(&scene);
+	render_scene(scene);
+	event_loop(scene);
 	free_scene(&scene);
 	return (0);
 }

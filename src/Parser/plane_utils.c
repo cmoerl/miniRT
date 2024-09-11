@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:45:00 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 15:54:36 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/11 10:49:25 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ float	parse_coordinate(char *line, int *i,
 	{
 		if (line[*i] == '.')
 			dot_count++;
-	(*i)++;
+		(*i)++;
 	}
 	if (start == *i || dot_count > 1)
 		error(error_message, scene, line);

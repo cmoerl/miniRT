@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/10 20:58:07 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/11 10:51:22 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <string.h>
 # include <math.h>
 # include "../libft/libft.h"
-// # include <mlx.h>
-// # include "mlx.h"
+# include <mlx.h>
+# include "mlx.h"
 
 # define WIDTH 1000
 # define HEIGHT 700
@@ -185,7 +185,6 @@ typedef struct s_flags
 	int	comma_count;
 	int	dot_count;
 	int	sign_count;
-	int	objects_found;
 	int	invalid_line_found;
 }	t_flags;
 

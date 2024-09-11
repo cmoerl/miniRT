@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 11:25:58 by mafurnic          #+#    #+#             */
-/*   Updated: 2024/09/10 16:37:46 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/11 10:47:02 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,18 @@ void	free_cylinders(t_cylinder *cylinders)
 
 void	free_scene(t_scene *scene)
 {
-	// if (scene->img)
-	// {
-	// 	if (scene->img->img_ptr)
-	// 		mlx_destroy_image(scene->mlx_ptr, scene->img->img_ptr);
-	// 	free(scene->img);
-	// }
-	// if (scene->win_ptr)
-	// 	mlx_destroy_window(scene->mlx_ptr, scene->win_ptr);
-	// if (scene->mlx_ptr)
-	// {
-	// 	mlx_destroy_display(scene->mlx_ptr);
-	// }
+	if (scene->img)
+	{
+		if (scene->img->img_ptr)
+			mlx_destroy_image(scene->mlx_ptr, scene->img->img_ptr);
+		free(scene->img);
+	}
+	if (scene->win_ptr)
+		mlx_destroy_window(scene->mlx_ptr, scene->win_ptr);
+	if (scene->mlx_ptr)
+	{
+		mlx_destroy_display(scene->mlx_ptr);
+	}
 	if (scene->objects)
 	{
 		free_spheres(scene->objects->spheres);
@@ -69,8 +69,8 @@ void	free_scene(t_scene *scene)
 		free_cylinders(scene->objects->cylinders);
 		free(scene->objects);
 	}
-	// if (scene->hooks)
-	// 	free(scene->hooks);
-	// if (scene->mlx_ptr)
-	// 	free(scene->mlx_ptr);
+	if (scene->hooks)
+		free(scene->hooks);
+	if (scene->mlx_ptr)
+		free(scene->mlx_ptr);
 }

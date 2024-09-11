@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:34:34 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 16:37:19 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/11 10:47:20 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	parse_axis(char *line, int *i, t_cylinder *cylinder, t_scene *scene)
 		|| cylinder->axis.y < -1 || cylinder->axis.y > 1
 		|| cylinder->axis.z < -1 || cylinder->axis.z > 1)
 		error("Cylinder axis values out of range [-1, 1]", scene, line);
-	// cylinder->axis = normalise_vector(cylinder->axis);
+	cylinder->axis = normalise_vector(cylinder->axis);
 }
 
 void	add_cylinder_to_list(t_cylinder **cylinders, t_cylinder *new_cylinder)
