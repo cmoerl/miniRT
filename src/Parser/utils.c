@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianfurnica <marianfurnica@student.42    +#+  +:+       +#+        */
+/*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:51:44 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/10 20:59:20 by marianfurni      ###   ########.fr       */
+/*   Updated: 2024/09/11 12:24:14 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	validate_line_format(char *line, t_scene *scene)
 	count_instances(line, scene);
 	while (line[i])
 	{
+		if (ft_isdigit(line[i]) && (line[i + 1] == '-' || line[i + 1] == '+'))
+			error("Invalid digit and sign sequence in line", scene, line);
 		if ((line[i] == '+' || line[i] == '-'
 				|| line[i] == '.' || line[i] == ',')
 			&& (line[i] == line[i + 1]))
