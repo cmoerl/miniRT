@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:47:53 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/11 10:48:09 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/11 12:18:54 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,14 @@ void	parse_plane_axis(char *line, int *i, t_plane *plane, t_scene *scene)
 	plane->axis = normalise_vector(plane->axis);
 }
 
-int	parse_color_component(char *line, int *i,
+float	parse_color_component(char *line, int *i,
 		char *error_message, t_scene *scene)
 {
-	int	start;
+	int		start;
+	int		error_overflow;
+	float	result;
 
+	error_overflow = 0;
 	skip_whitespace(line, i);
 	start = *i;
 	if (line[*i] == '+')
@@ -48,7 +51,10 @@ int	parse_color_component(char *line, int *i,
 		(*i)++;
 	if (start == *i)
 		error(error_message, scene, line);
-	return (ft_atoi(&line[start]));
+	result = ft_atoi_overflow(&line[start], &error_overflow);
+	if (error_overflow || result < 0 || result > 255)
+		error("Color component out of range [0, 255]", scene, line);
+	return (result);
 }
 
 void	parse_plane_color(char *line, int *i, t_plane *plane, t_scene *scene)

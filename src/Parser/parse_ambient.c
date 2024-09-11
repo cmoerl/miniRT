@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 08:41:08 by marianfurni       #+#    #+#             */
-/*   Updated: 2024/09/11 11:55:26 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/11 12:15:17 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	parse_color_value(char *line, int *i,
 		(*i)++;
 	if (start == *i)
 		error("Invalid character in ambient lighting definition", scene, line);
-	*(color_info->color_value) = ft_atoi_overflow(&line[start], &error_overflow);
+	*(color_info->color_value) = ft_atoi_overflow(&line[start],
+			&error_overflow);
 	if (error_overflow)
 	{
 		printf("Error: Ambient lighting %s value out of range [0, 255]\n",

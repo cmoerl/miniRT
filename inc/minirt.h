@@ -6,7 +6,7 @@
 /*   By: mafurnic <mafurnic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 16:42:57 by csturm            #+#    #+#             */
-/*   Updated: 2024/09/11 11:40:20 by mafurnic         ###   ########.fr       */
+/*   Updated: 2024/09/11 12:21:16 by mafurnic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -332,8 +332,10 @@ void		parse_single_position(char *line, int *i,
 t_vector	parse_vector(char **line, int *i, t_scene *scene);
 float		parse_coordinate(char *line, int *i,
 				char *error_message, t_scene *scene);
-int			parse_color_component(char *line, int *i,
+float		parse_color_component(char *line, int *i,
 				char *error_message, t_scene *scene);
+void		parse_color_value(char *line, int *i,
+				t_color_info *color_info, t_scene *scene);
 
 // Validation Functions
 
